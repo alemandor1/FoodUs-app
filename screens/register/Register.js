@@ -5,6 +5,10 @@ import firebaseService from '../../services/firebase';
 import styles from './styles'
 import { icons, SIZES, COLORS, FONTS } from '../../constants'
 
+const Separator = () => (
+  <View style={styles.separator} />
+);
+
 const Register = ({navigation}) => {
  const [name, setName] = useState('')
  const [user, setUser] = useState('')

@@ -1,27 +1,43 @@
 import React from 'react';
-import {Text, View, TouchableOpacity, Image } from 'react-native';
+import {Text, View, TouchableOpacity, Image, Button, SafeAreaView } from 'react-native';
 import styles from './styles'
+
+const Separator = () => (
+  <View style={styles.separator} />
+);
 
 const Home = ({navigation}) => {
    
     return (
-
-       <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
+        <View >
            <Image 
-          style={{width:420, height:180,}}
-          source={require("../../assets/comida-login.jpg")}
-         
+            style={styles.cabecera}
+            source={require("../../assets/comida-login.jpg")}
           />
-           <Image
-          style={styles.logo}
-          source={require("../../assets/logo.png")}/>
-         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
-             <Text style={styles.textButtom}>Iniciar sesión</Text>
-         </TouchableOpacity>
-         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Register')}>
-             <Text style={styles.textButtom}>Registrarse</Text>
-         </TouchableOpacity>
-       </View>
+          </View>
+
+          <View>
+          <Image
+            style={styles.logo}
+            source={require("../../assets/logo.png")}
+          />
+          <Separator />
+          <Button
+            title="Iniciar sesión"
+            color="#B64C41"
+            onPress={() => navigation.navigate('Login')}
+         />
+        </View>
+        <Separator />
+        <View>
+          <Button
+            title="Registrarse"
+            color="#B64C41"
+            onPress={() => navigation.navigate('Register')}
+          />
+        </View>
+      </SafeAreaView>
      );
    }
    

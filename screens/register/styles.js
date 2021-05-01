@@ -3,8 +3,6 @@ import { StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      marginTop: 20,
-      marginHorizontal: 10,
       justifyContent: 'center',
       backgroundColor: 'white'
     },
@@ -30,6 +28,11 @@ const styles = StyleSheet.create({
     },
     registerButtom:{
       backgroundColor: 'red'
+    },
+    separator: {
+      marginVertical: 8,
+      borderBottomColor: '#FFFFFF',
+      borderBottomWidth: StyleSheet.hairlineWidth,
     }
   });
 

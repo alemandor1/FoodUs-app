@@ -6,6 +6,7 @@ import Register from './screens/register/Register';
 import Main from './screens/main/Main';
 import Home from './screens/home/Home';
 import { useFonts } from 'expo-font';
+import Tabs from './navigation/tabs'
 
 
 const Stack = createStackNavigator()
@@ -32,7 +33,7 @@ const App = () => {
         <Stack.Screen name="Home" component={Home}/>
         <Stack.Screen name="Login" component={Login}/>
         <Stack.Screen name="Register" component={Register}/>
-        <Stack.Screen name="Main" component={Main}/>
+        <Stack.Screen name="Main" component={Tabs}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
