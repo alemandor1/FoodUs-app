@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import {Text, View, TouchableHighlight, TextInput } from 'react-native';
-import firebaseService from '../../services/firebase';
+//import firebaseService from '../../utils/firebase';
 import styles from './styles'
 import { icons, SIZES, COLORS, FONTS } from '../../constants'
 

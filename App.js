@@ -5,6 +5,7 @@ import Login from './screens/login/Login';
 import Register from './screens/register/Register';
 import Main from './screens/main/Main';
 import Home from './screens/home/Home';
+import Account from './screens/account/Account';
 import { useFonts } from 'expo-font';
 
 
@@ -29,6 +30,7 @@ const App = () => {
         screenOptions={{
           headerShown: false
         }}>
+        <Stack.Screen name="Account" component={Account}/>
         <Stack.Screen name="Home" component={Home}/>
         <Stack.Screen name="Login" component={Login}/>
         <Stack.Screen name="Register" component={Register}/>
