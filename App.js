@@ -34,6 +34,7 @@ const App = () => {
         <Stack.Screen name="Login" component={Login}/>
         <Stack.Screen name="Register" component={Register}/>
         <Stack.Screen name="Main" component={Tabs}/>
+        <Stack.Screen name="Profile" component={Tabs}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

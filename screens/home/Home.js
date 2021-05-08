@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, TouchableOpacity, Image, Button, SafeAreaView } from 'react-native';
+import {View, Image, Button, SafeAreaView } from 'react-native';
 import styles from './styles'
 
 const Separator = () => (

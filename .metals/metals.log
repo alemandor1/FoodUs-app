@@ -3,3 +3,25 @@
 [0m2021.04.28 13:46:30 WARN  Build server is not auto-connectable.[0m
 [0m2021.04.28 13:46:30 WARN  no build tool detected in workspace 'C:\Users\Angel\Desktop\FoodUs-tfg'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
 [0m2021.04.28 14:09:18 INFO  shutting down Metals[0m
+[0m2021.05.01 17:21:28 INFO  Started: Metals version 0.10.2 in workspace 'C:\Users\Angel\Desktop\FoodUs-tfg' for client vscode 1.55.2.[0m
+[0m2021.05.01 17:21:29 INFO  time: initialize in 1.06s[0m
+[0m2021.05.01 17:21:29 WARN  Build server is not auto-connectable.[0m
+[0m2021.05.01 17:21:29 WARN  no build tool detected in workspace 'C:\Users\Angel\Desktop\FoodUs-tfg'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.05.01 17:39:06 INFO  shutting down Metals[0m
+[0m2021.05.03 17:31:16 INFO  Started: Metals version 0.10.2 in workspace 'C:\Users\Angel\Desktop\FoodUs-tfg' for client vscode 1.55.2.[0m
+[0m2021.05.03 17:31:17 INFO  time: initialize in 1.49s[0m
+[0m2021.05.03 17:31:19 WARN  Build server is not auto-connectable.[0m
+[0m2021.05.03 17:31:19 WARN  no build tool detected in workspace 'C:\Users\Angel\Desktop\FoodUs-tfg'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+may 03, 2021 5:33:09 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFORMACIÓN: Unsupported notification method: $/setTraceNotification
+[0m2021.05.03 19:33:25 INFO  shutting down Metals[0m
+[0m2021.05.04 10:33:54 INFO  Started: Metals version 0.10.2 in workspace 'C:\Users\Angel\Desktop\FoodUs-tfg' for client vscode 1.55.2.[0m
+[0m2021.05.04 10:33:57 INFO  time: initialize in 2.31s[0m
+[0m2021.05.04 10:33:58 WARN  Build server is not auto-connectable.[0m
+[0m2021.05.04 10:33:58 WARN  no build tool detected in workspace 'C:\Users\Angel\Desktop\FoodUs-tfg'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.05.04 20:12:18 INFO  shutting down Metals[0m
+[0m2021.05.05 10:46:04 INFO  Started: Metals version 0.10.2 in workspace 'C:\Users\Angel\Desktop\FoodUs-tfg' for client vscode 1.55.2.[0m
+[0m2021.05.05 10:46:06 INFO  time: initialize in 1.83s[0m
+[0m2021.05.05 10:46:08 WARN  Build server is not auto-connectable.[0m
+[0m2021.05.05 10:46:08 WARN  no build tool detected in workspace 'C:\Users\Angel\Desktop\FoodUs-tfg'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.05.05 13:22:53 INFO  shutting down Metals[0m

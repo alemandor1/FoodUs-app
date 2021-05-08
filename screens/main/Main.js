@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import {Text, View } from 'react-native';
-import firebaseService from '../../services/firebase';
+import {getUser } from '../../services/actions'
 import styles from './styles'
 
 const Main = () => {
@@ -10,7 +10,7 @@ const Main = () => {
    (
      async () => {
        try {
-         const userData = await firebaseService.getUser()
+         const userData = await getUser()
          setName(userData)
        } catch (e) {
          alert(e)

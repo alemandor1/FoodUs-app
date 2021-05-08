@@ -2,15 +2,16 @@ import firebase from 'firebase'
 import 'firebase/firebase-firestore'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDH73_KbavpjtxCjr100ZU-vPKBittQDJI",
-    authDomain: "foodus-tfg.firebaseapp.com",
-    projectId: "foodus-tfg",
-    storageBucket: "foodus-tfg.appspot.com",
-    messagingSenderId: "153932292960",
-    appId: "1:153932292960:web:c7dd48648dbd7eb31d7405"
+    apiKey: "AIzaSyAzONd4o8YcuMWUgiAINl6jWws-YxJ5vq0",
+    authDomain: "foodustfg-2e598.firebaseapp.com",
+    projectId: "foodustfg-2e598",
+    storageBucket: "foodustfg-2e598.appspot.com",
+    messagingSenderId: "864240287076",
+    appId: "1:864240287076:web:c97a126f83e614fdfa0e71"
 }
+export const firebaseApp = firebase.initializeApp(firebaseConfig)
 
-class Firebase {
+/* class Firebase {
     constructor(){
         firebase.initializeApp(firebaseConfig);
         this.auth = firebase.auth()
@@ -33,4 +34,4 @@ class Firebase {
 }
 
 const firebaseService = new Firebase()
-export default firebaseService
+export default firebaseService */

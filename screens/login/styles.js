@@ -6,30 +6,19 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       backgroundColor: 'white'
     },
-    inputText: {
-      height: 50,
-      borderWidth: 1,
-      borderColor: '#ccc',
-      paddingHorizontal: 20,
-      color: 'black',
-      backgroundColor: 'white'
+    input: {
+        width: "100%"
+    },  
+    btnContainer: {
+        marginTop: 20,
+        width: "95%",
+        alignSelf: "center"
     },
-    button: {
-      paddingVertical: 20,
-      borderWidth: 1,
-      borderColor: '#ccc', 
-      marginTop: 10,
+    btn: {
+        backgroundColor: "#442484"
     },
-    textButton:{
-      textAlign: 'center'
-    },
-    loginButton:{
-      backgroundColor: 'green'
-    }, 
-    separator: {
-      marginVertical: 8,
-      borderBottomColor: '#FFFFFF',
-      borderBottomWidth: StyleSheet.hairlineWidth,
+    icon: {
+        color: "#c1c1c1"
     }
   });
 
