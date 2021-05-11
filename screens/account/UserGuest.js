@@ -32,9 +32,7 @@ const styles = StyleSheet.create({
     image: {
         height: 300,
         width: "100%",
-        marginBottom: 10,
-        textAlign: "center"
-    },
+        marginBottom: 10    },
     button: {
         backgroundColor: "#442484"
     }
