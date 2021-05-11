@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import {Text, View } from 'react-native';
-import firebaseService from '../../services/firebase';
+//import firebaseService from '../../utils/firebase';
 import styles from './styles'
 
 const Main = () => {
