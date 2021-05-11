@@ -16,7 +16,7 @@ const Login = ({navigation}) => {
  const onPressLogin = async () => {
      try {
         await firebaseService.login(user, pass)
-        navigation.navigate('Main')
+        navigation.navigate('Main_copy')
      } catch (e) {
         alert(e)
     }

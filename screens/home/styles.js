@@ -21,8 +21,9 @@ const styles = StyleSheet.create({
     },
 
     cabecera: {
-      width: 200,
+      width: 500,
       height: 100,
+      top: -100,
     }
 
   });
