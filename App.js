@@ -7,6 +7,7 @@ import Home from './screens/home/Home';
 import { useFonts } from 'expo-font';
 import Tabs from './navigation/tabs'
 import { LogBox } from 'react-native'
+import Profile from './screens/profile/Profile';
 
 LogBox.ignoreAllLogs()
 
@@ -36,6 +37,7 @@ const App = () => {
         <Stack.Screen name="Register" component={Register}/>
         <Stack.Screen name="Main" component={Tabs}/>
         <Stack.Screen name="Account" component={Tabs}/>
+        <Stack.Screen name="Profile" component={Profile}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

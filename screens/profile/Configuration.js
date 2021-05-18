@@ -126,15 +126,17 @@ const styles = StyleSheet.create({
     btnCloseSession : {
         marginTop: 30,
         borderRadius: 5,
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "#F94F62",
         borderTopWidth: 1,
-        borderTopColor: "#442484",
+        borderTopColor: "#F6051F",
         borderBottomWidth: 1,
-        borderBottomColor: "#442484",
-        paddingVertical: 10
+        borderBottomColor: "#F6051F",
+        paddingVertical: 10,
+        width: "50%",
+        alignSelf: "center"
     },
     btnCloseSessionTitle : {
-        color: "#442484"
+        color: "#FFFFFF"
     },
     menuItem: {
         borderBottomWidth: 1,

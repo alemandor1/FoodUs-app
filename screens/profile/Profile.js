@@ -41,13 +41,10 @@ export default function Profile() {
                     )
             }
             <Button
-                title="Cerrar sesión"
+                title="Volver"
                 buttonStyle={styles.btnCloseSession}
                 titleStyle={styles.btnCloseSessionTitle}
-                onPress={() => {
-                    closeSession()
-                    navigation.navigate("Home")
-                }}
+                onPress={() => navigation.navigate("Configuration")}
             />
         </View>
     )
@@ -56,19 +53,21 @@ export default function Profile() {
 const styles = StyleSheet.create({
     container : {
         minHeight: "100%",
-        backgroundColor: "#f9f9f9"
+        backgroundColor: 'white'
     },
     btnCloseSession : {
         marginTop: 30,
         borderRadius: 5,
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "#F4F5A9",
         borderTopWidth: 1,
-        borderTopColor: "#442484",
+        borderTopColor: "#F4F5A9",
         borderBottomWidth: 1,
-        borderBottomColor: "#442484",
-        paddingVertical: 10
+        borderBottomColor: "#F4F5A9",
+        paddingVertical: 10,
+        width: "50%",
+        alignSelf: "center"
     },
     btnCloseSessionTitle : {
-        color: "#442484"
+        color: "#000000"
     }
 })

@@ -130,7 +130,10 @@ const defaultFormValues = () => {
 
 const styles = StyleSheet.create({
     form: {
-        marginTop: 30
+        marginTop: 30,
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center"
     },
     input: {
         width: "100%"

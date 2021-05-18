@@ -119,6 +119,6 @@ const styles = StyleSheet.create({
         alignSelf: "center"
     },
     btn: {
-        backgroundColor: "#442484"
+        backgroundColor: "#442484" 
     }
 })

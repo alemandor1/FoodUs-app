@@ -8,14 +8,6 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       backgroundColor: 'white'
     },
-    inputText: {
-      height: 50,
-      borderWidth: 1,
-      borderColor: '#ccc',
-      paddingHorizontal: 20,
-      color: 'black',
-      backgroundColor: 'white'
-    },
     logo:{
       width: 100,
       height: 100,
@@ -28,7 +20,7 @@ const styles = StyleSheet.create({
       alignSelf: "center"
   },
     btn: {
-      backgroundColor: "#442484"
+      backgroundColor: "#C64755"
   }
   });
 

@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         flexDirection: "row",
-        backgroundColor: "#f9f9f9",
+        backgroundColor: 'white',
         paddingVertical: 30
     },
     infoUser: {

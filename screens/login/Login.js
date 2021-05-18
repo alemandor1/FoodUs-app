@@ -1,5 +1,5 @@
 import React from 'react'
-import {Text, View, StyleSheet, Image, ScrollView } from 'react-native';
+import {Text, View, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 import { Divider } from 'react-native-elements'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -8,7 +8,7 @@ import LoginForm from '../../components/account/LoginForm';
 
 export default function Login() {
   return (
-    <KeyboardAwareScrollView>
+    <KeyboardAwareScrollView style={styles.fondo}>
         <Image
             source={require("../../assets/logo.png")}
             resizeMode="contain"
@@ -39,13 +39,17 @@ function CreateAccount(props) {
 }
 
 const styles = StyleSheet.create({
+  fondo: {
+    backgroundColor: 'white'
+  },
   image : {
     height: 150,
     width: "100%",
-    marginBottom: 20
+    marginBottom: 20,
   },
   container : {
-    marginHorizontal: 40
+    marginHorizontal: 40,
+    backgroundColor: 'white',
   },
   register : {
     marginTop: 15,

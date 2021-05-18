@@ -1,22 +1,23 @@
 import React from 'react';
-import {Text, View, Image } from 'react-native';
-import styles from './styles'
+import { View, Image, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native'
 
 import { Button } from 'react-native-elements';
 
-const Home = ({navigation}) => {
-   
+export default function Home () {
+    const navigation = useNavigation()
     return (
 
        <View style={styles.container}>
-           <Image 
-          style={{width:420, height:180,}}
-          source={require("../../assets/comida-login.jpg")}
-          />
+            <Image 
+                style={styles.cabecera}
+                source={require("../../assets/comida-login.jpg")}
+            />
           
-           <Image
-          style={styles.logo}
-          source={require("../../assets/logo.png")}/>
+            <Image
+                style={styles.logo}
+                source={require("../../assets/logo.png")}
+            />
 
             <Button
                 title="Iniciar sesión"
@@ -34,5 +35,29 @@ const Home = ({navigation}) => {
         </View>
      );
    }
-   
-   export default Home
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      backgroundColor: 'white'
+    },
+    cabecera: {
+        width:"100%",
+        height: "25%",
+    },
+    logo:{
+      width: 100,
+      height: 100,
+      alignSelf:"center",
+      marginTop: 20
+    },
+    btnContainer:{
+      marginTop: 20,
+      width: "70%",
+      alignSelf: "center"
+  },
+    btn: {
+      backgroundColor: "#C64755"
+  }
+  });
