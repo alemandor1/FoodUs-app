@@ -1,46 +1,68 @@
-import React from 'react';
-import { useState } from 'react';
-import {Text, View, TouchableHighlight, TextInput } from 'react-native';
-import firebaseService from '../../services/firebase';
-import styles from './styles'
-import { icons, SIZES, COLORS, FONTS } from '../../constants'
+import React from 'react'
+import {Text, View, StyleSheet, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native'
+import { Divider } from 'react-native-elements'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
-const Login = ({navigation}) => {
- const [user, setUser] = useState('')
- const [pass, setPass] = useState('')
+import LoginForm from '../../components/account/LoginForm';
 
- const onPressLogin = async () => {
-     try {
-        await firebaseService.login(user, pass)
-        navigation.navigate('Main')
-     } catch (e) {
-        alert(e)
-    }
- }
-
+export default function Login() {
   return (
-    <View style={styles.container}>
-        <View>
-        <Text style={{...FONTS.h2, textAlign: 'center', marginTop: 20}}>Inicio de sesión</Text>
-            <TextInput placeholder= "Correo electrónico"
-                style={styles.inputText}
-                value={user}
-                onChange={(e) => setUser(e.nativeEvent.text)}
-                />
-            <TextInput placeholder= "Contraseña"
-                secureTextEntry={true}
-                style={styles.inputText}
-                value={pass}
-                onChange={(e) => setPass(e.nativeEvent.text)}
-                />
-
+    <KeyboardAwareScrollView style={styles.fondo}>
+        <Image
+            source={require("../../assets/logo.png")}
+            resizeMode="contain"
+            style={styles.image}
+        />
+        <View style={styles.container}>
+          <LoginForm/>
+          <CreateAccount/>
         </View>
-      <TouchableHighlight style={[styles.button, styles.loginButton]} onPress={onPressLogin}>
-          <Text style={styles.textButton}>Iniciar sesión</Text>
-      </TouchableHighlight>
-      <Text style={{...FONTS.body2, textAlign: 'center'}} onPress={() => navigation.navigate('Register')}>¿No tienes cuenta? Regístrate</Text>
-    </View>
-  );
+        <Divider style={styles.divider}/>
+    </KeyboardAwareScrollView>
+  )
 }
 
-export default Login
+function CreateAccount(props) {
+  const navigation = useNavigation()
+  return (
+    <Text 
+    style={styles.register}
+    onPress={() => navigation.navigate("Register")}
+    >
+      ¿Aún no tienes una cuenta?{' '}
+      <Text style={styles.btnRegister}>
+        Regístrate
+      </Text>
+    </Text>
+  )
+}
+
+const styles = StyleSheet.create({
+  fondo: {
+    backgroundColor: 'white'
+  },
+  image : {
+    height: 150,
+    width: "100%",
+    marginBottom: 20,
+  },
+  container : {
+    marginHorizontal: 40,
+    backgroundColor: 'white',
+  },
+  register : {
+    marginTop: 15,
+    marginHorizontal: 10,
+    alignSelf: "center"
+  },
+  btnRegister : {
+    color: "#442484",
+    fontWeight: "bold"
+  },
+  divider: {
+    backgroundColor: "#442484",
+    margin: 40
+}
+
+})

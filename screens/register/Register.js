@@ -1,52 +1,58 @@
 import React from 'react';
-import { useState } from 'react';
-import {Text, View, TouchableHighlight, TextInput } from 'react-native';
-import firebaseService from '../../services/firebase';
-import styles from './styles'
-import { icons, SIZES, COLORS, FONTS } from '../../constants'
+import {Text, View, StyleSheet, Image} from 'react-native';
+import RegisterForm from '../../components/account/RegisterForm';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { useNavigation } from '@react-navigation/native'
+import { Divider } from 'react-native-elements'
 
-const Register = ({navigation}) => {
- const [name, setName] = useState('')
- const [user, setUser] = useState('')
- const [pass, setPass] = useState('')
 
- const createNewUser = async () => {
-   try {
-     await firebaseService.createUser(name, user, pass)
-     navigation.navigate('Main')
-   } catch (e) {
-     alert(e)
-   }
- }
-
+export default function Register() {
+  const navigation = useNavigation()
   return (
-    <View style={styles.container}>
-        <View>
-        <Text style={{...FONTS.h2, textAlign: 'center', marginTop: 20}}>Registro</Text>
-        <TextInput placeholder= "Nombre"
-                style={styles.inputText}
-                value={name}
-                onChange={(e) => setName(e.nativeEvent.text)}
-                />
-            <TextInput placeholder= "Correo electrónico"
-                style={styles.inputText}
-                value={user}
-                onChange={(e) => setUser(e.nativeEvent.text)}
-                />
-            <TextInput placeholder= "Contraseña"
-                secureTextEntry={true}
-                style={styles.inputText}
-                value={pass}
-                onChange={(e) => setPass(e.nativeEvent.text)}
-                />
+    <KeyboardAwareScrollView style={styles.fondo}>
+        <Image
+            source={require("../../assets/logo.png")}
+            resizeMode="contain"
+            style={styles.image}
+        />
+      <RegisterForm/>
 
-        </View>
-      <TouchableHighlight style={[styles.buttom, styles.loginButtom]} onPress={createNewUser}>
-          <Text style={styles.textButtom}>Registrarse</Text>
-      </TouchableHighlight>
-      <Text style={{...FONTS.body2, textAlign: 'center'}} onPress={() => navigation.navigate('Login')}>¿Ya tienes cuenta? Inicia sesión! </Text>
-    </View>
-  );
+      <Text 
+          style={styles.login}
+          onPress={() => navigation.navigate("Login")}
+      >
+          ¿Ya tienes una cuenta?{' '}
+        <Text style={styles.btnLogin}>
+            Inicia sesión
+        </Text>
+      </Text>
+      <Divider style={styles.divider}/>
+
+    </KeyboardAwareScrollView>
+  )
 }
 
-export default Register
+const styles = StyleSheet.create({
+  fondo: {
+    backgroundColor: 'white'
+  },
+  image : {
+    height: 150,
+    width: "100%",
+    marginBottom: 20
+  },
+  login : {
+    marginTop: 15,
+    marginHorizontal: 10,
+    alignSelf: "center"
+  },
+  btnLogin : {
+    color: "#442484",
+    fontWeight: "bold"
+  },
+  divider: {
+    backgroundColor: "#442484",
+    margin: 40
+}
+
+})
