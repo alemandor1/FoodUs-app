@@ -8,10 +8,10 @@ export default function Loading({ isVisible, text}) {
 
     return (
         <Overlay
-        isVisible={isVisible}
-        windowBackgoundColor="rgba(0,0,0,0.5)"
-        overlayBackgroundColor="transparent"
-        overlayStyle={styles.overlay}
+            isVisible={isVisible}
+            windowBackgoundColor="rgba(0,0,0,0.5)"
+            overlayBackgroundColor="transparent"
+            overlayStyle={styles.overlay}
         >
         <View style={styles.view}>
                 <ActivityIndicator

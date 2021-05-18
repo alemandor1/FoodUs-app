@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { StyleSheet, Text, ScrollView, Image, View } from 'react-native'
 import Loading from '../../components/Loading'
-import { getCurrentUser, isUserLogged } from '../../utils/actions'
+import { getCurrentUser } from '../../utils/actions'
 import { useFocusEffect } from '@react-navigation/native'
 
 import UserGuest from './UserGuest'
-import UserLogged from './UserLogged'
+import Main from '../main/Main'
 
 export default function Account() {
     const [login, setLogin] = useState(null)
@@ -21,7 +21,7 @@ export default function Account() {
         return <Loading isVisible={true} text="Cargando..."/>
     }
 
-    return login ? <UserLogged/> : <UserGuest/>
+    return login ? <Main/> : <UserGuest/>
 }
 
 const styles = StyleSheet.create({})
