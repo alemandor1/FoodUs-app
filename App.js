@@ -4,7 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Login from './screens/login/Login';
 import Register from './screens/register/Register';
 import Home from './screens/home/Home';
-import Recipe from './screens/recipe/Recipe';
+import Recipe_copy from './screens/recipe/Recipe_copy';
 import { useFonts } from 'expo-font';
 import Tabs from './navigation/tabs'
 
@@ -34,7 +34,7 @@ const App = () => {
         <Stack.Screen name="Login" component={Login}/>
         <Stack.Screen name="Register" component={Register}/>
         <Stack.Screen name="Main_copy" component={Tabs}/>
-        <Stack.Screen name="Recipe" component={Recipe}/>
+        <Stack.Screen name="Recipe_copy" component={Recipe_copy}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
