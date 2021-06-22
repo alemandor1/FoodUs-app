@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import { useEffect, useState } from 'react';
 import {
     SafeAreaView,
@@ -8,18 +8,17 @@ import {
     Image,
     FlatList
 } from "react-native";
+import firebaseService from '../../services/firebase';
 import styles from './styles'
 import { icons, SIZES, COLORS, FONTS } from '../../constants'
 
-import { getUser } from '../../utils/actions';
-
-export default function Main() {
+const Main = () => {
   const [name, setName] = useState('')
   useEffect(() => {
    (
      async () => {
        try {
-         const userData = await getUser()
+         const userData = await firebaseService.getUser()
          setName(userData)
        } catch (e) {
          alert(e)
@@ -202,7 +201,7 @@ export default function Main() {
                 item
             })}
         >
-            {/* Image */}
+            
             <View
                 style={{
                     marginBottom: SIZES.padding
@@ -236,7 +235,7 @@ export default function Main() {
                 </View>
             </View>
 
-            {/* Recipe Info */}
+            
             <Text style={{ ...FONTS.body2 }}>{item.name}</Text>
 
             <View
@@ -245,7 +244,7 @@ export default function Main() {
                     flexDirection: 'row'
                 }}
             >
-                {/* Categories */}
+                
                 <View
                     style={{
                         flexDirection: 'row',
@@ -290,3 +289,5 @@ export default function Main() {
     </SafeAreaView>
   )
 }
+
+export default Main */

@@ -5,7 +5,7 @@ import { getCurrentUser } from '../../utils/actions'
 import { useFocusEffect } from '@react-navigation/native'
 
 import UserGuest from './UserGuest'
-import Main from '../main/Main'
+import Main_copy from '../main/Main_copy'
 
 export default function Account() {
     const [login, setLogin] = useState(null)
@@ -21,7 +21,7 @@ export default function Account() {
         return <Loading isVisible={true} text="Cargando..."/>
     }
 
-    return login ? <Main/> : <UserGuest/>
+    return login ? <Main_copy/> : <UserGuest/>
 }
 
 const styles = StyleSheet.create({})

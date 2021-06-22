@@ -8,6 +8,7 @@ import { useFonts } from 'expo-font';
 import Tabs from './navigation/tabs'
 import { LogBox } from 'react-native'
 import Profile from './screens/profile/Profile';
+import Recipe_copy from './screens/recipe/Recipe_copy';
 
 LogBox.ignoreAllLogs()
 
@@ -35,7 +36,9 @@ const App = () => {
         <Stack.Screen name="Home" component={Home}/>
         <Stack.Screen name="Login" component={Login}/>
         <Stack.Screen name="Register" component={Register}/>
-        <Stack.Screen name="Main" component={Tabs}/>
+        {/* <Stack.Screen name="Main" component={Tabs}/> */}
+        <Stack.Screen name="Main_copy" component={Tabs}/>
+        <Stack.Screen name="Recipe_copy" component={Recipe_copy}/>
         <Stack.Screen name="Account" component={Tabs}/>
         <Stack.Screen name="Profile" component={Profile}/>
       </Stack.Navigator>
