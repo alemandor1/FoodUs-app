@@ -7,43 +7,28 @@ import {
   FlatList,
   StyleSheet,
 } from "react-native";
-import {
-  addDocumentWithoutId,
+import { 
+  addDocumentWithoutId, 
   getCurrentUser,
   deleteFavorite,
-  getIsFavorite,
-} from "../../utils/actions";
+  getIsFavorite
+} from '../../utils/actions'
 import { Icon, Button } from "react-native-elements";
 import { SIZES, COLORS, FONTS } from "../../constants";
-import Axios from "axios";
 
-export default class Recipe extends React.Component {
+export default class DoRecipe extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      recipe: "",
-      recipeNutrition: "",
       loading: false,
-      recipeId: this.props.route.params.id,
+      recipeId: this.props.route.params.recipeId,
       APIkey: "6812c1d4a76d4a6dbe7b8ef99427f05d",
       favourite: false,
     };
   }
 
   async componentDidMount() {
-    const nut = await this.getRecipe(
-      `https://api.spoonacular.com/recipes/` +
-        this.state.recipeId +
-        `/nutritionWidget.json?&apiKey=` +
-        this.state.APIkey
-    );
-    const rec = await this.getRecipe(
-      "https://api.spoonacular.com/recipes/" +
-        this.state.recipeId +
-        "/information?apiKey=" +
-        this.state.APIkey
-    );
     const fav = await getIsFavorite(this.state.recipeId);
     if (fav) {
       this.setState({
@@ -51,10 +36,18 @@ export default class Recipe extends React.Component {
       });
     }
     this.setState({
-      recipe: rec,
-      recipeNutrition: nut,
       loading: false,
     });
+  }
+
+  async removeFavourite() {
+    this.setState({ loading: true });
+    const response = await deleteFavorite(this.state.recipeId);
+    this.setState({ loading: false });
+
+    if (response.statusResponse) {
+      this.setState({ favourite: false });
+    }
   }
 
   async addFavourite() {
@@ -72,28 +65,10 @@ export default class Recipe extends React.Component {
     }
   }
 
-  async removeFavourite() {
-    this.setState({ loading: true });
-    const response = await deleteFavorite(this.state.recipeId);
-    this.setState({ loading: false });
-
-    if (response.statusResponse) {
-      this.setState({ favourite: false });
-    }
-  }
-
-  async getRecipe(url) {
-    this.setState({ loading: true });
-    const res = await Axios.get(url).then((result) => {
-      return result.data;
-    });
-    return res;
-  }
-
   render() {
     const { navigation } = this.props;
-    const { id } = this.props.route.params;
-
+    const { image, title, readyInMinutes, servings, extendedIngredients, 
+      calories, carbs, protein, fat, analyzedInstructions } = this.props.route.params;
     return (
       <View>
         <View
@@ -106,9 +81,9 @@ export default class Recipe extends React.Component {
         >
           <Image
             source={
-              this.state.recipe.image == null
+              image == null
                 ? require("../../assets/backgroundlogo.png")
-                : { uri: this.state.recipe.image }
+                : { uri: image }
             }
             resizeMode="contain"
             style={{
@@ -128,14 +103,13 @@ export default class Recipe extends React.Component {
               margin: 20,
             }}
           >
-            <Text style={{ ...FONTS.h4 }}>{this.state.recipe.title}</Text>
+            <Text style={{ ...FONTS.h4 }}>{title}</Text>
             <Text style={{ ...FONTS.body5, color: COLORS.secondary }}>
-              {this.state.recipe.readyInMinutes} mins |{" "}
-              {this.state.recipe.servings} Serving
+              {readyInMinutes} mins | {servings} Serving
             </Text>
           </View>
           <FlatList
-            data={this.state.recipe.extendedIngredients}
+            data={extendedIngredients}
             keyExtractor={(item) => `${item.id}`}
             showsVerticalScrollIndicator={false}
             renderItem={({ item }) => (
@@ -202,121 +176,6 @@ export default class Recipe extends React.Component {
               </View>
             )}
           />
-          <View
-            style={{
-              flex: 1,
-              backgroundColor: COLORS.white,
-              paddingTop: 30,
-            }}
-          >
-            <View
-              style={{
-                marginLeft: 20,
-                marginBottom: 10,
-              }}
-            >
-              <Text style={{ ...FONTS.h4, color: COLORS.primary }}>
-                Nutritional Information
-              </Text>
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                alignSelf: "center",
-              }}
-            >
-              <View
-                style={{
-                  alignItems: "center",
-                  justifyContent: "center",
-                  borderRadius: 5,
-                  backgroundColor: COLORS.lightGray,
-                  border: "dashed",
-                  borderColor: COLORS.primary,
-                  margin: 5,
-                  padding: 5,
-                }}
-              >
-                <Text style={{ ...FONTS.body3 }}>
-                  {this.state.recipeNutrition.calories} Calories
-                </Text>
-              </View>
-              <View
-                style={{
-                  alignItems: "center",
-                  justifyContent: "center",
-                  borderRadius: 5,
-                  backgroundColor: COLORS.lightGray,
-                  border: "dashed",
-                  borderColor: COLORS.primary,
-                  margin: 5,
-                  padding: 5,
-                }}
-              >
-                <Text style={{ ...FONTS.body3 }}>
-                  {this.state.recipeNutrition.carbs} Carbs
-                </Text>
-              </View>
-              <View
-                style={{
-                  alignItems: "center",
-                  justifyContent: "center",
-                  borderRadius: 5,
-                  backgroundColor: COLORS.lightGray,
-                  border: "dashed",
-                  borderColor: COLORS.primary,
-                  margin: 5,
-                  padding: 5,
-                }}
-              >
-                <Text style={{ ...FONTS.body3 }}>
-                  {this.state.recipeNutrition.fat} Fat
-                </Text>
-              </View>
-              <View
-                style={{
-                  alignItems: "center",
-                  justifyContent: "center",
-                  borderRadius: 5,
-                  backgroundColor: COLORS.lightGray,
-                  border: "dashed",
-                  borderColor: COLORS.primary,
-                  margin: 5,
-                  padding: 5,
-                }}
-              >
-                <Text style={{ ...FONTS.body3 }}>
-                  {this.state.recipeNutrition.protein} Protein
-                </Text>
-              </View>
-            </View>
-          </View>
-          <View
-            style={{
-              margin: 20,
-            }}
-          >
-            <Button
-              title="Do recipe"
-              containerStyle={styles.btnContainer}
-              buttonStyle={styles.btn}
-              onPress={() =>
-                navigation.navigate("DoRecipe", {
-                  recipeId: id,
-                  image: this.state.recipe.image,
-                  title: this.state.recipe.title,
-                  readyInMinutes: this.state.recipe.readyInMinutes,
-                  servings: this.state.recipe.servings,
-                  extendedIngredients: this.state.recipe.extendedIngredients,
-                  calories: this.state.recipeNutrition.calories,
-                  carbs: this.state.recipeNutrition.carbs,
-                  fat: this.state.recipeNutrition.fat,
-                  protein: this.state.recipeNutrition.protein,
-                  analyzedInstructions: this.state.recipe.analyzedInstructions,
-                })
-              }
-            />
-          </View>
         </View>
         <View
           style={{
@@ -414,6 +273,189 @@ export default class Recipe extends React.Component {
                 size={30}
               />
             </TouchableOpacity>
+          </View>
+        </View>
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: COLORS.white,
+            paddingTop: 30,
+          }}
+        >
+          <View
+            style={{
+              marginLeft: 20,
+              marginBottom: 10,
+            }}
+          >
+            <Text style={{ ...FONTS.h4, color: COLORS.primary }}>
+              Nutritional Information
+            </Text>
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              alignSelf: "center",
+            }}
+          >
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: 5,
+                backgroundColor: COLORS.lightGray,
+                border: "dashed",
+                borderColor: COLORS.primary,
+                margin: 5,
+                padding: 5,
+              }}
+            >
+              <Text style={{ ...FONTS.body3 }}>
+                {calories} Calories
+              </Text>
+            </View>
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: 5,
+                backgroundColor: COLORS.lightGray,
+                border: "dashed",
+                borderColor: COLORS.primary,
+                margin: 5,
+                padding: 5,
+              }}
+            >
+              <Text style={{ ...FONTS.body3 }}>
+                {carbs} Carbs
+              </Text>
+            </View>
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: 5,
+                backgroundColor: COLORS.lightGray,
+                border: "dashed",
+                borderColor: COLORS.primary,
+                margin: 5,
+                padding: 5,
+              }}
+            >
+              <Text style={{ ...FONTS.body3 }}>
+                {fat} Fat
+              </Text>
+            </View>
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: 5,
+                backgroundColor: COLORS.lightGray,
+                border: "dashed",
+                borderColor: COLORS.primary,
+                margin: 5,
+                padding: 5,
+              }}
+            >
+              <Text style={{ ...FONTS.body3 }}>
+                {protein} Protein
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: COLORS.white,
+            paddingTop: 30,
+          }}
+        >
+          <View
+            style={{
+              marginLeft: 20,
+              marginBottom: 10,
+            }}
+          >
+            <Text style={{ ...FONTS.h4, color: COLORS.primary }}>
+              How to do it
+            </Text>
+          </View>
+          <FlatList
+            data={analyzedInstructions}
+            keyExtractor={(item) => `${item.steps}`}
+            showsVerticalScrollIndicator={false}
+            renderItem={({ item }) => (
+              <View
+                style={{
+                  flexDirection: "row",
+                  padding: 5,
+                }}
+              >
+                <FlatList
+                  data={item.steps}
+                  keyExtractor={(item) => `${item.step}`}
+                  showsVerticalScrollIndicator={false}
+                  renderItem={({ item }) => (
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        paddingHorizontal: 30,
+                        marginVertical: 5,
+                      }}
+                    >
+                      <View
+                        style={{
+                          alignItems: "center",
+                          justifyContent: "center",
+                          height: 50,
+                          width: 50,
+                          borderRadius: 5,
+                          backgroundColor: COLORS.lightGray,
+                        }}
+                      >
+                        <Text
+                          style={{
+                            ...FONTS.body3,
+                          }}
+                        >
+                          {item.number}
+                        </Text>
+                      </View>
+
+                      <View
+                        style={{
+                          flex: 1,
+                          paddingHorizontal: 20,
+                          justifyContent: "center",
+                          width: 320,
+                        }}
+                      >
+                        <Text
+                          style={{
+                            ...FONTS.body3,
+                          }}
+                        >
+                          {item.step}
+                        </Text>
+                      </View>
+                    </View>
+                  )}
+                ></FlatList>
+              </View>
+            )}
+          ></FlatList>
+          <View
+            style={{
+              margin: 20,
+            }}
+          >
+            <Button
+              title="Close recipe"
+              containerStyle={styles.btnContainer}
+              buttonStyle={styles.btn}
+              onPress={() => navigation.navigate("Main")}
+            />
           </View>
         </View>
       </View>
