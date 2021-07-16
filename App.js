@@ -9,7 +9,7 @@ import Tabs from './navigation/tabs'
 import { LogBox } from 'react-native'
 import Profile from './screens/profile/Profile';
 import Recipe from './screens/recipe/Recipe';
-import DoRecipe from './screens/recipe/DoRecipe';
+import HistoryList from './screens/recipe/HistoryList';
 
 LogBox.ignoreAllLogs()
 
@@ -39,10 +39,10 @@ const App = () => {
         <Stack.Screen name="Register" component={Register}/>
         <Stack.Screen name="Main" component={Tabs}/>
         <Stack.Screen name="Recipe" component={Recipe}/>
-        <Stack.Screen name="DoRecipe" component={DoRecipe}/>
-        <Stack.Screen name="FavouritesList" component={Tabs}/>
+        <Stack.Screen name="Favourites" component={Tabs}/>
         <Stack.Screen name="Account" component={Tabs}/>
         <Stack.Screen name="Profile" component={Profile}/>
+        <Stack.Screen name="HistoryList" component={HistoryList}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -3,6 +3,8 @@ import firebase from "firebase";
 import "firebase/firebase-firestore";
 import { fileToBlob } from "./helpers";
 
+import { map } from 'lodash'
+
 const db = firebase.firestore(firebaseApp);
 
 export const isUserLogged = () => {
@@ -11,19 +13,19 @@ export const isUserLogged = () => {
     user !== null && (isLogged = true);
   });
   return isLogged;
-};
+}
 
 export const getCurrentUser = () => {
   return firebase.auth().currentUser;
-};
+}
 
 export const getUser = () => {
   return firebase.auth().currentUser.displayName;
-};
+}
 
 export const closeSession = () => {
   return firebase.auth().signOut();
-};
+}
 
 export const registerUser = async (email, password) => {
   const result = { statusResponse: true, error: null };
@@ -45,7 +47,7 @@ export const registerUser = async (email, password) => {
     result.error = "Este correo ya ha sido registrado.";
   }
   return result;
-};
+}
 
 export const loginWithEmailAndPassword = async (email, password) => {
   const result = { statusResponse: true, error: null };
@@ -56,7 +58,7 @@ export const loginWithEmailAndPassword = async (email, password) => {
     result.error = "Usuario o contraseña no válidos.";
   }
   return result;
-};
+}
 
 export const uploadImage = async (image, path, name) => {
   const result = { statusResponse: false, error: null, url: null };
@@ -75,7 +77,7 @@ export const uploadImage = async (image, path, name) => {
     result.error = error;
   }
   return result;
-};
+}
 
 export const updateProfile = async (data) => {
   const result = { statusResponse: true, error: null };
@@ -86,7 +88,7 @@ export const updateProfile = async (data) => {
     result.error = error;
   }
   return result;
-};
+}
 
 export const reauthenticate = async (password) => {
   const result = { statusResponse: true, error: null };
@@ -102,7 +104,7 @@ export const reauthenticate = async (password) => {
     result.error = error;
   }
   return result;
-};
+}
 
 export const updateEmail = async (email) => {
   const result = { statusResponse: true, error: null };
@@ -124,7 +126,7 @@ export const updateEmail = async (email) => {
     result.error = error;
   }
   return result;
-};
+}
 
 export const updatePassword = async (password) => {
   const result = { statusResponse: true, error: null };
@@ -135,7 +137,7 @@ export const updatePassword = async (password) => {
     result.error = error;
   }
   return result;
-};
+}
 
 export const deleteFavorite = async (idRecipe) => {
   const result = { statusResponse: true, error: null };
@@ -154,7 +156,7 @@ export const deleteFavorite = async (idRecipe) => {
     result.error = error;
   }
   return result;
-};
+}
 
 export const addDocumentWithoutId = async (collection, data) => {
   const result = { statusResponse: true, error: null };
@@ -165,27 +167,27 @@ export const addDocumentWithoutId = async (collection, data) => {
     result.error = error;
   }
   return result;
-};
+}
 
-export const getFavorites = async () => {
-  const response = await db
-    .collection("favourites")
-    .where("idUser", "==", getCurrentUser().uid)
-    .get();
-  await Promise.all(
-    map(response.docs, async (doc) => {
-      const idRecipe = doc.idRecipe;
-      const restaurant = await getDocumentById(
-        "restaurants",
-        favorite.idRestaurant
-      );
-      if (restaurant.statusResponse) {
-        result.favorites.push(restaurant.document);
-      }
-    })
-  );
-  return result;
-};
+export const getFavourites = async () => {
+  const result = { statusResponse: true, error: null, favourites: [] };
+  try {
+    const response = await db
+      .collection("favourites")
+      .where("idUser", "==", getCurrentUser().uid)
+      .get()
+    await Promise.all(
+      map(response.docs, async (doc) => {
+        const favourite = doc.data()
+        result.favourites.push(favourite)
+      })
+    )
+  } catch (error) {
+    result.statusResponse = false
+    result.error = error
+  }
+  return result
+}
 
 export const getIsFavorite = async (idRecipe) => {
   const result = { statusResponse: true, error: null, favourite: false };
@@ -201,7 +203,7 @@ export const getIsFavorite = async (idRecipe) => {
     result.error = error;
   }
   return result;
-};
+}
 
 export const addDocumentWithId = async(collection, data, doc) => {
   const result = { statusResponse: true, error: null }

@@ -11,7 +11,7 @@ import { isIphoneX } from 'react-native-iphone-x-helper';
 import { COLORS, icons } from "../constants"
 import Main from '../screens/main/Main';
 import Configuration from '../screens/profile/Configuration';
-import FavouritesList from '../screens/favourites/FavouritesList';
+import Favourites from '../screens/favourites/Favourites';
 
 const Tab = createBottomTabNavigator();
 
@@ -168,7 +168,7 @@ const Tabs = () => {
 
             <Tab.Screen
                 name="Favourites"
-                component={FavouritesList}
+                component={Favourites}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image
