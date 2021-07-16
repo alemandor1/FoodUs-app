@@ -2,6 +2,8 @@ import React from "react";
 import { firebaseApp } from "../../utils/firebase";
 import firebase from "firebase";
 import "firebase/firebase-firestore";
+import DisplayComponent from "../../components/DisplayComponent";
+import { FAB } from "react-native-paper";
 import Loading from "../../components/Loading";
 import {
   StyleSheet,
@@ -13,9 +15,9 @@ import {
 } from "react-native";
 import { map } from "lodash";
 import { getCurrentUser } from "../../utils/actions";
-import { SIZES, FONTS, COLORS } from "../../constants";
+import { SIZES, COLORS, FONTS } from "../../constants";
 
-export default class FavouritesList extends React.Component {
+export default class HistoryList extends React.Component {
   constructor(props) {
     super(props);
 
@@ -26,26 +28,26 @@ export default class FavouritesList extends React.Component {
   }
 
   async componentDidMount() {
-    const response = await this.getFavourites();
+    const response = await this.getHistory();
     this.setState({
-      recipes: response.favourites,
+      recipes: response.history,
       loading: false,
     });
   }
 
-  async getFavourites() {
+  async getHistory() {
     this.setState({ loading: true });
     const db = firebase.firestore(firebaseApp);
-    const result = { statusResponse: true, error: null, favourites: [] };
+    const result = { statusResponse: true, error: null, history: [] };
     try {
-      const favDoc = await db
-        .collection("favourites")
+      const histDoc = await db
+        .collection("history")
         .where("idUser", "==", getCurrentUser().uid)
         .get();
       await Promise.all(
-        map(favDoc.docs, async (doc) => {
-          const favourite = doc.data();
-          result.favourites.push(favourite);
+        map(histDoc.docs, async (doc) => {
+          const record = doc.data();
+          result.history.push(record);
         })
       );
     } catch (error) {
@@ -66,7 +68,7 @@ export default class FavouritesList extends React.Component {
             <View style={{ padding: SIZES.padding * 2 }}>
               <View
                 style={{
-                  backgroundColor: "crimson",
+                  backgroundColor: "midnightblue",
                   borderBottomRightRadius: SIZES.radius,
                   borderBottomLeftRadius: SIZES.radius,
                   marginBottom: 15,
@@ -81,7 +83,7 @@ export default class FavouritesList extends React.Component {
                     color: "white",
                   }}
                 >
-                  Favourite recipes
+                  Your recipes history
                 </Text>
               </View>
             </View>
@@ -139,15 +141,69 @@ export default class FavouritesList extends React.Component {
                     </View>
 
                     <Text style={{ ...FONTS.body2 }}>{item.title}</Text>
+
+                    <View
+                      style={{
+                        marginTop: SIZES.padding,
+                        flexDirection: "row",
+                      }}
+                    >
+                      <Text style={{ ...FONTS.body4, fontWeight: "bold" }}>
+                        Date:
+                      </Text>
+                      <Text
+                        style={{
+                          ...FONTS.body4,
+                          color: "gray",
+                          paddingLeft: 5,
+                        }}
+                      >
+                        {item.date}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                      }}
+                    >
+                      <Text style={{ ...FONTS.body4, fontWeight: "bold" }}>
+                        Your time:
+                      </Text>
+                      {item.timeSpent.s == 0 ? (
+                        <Text
+                          style={{
+                            ...FONTS.body4,
+                            color: "gray",
+                            paddingLeft: 5,
+                          }}
+                        >
+                          No record
+                        </Text>
+                      ) : (
+                        <Text
+                          style={{
+                            ...FONTS.body4,
+                            color: "gray",
+                            paddingLeft: 5,
+                          }}
+                        >
+                          <DisplayComponent time={item.timeSpent} />
+                        </Text>
+                      )}
+                    </View>
                   </TouchableOpacity>
                 )}
                 contentContainerStyle={{
                   paddingHorizontal: SIZES.padding * 2,
-                  paddingBottom: 30,
-                  marginBottom: 20,
                 }}
               />
             </View>
+            <FAB
+              style={styles.fab}
+              large
+              icon="undo"
+              onPress={() => navigation.goBack()}
+            ></FAB>
           </View>
         )}
       </View>
@@ -156,21 +212,17 @@ export default class FavouritesList extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  shadow: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 1,
-  },
   input: {
     height: 40,
     margin: 12,
     borderWidth: 1,
     borderRadius: SIZES.radius,
     backgroundColor: "white",
+  },
+  fab: {
+    position: "fixed",
+    margin: 16,
+    right: 0,
+    bottom: 0,
   },
 });
