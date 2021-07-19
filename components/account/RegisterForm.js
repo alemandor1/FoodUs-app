@@ -46,23 +46,23 @@ export default function RegisterForm() {
     let isValid = true
 
     if(!validateEmail(formData.email)) {
-      setErrorEmail("Debes ingresar un email válido.")
+      setErrorEmail("You must enter a valid email.")
       isValid = false
     }
 
     if(size(formData.password) < 6){
-      setErrorPassword("Debes ingresar una contraseña con al menos 6 caracteres.")
+      setErrorPassword("You must enter a password with at least 6 characters.")
       isValid = false
     }
 
     if(size(formData.confirm) < 6){
-      setErrorConfirm("Debes ingresar una confirmación de contraseña con al menos 6 caracteres.")
+      setErrorConfirm("You must enter a confirmation password with at least 6 characters.")
       isValid = false
     }
 
     if(formData.password !== formData.confirm){
-      setErrorPassword("Las contraseñas no coinciden.")
-      setErrorConfirm("Las contraseñas no coinciden.")
+      setErrorPassword("Passwords don't match.")
+      setErrorConfirm("Passwords don't match.")
       isValid = false
     }
 
@@ -73,7 +73,7 @@ export default function RegisterForm() {
     <View styles={styles.form}>
       <Input
       containerStyle={styles.input}
-            placeholder="Ingresa tu email..."
+            placeholder="Enter your email..."
             onChange={(e) => onChange(e, "email")}
             keyboardType="email-address"
             errorMessage={errorEmail}
@@ -81,7 +81,7 @@ export default function RegisterForm() {
       />
       <Input
       containerStyle={styles.input}
-            placeholder="Ingresa tu contraseña..."
+            placeholder="Enter your password..."
             password={true}
             secureTextEntry={!showPassword}
             onChange={(e) => onChange(e, "password")}
@@ -98,7 +98,7 @@ export default function RegisterForm() {
       />
       <Input
       containerStyle={styles.input}
-            placeholder="Confirma tu contraseña..."
+            placeholder="Confirm your password..."
             password={true}
             secureTextEntry={!showPassword}
             onChange={(e) => onChange(e, "confirm")}
@@ -114,12 +114,12 @@ export default function RegisterForm() {
             }
       />
       <Button
-      title="Registrar Nuevo Usuario"
+      title="Register new user"
       containerStyle={styles.btnContainer}
       buttonStyle={styles.btn}
       onPress={() => doRegisterUser()}
       />
-      <Loading isVisible={loading} text="Creando cuenta..."/>
+      <Loading isVisible={loading} text="Creating account..."/>
     </View>
   )
 }

@@ -23,7 +23,7 @@ export default function Configuration() {
     const generateOptions = () => {
         return [
             {
-                title: "Configuración de usuario",
+                title: "User settings",
                 iconNameLeft: "settings",
                 iconColorLeft: "#a7bfd3",
                 iconNameRight: "chevron-right",
@@ -31,7 +31,7 @@ export default function Configuration() {
                 onPress: () => navigation.navigate('Profile')
             },
             {
-                title: "Lista de alimentos",
+                title: "Food list",
                 iconNameLeft: "kitchen", 
                 iconColorLeft: "#a7bfd3",
                 iconNameRight: "chevron-right",
@@ -39,7 +39,7 @@ export default function Configuration() {
                 onPress: () => navigation.navigate('Profile')
             },
             {
-                title: "Historial de recetas",
+                title: "Recipe history",
                 iconNameLeft: "history", 
                 iconColorLeft: "#a7bfd3",
                 iconNameRight: "chevron-right",
@@ -47,7 +47,7 @@ export default function Configuration() {
                 onPress: () => navigation.navigate('Profile')
             },
             {
-                title: "Recetas favoritas",
+                title: "Favorite recipes",
                 iconNameLeft: "favorite-border", 
                 iconColorLeft: "#a7bfd3",
                 iconNameRight: "chevron-right",
@@ -55,7 +55,7 @@ export default function Configuration() {
                 onPress: () => navigation.navigate('Profile')
             },
             {
-                title: "Lista de la compra",
+                title: "Shopping list",
                 iconNameLeft: "shopping-cart", 
                 iconColorLeft: "#a7bfd3",
                 iconNameRight: "chevron-right",
@@ -106,7 +106,7 @@ export default function Configuration() {
                     )
             }
             <Button
-                title="Cerrar sesión"
+                title="Log out"
                 buttonStyle={styles.btnCloseSession}
                 titleStyle={styles.btnCloseSessionTitle}
                 onPress={() => {

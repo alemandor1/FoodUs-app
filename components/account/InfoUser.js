@@ -13,12 +13,12 @@ export default function InfoUser({ user, setLoading, setLoadingText }) {
         if (!result.status) {
             return
         }
-        setLoadingText("Actualizando imagen...")
+        setLoadingText("Updating image...")
         setLoading(true)
         const resultUploadImage = await uploadImage(result.image, "avatars", user.uid)
         if (!resultUploadImage.statusResponse) {
             setLoading(false)
-            Alert.alert("Ha ocurrido un error al almacenar la foto de perfil.")
+            Alert.alert("An error occurred while storing the profile picture.")
             return
         }
         const resultUpdateProfie = await updateProfile({ photoURL: resultUploadImage.url })
@@ -26,7 +26,7 @@ export default function InfoUser({ user, setLoading, setLoadingText }) {
         if (resultUpdateProfie.statusResponse) {
             setPhotoUrl(resultUploadImage.url)
         } else {
-            Alert.alert("Ha ocurrido un error al actualizar la foto de perfil.")
+            Alert.alert("An error occurred while updating the profile picture.")
         }
     }
 
@@ -45,7 +45,7 @@ export default function InfoUser({ user, setLoading, setLoadingText }) {
             <View style={styles.infoUser}>
                 <Text style={styles.displayName}>
                     {
-                        user.displayName ? user.displayName : "Anónimo"
+                        user.displayName ? user.displayName : "Anonymous"
                     }
                 </Text>
                 <Text>{user.email}</Text>

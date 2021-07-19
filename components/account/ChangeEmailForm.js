@@ -24,7 +24,7 @@ export default function ChangeEmailForm({ email, setShowModal, setReloadUser }) 
 
         if(!resultReauthenticate.statusResponse){
             setLoading(false)
-            setErrorPassword("Contraseña incorrecta.")
+            setErrorPassword("Incorrect password.")
             return
         }
 
@@ -32,7 +32,7 @@ export default function ChangeEmailForm({ email, setShowModal, setReloadUser }) 
         setLoading(false)
 
         if(!resultUpdateEmail.statusResponse){
-            setErrorEmail("No se puede cambiar por este email, ya está en uso por otro usuario.")
+            setErrorEmail("It cannot be changed by this email, it is already in use by another user.")
             return
         }
         
@@ -46,17 +46,17 @@ export default function ChangeEmailForm({ email, setShowModal, setReloadUser }) 
         let isValid = true
 
         if(!validateEmail(newEmail)){
-            setErrorEmail("Debes ingresar un email válido.")
+            setErrorEmail("You must enter a valid email.")
             isValid = false
         }
 
         if(newEmail == email){
-            setErrorEmail("Debes ingresar un email diferente al actual.")
+            setErrorEmail("You must enter a different email than the current one.")
             isValid = false
         }
 
         if(isEmpty(password)){
-            setErrorPassword("Debes ingresar tu contraseña.")
+            setErrorPassword("You must enter your password.")
             isValid = false
         }
 
@@ -66,7 +66,7 @@ export default function ChangeEmailForm({ email, setShowModal, setReloadUser }) 
     return (
         <View style={styles.view}>
             <Input
-                placeholder="Ingresa el nuevo email..."
+                placeholder="Enter the new email..."
                 containerStyle={styles.input}
                 defaultValue={email}
                 keyboardType="email-address"
@@ -79,7 +79,7 @@ export default function ChangeEmailForm({ email, setShowModal, setReloadUser }) 
                 }}
             />
             <Input
-                placeholder="Ingresa tu contraseña..."
+                placeholder="Enter your password..."
                 containerStyle={styles.input}
                 defaultValue={password}
                 onChange={(e) => setPassword(e.nativeEvent.text)}
@@ -96,7 +96,7 @@ export default function ChangeEmailForm({ email, setShowModal, setReloadUser }) 
                 }
             />
             <Button
-                title="Cambiar Email"
+                title="Change Email"
                 containerStyle={styles.btnContainer}
                 buttonStyle={styles.btn}
                 onPress={onSubmit}

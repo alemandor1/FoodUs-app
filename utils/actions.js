@@ -28,12 +28,17 @@ export const closeSession = () => {
 export const registerUser = async(email, password) => {
     const result = { statusResponse: true, error: null}
     try {
-        await firebase.auth().createUserWithEmailAndPassword(email, password)
-    } catch (error) {
-        result.statusResponse = false
-        result.error = "Este correo ya ha sido registrado."
-    }
-    return result
+        await firebase.auth().createUserWithEmailAndPassword(email, password).then((result) => {
+            firebase.firestore().collection("users")
+            .doc(firebase.auth().currentUser.uid)
+            .set({
+                email})
+            })
+        } catch (error) {
+            result.statusResponse = false
+            result.error = "Este correo ya ha sido registrado."
+        }
+        return result
 } 
 
 export const loginWithEmailAndPassword = async(email, password) => {
@@ -90,7 +95,12 @@ export const reauthenticate = async(password) => {
 export const updateEmail = async(email) => {
     const result = { statusResponse: true, error: null }
     try {
-        await firebase.auth().currentUser.updateEmail(email)
+        await firebase.auth().currentUser.updateEmail(email).then((result) => {
+            firebase.firestore().collection("users")
+            .doc(firebase.auth().currentUser.uid)
+            .set({
+                email})
+            })
     } catch (error) {
         result.statusResponse = false
         result.error = error
@@ -107,4 +117,39 @@ export const updatePassword = async(password) => {
         result.error = error
     }
     return result
+}
+
+export const addDocumentWithoutId = async(collection, data) => {
+    const result = { statusResponse: true, error: null }
+    try {
+        await db.collection(collection).add(data)
+    } catch (error) {
+        result.statusResponse = false
+        result.error = error
+    }
+    return result
+}
+
+export const getDocumentById = async(collection, id) => {
+    const result = { statusResponse: true, error: null, document: null }
+    try {
+        const response = await db.collection(collection).doc(id).get()
+        result.document = response.data()
+        result.document.id = response.id
+    } catch (error) {
+        result.statusResponse = false
+        result.error = error
+    }
+    return result     
+}
+
+export const updateDocument = async(collection, id, data) => {
+    const result = { statusResponse: true, error: null }
+    try {
+        await db.collection(collection).doc(id).update(data)
+    } catch (error) {
+        result.statusResponse = false
+        result.error = error
+    }
+    return result     
 }

@@ -25,7 +25,7 @@ export default function ChangePasswordForm({ setShowModal }) {
 
         if(!resultReauthenticate.statusResponse){
             setLoading(false)
-            setErrorCurrentPassword("Contraseña incorrecta.")
+            setErrorCurrentPassword("Incorrect password.")
             return
         }
 
@@ -33,7 +33,7 @@ export default function ChangePasswordForm({ setShowModal }) {
         setLoading(false)
 
         if(!resultUpdatePassword.statusResponse){
-            setErrorNewPassword("Hubo un problema cambiando la contraseña, inténtalo más tarde.")
+            setErrorNewPassword("There was a problem changing the password, please try again later.")
             return
         }
         
@@ -47,31 +47,31 @@ export default function ChangePasswordForm({ setShowModal }) {
         let isValid = true
 
         if(isEmpty(currentPassword)){
-            setErrorCurrentPassword("Debes ingresar tu contraseña actual.")
+            setErrorCurrentPassword("You must enter your current password.")
             isValid = false
         }
 
         if(size(newPassword) < 6){
-            setErrorNewPassword("Debes ingresar una nueva contraseña con al menos 6 caracteres.")
+            setErrorNewPassword("You must enter a new password with at least 6 characters.")
             isValid = false
         }
 
         if(size(confirmPassword) < 6){
-            setErrorConfirmPassword("Debes ingresar una confirmación de tu contraseña con al menos 6 caracteres.")
+            setErrorConfirmPassword("You must enter a confirmation of your password with at least 6 characters.")
             isValid = false
         }
 
         if(newPassword !== confirmPassword){
-            setErrorNewPassword("La nueva contraseña y confirmación no son iguales.")
-            setErrorConfirmPassword("La nueva contraseña y confirmación no son iguales.")
+            setErrorNewPassword("The new password and confirmation are not the same.")
+            setErrorConfirmPassword("The new password and confirmation are not the same.")
 
             isValid = false
         }
 
         if(newPassword == currentPassword){
-            setErrorCurrentPassword("Debes ingresar una contraseña diferente a la actual.")
-            setErrorNewPassword("La nueva contraseña y confirmación no son iguales.")
-            setErrorConfirmPassword("La nueva contraseña y confirmación no son iguales.")
+            setErrorCurrentPassword("You must enter a different password than the current one.")
+            setErrorNewPassword("The new password and confirmation are not the same.")
+            setErrorConfirmPassword("The new password and confirmation are not the same.")
 
 
             isValid = false
@@ -83,7 +83,7 @@ export default function ChangePasswordForm({ setShowModal }) {
     return (
         <View style={styles.view}>
             <Input
-                placeholder="Ingresa tu contraseña actual..."
+                placeholder="Enter your current password..."
                 containerStyle={styles.input}
                 defaultValue={currentPassword}
                 onChange={(e) => setCurrentPassword(e.nativeEvent.text)}
@@ -100,7 +100,7 @@ export default function ChangePasswordForm({ setShowModal }) {
                 }
             />
             <Input
-                placeholder="Ingresa tu nueva contraseña..."
+                placeholder="Enter your new password..."
                 containerStyle={styles.input}
                 defaultValue={newPassword}
                 onChange={(e) => setNewPassword(e.nativeEvent.text)}
@@ -117,7 +117,7 @@ export default function ChangePasswordForm({ setShowModal }) {
                 }
             />
             <Input
-                placeholder="Ingresa tu confirmación de nueva contraseña..."
+                placeholder="Enter your new password confirmation..."
                 containerStyle={styles.input}
                 defaultValue={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.nativeEvent.text)}
@@ -134,7 +134,7 @@ export default function ChangePasswordForm({ setShowModal }) {
                 }
             />
             <Button
-                title="Cambiar Contraseña"
+                title="Change Password"
                 containerStyle={styles.btnContainer}
                 buttonStyle={styles.btn}
                 onPress={onSubmit}

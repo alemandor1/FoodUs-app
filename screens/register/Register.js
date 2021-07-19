@@ -21,9 +21,9 @@ export default function Register() {
           style={styles.login}
           onPress={() => navigation.navigate("Login")}
       >
-          ¿Ya tienes una cuenta?{' '}
+          Have an Account?{' '}
         <Text style={styles.btnLogin}>
-            Inicia sesión
+            Sign in
         </Text>
       </Text>
       <Divider style={styles.divider}/>

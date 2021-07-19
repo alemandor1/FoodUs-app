@@ -40,6 +40,7 @@ const App = () => {
         <Stack.Screen name="Main_copy" component={Tabs}/>
         <Stack.Screen name="Recipe_copy" component={Recipe_copy}/>
         <Stack.Screen name="Account" component={Tabs}/>
+        <Stack.Screen name="FoodList" component={Tabs}/>
         <Stack.Screen name="Profile" component={Profile}/>
       </Stack.Navigator>
     </NavigationContainer>

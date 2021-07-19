@@ -37,3 +37,26 @@
 [0m2021.06.22 16:43:19 INFO  time: initialize in 4.65s[0m
 [0m2021.06.22 16:43:19 WARN  Build server is not auto-connectable.[0m
 [0m2021.06.22 16:43:19 WARN  no build tool detected in workspace 'C:\Users\Angel\Desktop\FoodUs-tfg'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.07.05 17:05:30 INFO  Started: Metals version 0.10.4 in workspace 'C:\Users\Angel\Desktop\FoodUs-app' for client Visual Studio Code 1.57.1.[0m
+[0m2021.07.05 17:05:36 INFO  time: initialize in 6.47s[0m
+[0m2021.07.05 17:05:36 WARN  Build server is not auto-connectable.[0m
+[0m2021.07.05 17:05:36 WARN  no build tool detected in workspace 'C:\Users\Angel\Desktop\FoodUs-app'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.07.05 21:32:36 INFO  shutting down Metals[0m
+[0m2021.07.06 17:32:55 INFO  Started: Metals version 0.10.4 in workspace 'C:\Users\Angel\Desktop\FoodUs-app' for client Visual Studio Code 1.57.1.[0m
+[0m2021.07.06 17:33:02 INFO  time: initialize in 7.11s[0m
+[0m2021.07.06 17:33:02 WARN  Build server is not auto-connectable.[0m
+[0m2021.07.06 17:33:02 WARN  no build tool detected in workspace 'C:\Users\Angel\Desktop\FoodUs-app'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.07.06 20:55:37 INFO  shutting down Metals[0m
+[0m2021.07.07 16:16:27 INFO  Started: Metals version 0.10.4 in workspace 'C:\Users\Angel\Desktop\FoodUs-app' for client Visual Studio Code 1.57.1.[0m
+[0m2021.07.07 16:16:31 INFO  time: initialize in 3.85s[0m
+[0m2021.07.07 16:16:31 WARN  Build server is not auto-connectable.[0m
+[0m2021.07.07 16:16:31 WARN  no build tool detected in workspace 'C:\Users\Angel\Desktop\FoodUs-app'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.07.13 21:18:02 INFO  shutting down Metals[0m
+[0m2021.07.14 16:50:59 INFO  Started: Metals version 0.10.5 in workspace 'C:\Users\Angel\Desktop\FoodUs-app' for client Visual Studio Code 1.58.1.[0m
+[0m2021.07.14 16:51:00 INFO  time: initialize in 1.49s[0m
+[0m2021.07.14 16:51:06 WARN  Build server is not auto-connectable.[0m
+[0m2021.07.14 16:51:06 WARN  no build tool detected in workspace 'C:\Users\Angel\Desktop\FoodUs-app'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+jul 16, 2021 4:33:01 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFORMACIÓN: Unsupported notification method: $/setTrace
+jul 18, 2021 1:59:52 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFORMACIÓN: Unsupported notification method: $/setTrace

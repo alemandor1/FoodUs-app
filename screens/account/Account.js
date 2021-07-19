@@ -18,7 +18,7 @@ export default function Account() {
     )
 
     if (login == null){
-        return <Loading isVisible={true} text="Cargando..."/>
+        return <Loading isVisible={true} text="Loading..."/>
     }
 
     return login ? <Main_copy/> : <UserGuest/>
