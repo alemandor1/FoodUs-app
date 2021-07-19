@@ -44,7 +44,7 @@ export default function Configuration() {
                 iconColorLeft: "#a7bfd3",
                 iconNameRight: "chevron-right",
                 iconColorRight: "#a7bfd3",
-                onPress: () => navigation.navigate('Profile')
+                onPress: () => navigation.navigate('HistoryList')
             },
             {
                 title: "Favorite recipes",

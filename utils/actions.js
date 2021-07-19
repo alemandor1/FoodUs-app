@@ -1,24 +1,26 @@
-import {firebaseApp} from "./firebase"
-import firebase from 'firebase'
-import 'firebase/firebase-firestore'
-import { fileToBlob } from "./helpers"
+import { firebaseApp } from "./firebase";
+import firebase from "firebase";
+import "firebase/firebase-firestore";
+import { fileToBlob } from "./helpers";
 
-const db = firebase.firestore(firebaseApp)
+import { map } from 'lodash'
+
+const db = firebase.firestore(firebaseApp);
 
 export const isUserLogged = () => {
-    let isLogged = false
-    firebase.auth().onAuthStateChanged((user) => {
-        user !== null && (isLogged = true)
-    })
-    return isLogged
+  let isLogged = false;
+  firebase.auth().onAuthStateChanged((user) => {
+    user !== null && (isLogged = true);
+  });
+  return isLogged;
 }
 
 export const getCurrentUser = () => {
-    return firebase.auth().currentUser
+  return firebase.auth().currentUser;
 }
 
 export const getUser = () => {
-    return firebase.auth().currentUser.displayName
+  return firebase.auth().currentUser.displayName;
 }
 
 export const closeSession = () => {
@@ -152,4 +154,69 @@ export const updateDocument = async(collection, id, data) => {
         result.error = error
     }
     return result     
+
+export const deleteFavorite = async (idRecipe) => {
+  const result = { statusResponse: true, error: null };
+  try {
+    const response = await db
+      .collection("favourites")
+      .where("idRecipe", "==", idRecipe)
+      .where("idUser", "==", getCurrentUser().uid)
+      .get();
+    response.forEach(async (doc) => {
+      const favoriteId = doc.id;
+      await db.collection("favourites").doc(favoriteId).delete();
+    });
+  } catch (error) {
+    result.statusResponse = false;
+    result.error = error;
+  }
+  return result;
+}
+
+export const getFavourites = async () => {
+  const result = { statusResponse: true, error: null, favourites: [] };
+  try {
+    const response = await db
+      .collection("favourites")
+      .where("idUser", "==", getCurrentUser().uid)
+      .get()
+    await Promise.all(
+      map(response.docs, async (doc) => {
+        const favourite = doc.data()
+        result.favourites.push(favourite)
+      })
+    )
+  } catch (error) {
+    result.statusResponse = false
+    result.error = error
+  }
+  return result
+}
+
+export const getIsFavorite = async (idRecipe) => {
+  const result = { statusResponse: true, error: null, favourite: false };
+  try {
+    const response = await db
+      .collection("favourites")
+      .where("idRecipe", "==", idRecipe)
+      .where("idUser", "==", getCurrentUser().uid)
+      .get();
+    result.favourite = response.docs.length > 0;
+  } catch (error) {
+    result.statusResponse = false;
+    result.error = error;
+  }
+  return result;
+}
+
+export const addDocumentWithId = async(collection, data, doc) => {
+  const result = { statusResponse: true, error: null }
+  try {
+      await db.collection(collection).doc(doc).set(data)
+  } catch (error) {
+      result.statusResponse = false
+      result.error = error
+  }
+  return result     
 }

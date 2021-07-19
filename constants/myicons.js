@@ -15,8 +15,15 @@ export const salsas = require("../assets/myicons/salsas.png");
 export const sandwich = require("../assets/myicons/sandwich.png");
 export const sopa = require("../assets/myicons/sopa.png");
 export const tortilla = require("../assets/myicons/tortilla.png");
+export const corazon = require("../assets/myicons/corazon.png");
+export const corazonFilled = require("../assets/myicons/corazonFilled.png");
+export const aperitivo = require("../assets/myicons/aperitivo.png");
+export const desayuno = require("../assets/myicons/desayuno.png");
+export const escabeche = require("../assets/myicons/escabeche.png");
 export const guarnicion = require("../assets/myicons/guarnicion.png");
-export const sweets = require("../assets/myicons/sweets.png");
+export const canape = require("../assets/myicons/canape.png");
+export const previous = require("../assets/myicons/previous.png");
+export const sweet = require("../assets/myicons/ice-cream.png");
 
 export default {
     bebidas,
@@ -36,6 +43,13 @@ export default {
     sandwich,
     sopa,
     tortilla,
+    corazon,
+    corazonFilled,
+    aperitivo,
+    desayuno,
+    escabeche,
     guarnicion,
-    sweets
+    canape,
+    previous,
+    sweet
 }

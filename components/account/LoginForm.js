@@ -34,7 +34,7 @@ export default function LoginForm() {
             setErrorEmail(result.error)
             setErrorPassword(result.error)
             return
-    }
+        }
 
     navigation.navigate("Account")
     }

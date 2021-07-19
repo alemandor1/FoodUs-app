@@ -9,9 +9,10 @@ import Svg, { Path } from 'react-native-svg';
 import { isIphoneX } from 'react-native-iphone-x-helper';
 
 import { COLORS, icons } from "../constants"
-import Main_copy from '../screens/main/Main_copy';
+import Main from '../screens/main/Main';
 import Configuration from '../screens/profile/Configuration';
 import FoodList from '../screens/foodList/FoodList';
+import Favourites from '../screens/favourites/Favourites';
 
 const Tab = createBottomTabNavigator();
 
@@ -121,8 +122,8 @@ const Tabs = () => {
             )}
         >
             <Tab.Screen
-                name="Main_copy"
-                component={Main_copy}
+                name="Main"
+                component={Main}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image
@@ -167,8 +168,8 @@ const Tabs = () => {
             />
 
             <Tab.Screen
-                name="Like"
-                component={Main_copy}
+                name="Favourites"
+                component={Favourites}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image
