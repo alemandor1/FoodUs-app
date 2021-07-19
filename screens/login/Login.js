@@ -30,9 +30,9 @@ function CreateAccount(props) {
     style={styles.register}
     onPress={() => navigation.navigate("Register")}
     >
-      ¿Aún no tienes una cuenta?{' '}
+      Don't have an Account?{' '}
       <Text style={styles.btnRegister}>
-        Regístrate
+        Sign up
       </Text>
     </Text>
   )

@@ -45,12 +45,12 @@ export default function LoginForm() {
         let isValid = true
     
         if(!validateEmail(formData.email)) {
-          setErrorEmail("Debes ingresar un email válido.")
+          setErrorEmail("You must enter a valid email.")
           isValid = false
         }
 
         if(isEmpty(formData.password)){
-            setErrorPassword("Debes ingresar tu contraseña.")
+            setErrorPassword("You must enter your password.")
             isValid = false
 
         }
@@ -62,7 +62,7 @@ export default function LoginForm() {
         <View style={styles.container}>
                 <Input
                     containerStyle={styles.input}
-                    placeholder="Ingresa tu email..."
+                    placeholder="Enter your email..."
                     onChange={(e) => onChange(e, "email")}
                     keyboardType="email-address"
                     errorMessage={errorEmail}
@@ -70,7 +70,7 @@ export default function LoginForm() {
             />
             <Input
                     containerStyle={styles.input}
-                    placeholder="Ingresa tu contraseña..."
+                    placeholder="Enter your password..."
                     password={true}
                     secureTextEntry={!showPassword}
                     onChange={(e) => onChange(e, "password")}
@@ -86,12 +86,12 @@ export default function LoginForm() {
                     }
             />
             <Button
-                title="Iniciar Sesión"
+                title="Login"
                 containerStyle={styles.btnContainer}
                 buttonStyle={styles.btn}
                 onPress={() => doLogin()}
             />
-            <Loading isVisible={loading} text="Iniciando sesión..."/>
+            <Loading isVisible={loading} text="Logging in..."/>
         </View>
     )
 }

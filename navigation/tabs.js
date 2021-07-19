@@ -11,6 +11,7 @@ import { isIphoneX } from 'react-native-iphone-x-helper';
 import { COLORS, icons } from "../constants"
 import Main from '../screens/main/Main';
 import Configuration from '../screens/profile/Configuration';
+import FoodList from '../screens/foodList/FoodList';
 import Favourites from '../screens/favourites/Favourites';
 
 const Tab = createBottomTabNavigator();
@@ -144,12 +145,12 @@ const Tabs = () => {
             />
 
             <Tab.Screen
-                name="Search"
-                component={Main}
+                name="Food_list"
+                component={FoodList}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image
-                            source={icons.search}
+                            source={icons.frigo}
                             resizeMode="contain"
                             style={{
                                 width: 25,

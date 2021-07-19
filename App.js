@@ -41,6 +41,7 @@ const App = () => {
         <Stack.Screen name="Recipe" component={Recipe}/>
         <Stack.Screen name="Favourites" component={Tabs}/>
         <Stack.Screen name="Account" component={Tabs}/>
+        <Stack.Screen name="FoodList" component={Tabs}/>
         <Stack.Screen name="Profile" component={Profile}/>
         <Stack.Screen name="HistoryList" component={HistoryList}/>
       </Stack.Navigator>

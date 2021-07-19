@@ -20,14 +20,14 @@ export default function Home () {
             />
 
             <Button
-                title="Iniciar sesión"
+                title="Sign In"
                 containerStyle={styles.btnContainer}
                 buttonStyle={styles.btn}
                 onPress={() => navigation.navigate('Login')}
             />
 
             <Button
-                title="Registrarse"
+                title="Sign Up"
                 containerStyle={styles.btnContainer}
                 buttonStyle={styles.btn}
                 onPress={() => navigation.navigate('Register')}

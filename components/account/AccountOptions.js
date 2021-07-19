@@ -15,7 +15,7 @@ export default function AccountOptions ({ user, setReloadUser }) {
     const generateOptions = () => {
         return [
             {
-                title: "Cambiar nombre y apellidos",
+                title: "Change name and surname",
                 iconNameLeft: "account-circle",
                 iconColorLeft: "#a7bfd3",
                 iconNameRight: "chevron-right",
@@ -23,7 +23,7 @@ export default function AccountOptions ({ user, setReloadUser }) {
                 onPress: () => selectedComponent("displayName")
             },
             {
-                title: "Cambiar email",
+                title: "Change email",
                 iconNameLeft: "alternate-email", 
                 iconColorLeft: "#a7bfd3",
                 iconNameRight: "chevron-right",
@@ -31,7 +31,7 @@ export default function AccountOptions ({ user, setReloadUser }) {
                 onPress: () => selectedComponent("email")
             },
             {
-                title: "Cambiar contraseña",
+                title: "Change Password",
                 iconNameLeft: "lock", 
                 iconColorLeft: "#a7bfd3",
                 iconNameRight: "chevron-right",

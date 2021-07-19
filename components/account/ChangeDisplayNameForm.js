@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Button, Input } from 'react-native-elements'
 import { isEmpty } from 'lodash'
-//import Toast from 'react-native-toast-message';
 import { updateProfile } from '../../utils/actions'
 
 export default function ChangeDisplayNameForm({ displayName, setShowModal, setReloadUser }) {
@@ -20,15 +19,11 @@ export default function ChangeDisplayNameForm({ displayName, setShowModal, setRe
         setLoading(false)
 
         if(!result.statusResponse){
-            setError("Error al actualizar nombres y apellidos, intentalo más tarde.")
+            setError("Error updating first and last names, try again later.")
             return
         }
         
         setReloadUser(true)
-        /* Toast.show({
-            type: 'info',
-            text1: 'Se han actualizado los datos correctamente'}
-            ) */
         setShowModal(false)
     }
 
@@ -36,12 +31,12 @@ export default function ChangeDisplayNameForm({ displayName, setShowModal, setRe
         setError(null)
 
         if(isEmpty(newDisplayName)){
-            setError("Debes ingresar nombres y apellidos.")
+            setError("You must enter names and surnames.")
             return false
         }
 
         if(newDisplayName == displayName){
-            setError("Debes ingresar nombres y apellidos diferentes a los actuales.")
+            setError("You must enter names and surnames different from the current ones.")
             return false
         }
 
@@ -51,7 +46,7 @@ export default function ChangeDisplayNameForm({ displayName, setShowModal, setRe
     return (
         <View style={styles.view}>
             <Input
-                placeholder="Ingresa nombres y apellidos"
+                placeholder="Enter name and surname"
                 containerStyle={styles.input}
                 defaultValue={displayName}
                 onChange={(e) => setNewDisplayName(e.nativeEvent.text)}
@@ -63,7 +58,7 @@ export default function ChangeDisplayNameForm({ displayName, setShowModal, setRe
                 }}
             />
             <Button
-                title="Cambiar Nombres y Apellidos"
+                title="Change Name and Surname"
                 containerStyle={styles.btnContainer}
                 buttonStyle={styles.btn}
                 onPress={onSubmit}
