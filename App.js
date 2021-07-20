@@ -10,6 +10,8 @@ import { LogBox } from 'react-native'
 import Profile from './screens/profile/Profile';
 import Recipe from './screens/recipe/Recipe';
 import HistoryList from './screens/recipe/HistoryList';
+import SuggestedRecipes from './screens/foodList/SuggestedRecipes';
+import ShoppingList from './screens/shoppingList/ShoppingList';
 
 LogBox.ignoreAllLogs()
 
@@ -39,6 +41,8 @@ const App = () => {
         <Stack.Screen name="Register" component={Register}/>
         <Stack.Screen name="Main" component={Tabs}/>
         <Stack.Screen name="Recipe" component={Recipe}/>
+        <Stack.Screen name="SuggestedRecipes" component={SuggestedRecipes}/>
+        <Stack.Screen name="ShoppingList" component={ShoppingList}/>
         <Stack.Screen name="Favourites" component={Tabs}/>
         <Stack.Screen name="Account" component={Tabs}/>
         <Stack.Screen name="FoodList" component={Tabs}/>

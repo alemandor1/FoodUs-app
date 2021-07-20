@@ -153,7 +153,8 @@ export const updateDocument = async(collection, id, data) => {
         result.statusResponse = false
         result.error = error
     }
-    return result     
+    return result    
+  } 
 
 export const deleteFavorite = async (idRecipe) => {
   const result = { statusResponse: true, error: null };
