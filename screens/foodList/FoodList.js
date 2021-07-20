@@ -10,9 +10,10 @@ import {
 import { useFocusEffect } from "@react-navigation/native";
 import { Input, Icon, ListItem, Button } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
+import { useNavigation } from '@react-navigation/native'
+import { SIZES, FONTS } from "../../constants";
 
 import {
-  getDocumentById,
   getCurrentUser,
   addDocumentWithoutId,
   updateDocument,
@@ -24,6 +25,7 @@ import { map } from "lodash";
 import Loading from "../../components/Loading";
 
 export default function FoodList() {
+  const navigation = useNavigation()
   const [ingredientsDB, setIngredientsDB] = useState([]);
 
   //cogemos los ingredientes de la tabla en firebase
@@ -70,7 +72,6 @@ export default function FoodList() {
   };
 
   const db = firebase.firestore(firebaseApp);
-  //const [isSelected, setSelection] = useState(false);
 
   const getMyIngredients = async () => {
     const result = { statusResponse: true, error: null, myIngredients: [] };
@@ -234,34 +235,30 @@ export default function FoodList() {
     setLoading(false);
   };
 
-  //Obtenemos los ingredientes que tengan el valor checked == true
-  const getTrueIngredients = async () => {
-    const trueIngredients = [];
-
-    const response = await db
-      .collection("foodList")
-      .where("idUser", "==", getCurrentUser().uid)
-      .where("checked", "==", true)
-      .get();
-    response.forEach((doc) => {
-      const foodData = doc.data();
-      trueIngredients.push(foodData.name);
-    });
-
-    console.log(trueIngredients)
-
-    Alert.alert("Listado de ingredientes", "patataaaaaaaaaaaaaaaaaaaaaa", [
-      {
-        text: "Cancel",
-        onPress: () => console.log("Cancel Pressed"),
-        style: "cancel",
-      },
-      { text: "OK", onPress: () => console.log("OK Pressed") },
-    ]);
-  };
-
   return (
     <View>
+      <View style={{ padding: SIZES.padding * 2 }}>
+            <View
+              style={{
+                backgroundColor: "#CEC544",
+                borderBottomRightRadius: SIZES.radius,
+                borderBottomLeftRadius: SIZES.radius,
+                marginBottom: 15,
+              }}
+            >
+              <Text
+                style={{
+                  ...FONTS.h1,
+                  marginTop: 10,
+                  marginBottom: 15,
+                  textAlign: "center",
+                  color: "white",
+                }}
+              >
+                Food List
+              </Text>
+            </View>
+          </View>
       <View style={styles.container}>
         <Input
           containerStyle={styles.input}
@@ -307,11 +304,13 @@ export default function FoodList() {
               );
             })}
             <Button
-              title="Daaaaaaaaaaale"
-              onPress={() => getTrueIngredients()}
+              title="Search"
+              buttonStyle={styles.btnCloseSession}
+              titleStyle={styles.btnCloseSessionTitle}
+              onPress={() => navigation.navigate("SuggestedRecipes")}
             ></Button>
           </ScrollView>
-          <Loading isVisible={loading} text="Por favor espere..." />
+          <Loading isVisible={loading} text="Please wait..." />
         </View>
       </View>
       {/* SEARCHBAR */}
@@ -340,7 +339,7 @@ export default function FoodList() {
                 <Text style={styles.noResultText}>No search items matched</Text>
               </View>
             )}
-            <Loading isVisible={loading} text="Por favor espere..." />
+            <Loading isVisible={loading} text="Please wait..." />
           </View>
         </TouchableOpacity>
       )}
@@ -351,7 +350,6 @@ export default function FoodList() {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    marginTop: "20%",
     flex: 1,
   },
   input: {
@@ -431,4 +429,19 @@ const styles = StyleSheet.create({
   checkbox: {
     alignSelf: "center",
   },
+  btnCloseSession : {
+    marginTop: 30,
+    borderRadius: 5,
+    backgroundColor: "#F94F62",
+    borderTopWidth: 1,
+    borderTopColor: "#F6051F",
+    borderBottomWidth: 1,
+    borderBottomColor: "#F6051F",
+    paddingVertical: 10,
+    width: "25%",
+    alignSelf: "center"
+},
+btnCloseSessionTitle : {
+    color: "#FFFFFF"
+},
 });

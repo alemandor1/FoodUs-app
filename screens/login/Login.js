@@ -1,68 +1,68 @@
-import React from 'react'
-import {Text, View, StyleSheet, Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native'
-import { Divider } from 'react-native-elements'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import React from "react";
+import { Text, View, StyleSheet, Image } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { Divider } from "react-native-elements";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-import LoginForm from '../../components/account/LoginForm';
+import LoginForm from "../../components/account/LoginForm";
 
 export default function Login() {
   return (
+    <View style={{backgroundColor: "white"}}>
     <KeyboardAwareScrollView style={styles.fondo}>
+      <View style={styles.container}>
         <Image
-            source={require("../../assets/logo.png")}
-            resizeMode="contain"
-            style={styles.image}
+          source={require("../../assets/logo.png")}
+          resizeMode="contain"
+          style={styles.image}
         />
-        <View style={styles.container}>
-          <LoginForm/>
-          <CreateAccount/>
-        </View>
-        <Divider style={styles.divider}/>
+        <LoginForm />
+        <CreateAccount />
+      </View>
+      <Divider style={styles.divider} />
     </KeyboardAwareScrollView>
-  )
+    </View>
+  );
 }
 
 function CreateAccount(props) {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   return (
-    <Text 
-    style={styles.register}
-    onPress={() => navigation.navigate("Register")}
+    <Text
+      style={styles.register}
+      onPress={() => navigation.navigate("Register")}
     >
-      Don't have an Account?{' '}
-      <Text style={styles.btnRegister}>
-        Sign up
-      </Text>
+      Don't have an Account? <Text style={styles.btnRegister}>Sign up</Text>
     </Text>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   fondo: {
-    backgroundColor: 'white'
+    backgroundColor: "white",
+    marginTop: "20%"
   },
-  image : {
+  image: {
     height: 150,
     width: "100%",
     marginBottom: 20,
   },
-  container : {
+  container: {
     marginHorizontal: 40,
-    backgroundColor: 'white',
+    marginVertical: 40,
+    backgroundColor: "white",
   },
-  register : {
+  register: {
     marginTop: 15,
     marginHorizontal: 10,
-    alignSelf: "center"
+    alignSelf: "center",
   },
-  btnRegister : {
+  btnRegister: {
     color: "#442484",
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   divider: {
     backgroundColor: "#442484",
-    margin: 40
-}
-
-})
+    marginHorizontal: 30,
+  },
+});

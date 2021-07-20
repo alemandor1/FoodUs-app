@@ -6,7 +6,6 @@ import { map } from 'lodash';
 
 import { closeSession, getCurrentUser } from '../../utils/actions';
 import InfoUser from '../../components/account/InfoUser';
-import Profile from '../../screens/profile/Profile'
 
 export default function Configuration() {
 
@@ -31,14 +30,6 @@ export default function Configuration() {
                 onPress: () => navigation.navigate('Profile')
             },
             {
-                title: "Food list",
-                iconNameLeft: "kitchen", 
-                iconColorLeft: "#a7bfd3",
-                iconNameRight: "chevron-right",
-                iconColorRight: "#a7bfd3",
-                onPress: () => navigation.navigate('Profile')
-            },
-            {
                 title: "Recipe history",
                 iconNameLeft: "history", 
                 iconColorLeft: "#a7bfd3",
@@ -47,20 +38,12 @@ export default function Configuration() {
                 onPress: () => navigation.navigate('HistoryList')
             },
             {
-                title: "Favorite recipes",
-                iconNameLeft: "favorite-border", 
-                iconColorLeft: "#a7bfd3",
-                iconNameRight: "chevron-right",
-                iconColorRight: "#a7bfd3",
-                onPress: () => navigation.navigate('Profile')
-            },
-            {
                 title: "Shopping list",
                 iconNameLeft: "shopping-cart", 
                 iconColorLeft: "#a7bfd3",
                 iconNameRight: "chevron-right",
                 iconColorRight: "#a7bfd3",
-                onPress: () => navigation.navigate('Profile')
+                onPress: () => navigation.navigate('ShoppingList')
             }
         ]
     }
