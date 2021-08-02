@@ -18,7 +18,7 @@ import { SIZES, COLORS, FONTS } from "../../constants";
 import Axios from "axios";
 import DisplayComponent from "../../components/DisplayComponent";
 import BtnComponent from "../../components/BtnComponent";
-import "../../components/Timer.css";
+//import "../../components/Timer.css";
 import { FAB } from "react-native-paper";
 import Loading from "../../components/Loading";
 
@@ -479,7 +479,7 @@ export default class Recipe extends React.Component {
                   <Text style={{ ...FONTS.h4, color: COLORS.primary }}>
                     Record your time
                   </Text>
-                  <div className="main-section">
+                  {/* <div className="main-section">
                     <div className="clock-holder">
                       <div className="stopwatch">
                         <DisplayComponent time={this.state.time} />
@@ -492,7 +492,7 @@ export default class Recipe extends React.Component {
                         />
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </View>
                 <View>
                   <FAB

@@ -220,9 +220,9 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   fab: {
-    position: "fixed",
+    position: "absolute",
     margin: 16,
     right: 0,
-    bottom: 0,
+    top: 630
   },
 });

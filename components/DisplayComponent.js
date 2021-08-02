@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 
 function DisplayComponent(props) {
   const h = () => {
@@ -17,4 +17,4 @@ function DisplayComponent(props) {
   );
 }
 
-export default DisplayComponent;
+export default DisplayComponent; */

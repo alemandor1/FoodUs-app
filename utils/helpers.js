@@ -7,6 +7,11 @@ export function validateEmail(email) {
     return re.test(email)
 }
 
+export function onlyLetters(name) {
+    const re = /^[A-Za-z]+$/;
+    return re.test(name)
+}
+
 export const loadImageFromGallery = async(array) => {
     const response = { status: false, image: null }
     const resultPermissions = await Permissions.askAsync(Permissions.CAMERA)

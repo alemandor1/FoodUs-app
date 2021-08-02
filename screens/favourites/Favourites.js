@@ -38,7 +38,7 @@ export default function Favourites({ navigation }) {
         <Loading isVisible={loading} text="Loading..." />
       ) : (
         <View style={{ flex: 1 }}>
-          <View style={{ padding: SIZES.padding * 2 }}>
+          <View style={{ padding: SIZES.padding * 3 }}>
             <View
               style={{
                 backgroundColor: "crimson",

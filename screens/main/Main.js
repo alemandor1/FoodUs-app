@@ -212,8 +212,8 @@ export default class Main extends React.Component {
           <Loading isVisible={this.state.loading} text="Loading recipes..." />
         ) : (
           <View style={{ flex: 1 }}>
-            <View style={{ padding: SIZES.padding * 2 }}>
-              <Text style={{ ...FONTS.h1, marginTop: 15 }}>
+            <View style={{ padding: SIZES.padding * 1 }}>
+              <Text style={{ ...FONTS.h1, marginTop: 30 }}>
                 Main Categories
               </Text>
               <FlatList
@@ -265,7 +265,9 @@ export default class Main extends React.Component {
                     <Text
                       style={{
                         marginTop: SIZES.padding,
-                        color: COLORS.black,
+                        color: this.state.selectedCategory?.id == item.id
+                        ? COLORS.white
+                        : COLORS.black,
                         ...FONTS.body5,
                       }}
                     >
@@ -404,8 +406,8 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#442484",
-    marginTop: 10,
+    marginTop: 8,
     fontWeight: "bold",
-    fontSize: "large"
+    fontSize: 25
   },
 });

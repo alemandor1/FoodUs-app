@@ -44,6 +44,14 @@ export default function Configuration() {
                 iconNameRight: "chevron-right",
                 iconColorRight: "#a7bfd3",
                 onPress: () => navigation.navigate('ShoppingList')
+            },
+            {
+                title: "Help",
+                iconNameLeft: "help", 
+                iconColorLeft: "#a7bfd3",
+                iconNameRight: "chevron-right",
+                iconColorRight: "#a7bfd3",
+                onPress: () => navigation.navigate('Help')
             }
         ]
     }
@@ -54,7 +62,7 @@ export default function Configuration() {
         <View style={styles.container}>
             {
                 user && (
-                    <View>
+                    <View style={{paddingTop: "20%"}}>
                         <InfoUser
                             user={user}
                             setLoading={setLoading}
@@ -104,7 +112,7 @@ export default function Configuration() {
 const styles = StyleSheet.create({
     container : {
         minHeight: "100%",
-        backgroundColor: "#f9f9f9"
+        backgroundColor: "#FFFFFF"
     },
     btnCloseSession : {
         marginTop: 30,
