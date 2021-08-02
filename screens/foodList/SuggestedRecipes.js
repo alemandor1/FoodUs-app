@@ -7,7 +7,6 @@ import {
   Text,
   TouchableOpacity,
 } from "react-native";
-import { Input, Icon, ListItem, Button } from "react-native-elements";
 import { SIZES, FONTS } from "../../constants";
 
 import firebase from "firebase";
@@ -23,6 +22,7 @@ export default class SuggestedRecipes extends React.Component {
     super(props);
 
     this.state = {
+      isEnabled: this.props.route.params.isEnabled,
       recipes: [],
       loading: false,
       APIkey: "6812c1d4a76d4a6dbe7b8ef99427f05d", //6812c1d4a76d4a6dbe7b8ef99427f05d o 61f5abd161c842db98a65aa187831f41
@@ -63,17 +63,31 @@ export default class SuggestedRecipes extends React.Component {
   async componentDidMount() {
     const ingredients = await this.getTrueIngredients();
     const stringIngredients = this.getURLParse(ingredients);
-    const res = await this.getRecipes(
-      "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" +
-        stringIngredients +
-        "&number=20&apiKey=" +
-        this.state.APIkey
-    );
-
-    this.setState({
-      recipes: res,
-      loading: false,
-    });
+    if (this.state.isEnabled == true) {
+      const res = await this.getRecipes(
+        "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" +
+          stringIngredients +
+          "&ignorePantry&number=20&apiKey=" +
+          this.state.APIkey
+      );
+      this.setState({
+        recipes: res,
+        loading: false,
+      });
+      console.log(res);
+    } else {
+      const res = await this.getRecipes(
+        "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" +
+          stringIngredients +
+          "&number=20&apiKey=" +
+          this.state.APIkey
+      );
+      this.setState({
+        recipes: res,
+        loading: false,
+      });
+      console.log(res);
+    }
   }
 
   render() {
@@ -84,7 +98,7 @@ export default class SuggestedRecipes extends React.Component {
           <Loading isVisible={this.state.loading} text="Loading recipes..." />
         ) : (
           <View style={{ flex: 1 }}>
-              <View style={{ padding: SIZES.padding * 2 }}>
+            <View style={{ padding: SIZES.padding * 3 }}>
               <View
                 style={{
                   backgroundColor: "midnightblue",
@@ -106,67 +120,77 @@ export default class SuggestedRecipes extends React.Component {
                 </Text>
               </View>
             </View>
-            <View style={{ flex: 1 }}>
+            <View>
               <FlatList
                 data={this.state.recipes}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
-                  <TouchableOpacity
-                    style={{ marginBottom: SIZES.padding * 4 }}
-                    onPress={() =>
-                      navigation.navigate("Recipe", { id: item.id })
-                    }
-                  >
-                    <View
-                      style={{
-                        marginBottom: SIZES.padding,
-                      }}
+                  <View>
+                    <TouchableOpacity
+                      style={{ marginBottom: 5 }}
+                      onPress={() =>
+                        navigation.navigate("Recipe", { id: item.id })
+                      }
                     >
-                      <Image
-                        source={
-                          item?.image == null
-                            ? require("../../assets/backgroundlogo.png")
-                            : { uri: item.image }
-                        }
-                        resizeMode="cover"
+                      <View
                         style={{
-                          width: "100%",
-                          height: 200,
-                          borderRadius: SIZES.radius,
+                          marginBottom: SIZES.padding,
                         }}
-                      />
-                    </View>
-
-                    <Text style={{ ...FONTS.body2 }}>{item.title}</Text>
-                    <Text style={{ ...FONTS.body4, fontWeight: "bold" }}>
-                      Missed ingredients:
-                    </Text>
-                    <FlatList
-                      horizontal={true}
-                      data={item.missedIngredients}
-                      keyExtractor={(item) => item.id}
-                      renderItem={({ item }) => (
-                          <View style={{alignItems: "center",
-                          justifyContent: "center",
-                          borderRadius: SIZES.radius,
-                          backgroundColor: "orangered",
-                          borderColor: "red",
-                          margin: 3,
-                          padding: 3,}}>
-                        <Text
+                      >
+                        <Image
+                          source={
+                            item?.image == null
+                              ? require("../../assets/backgroundlogo.png")
+                              : { uri: item.image }
+                          }
+                          resizeMode="cover"
                           style={{
-                            ...FONTS.body5,
-                            color: "white",
-                            paddingLeft: 5,
-                            paddingRight: 5,
+                            width: "100%",
+                            height: 200,
+                            borderRadius: SIZES.radius,
                           }}
-                        >
-                          {item.name}
-                        </Text>
-                        </View>
-                      )}
-                    />
-                  </TouchableOpacity>
+                        />
+                      </View>
+                      <Text style={{ ...FONTS.body2 }}>{item.title}</Text>
+                    </TouchableOpacity>
+                    <View style={{ flex: 1, marginBottom: SIZES.padding * 4 }}>
+                      <Text style={{ ...FONTS.body4, fontWeight: "bold" }}>
+                        Missed ingredients:
+                      </Text>
+                      <View style={{ flex: 1 }}>
+                        <FlatList
+                          data={item.missedIngredients}
+                          horizontal
+                          showsHorizontalScrollIndicator={false}
+                          keyExtractor={(item) => item.id}
+                          renderItem={({ item }) => (
+                            <View
+                              style={{
+                                alignItems: "center",
+                                justifyContent: "center",
+                                borderRadius: SIZES.radius,
+                                backgroundColor: "orangered",
+                                borderColor: "red",
+                                margin: 3,
+                                padding: 3,
+                              }}
+                            >
+                              <Text
+                                style={{
+                                  ...FONTS.body5,
+                                  color: "white",
+                                  paddingLeft: 5,
+                                  paddingRight: 5,
+                                }}
+                              >
+                                {item.name}
+                              </Text>
+                            </View>
+                          )}
+                        />
+                      </View>
+                    </View>
+                  </View>
                 )}
                 contentContainerStyle={{
                   paddingHorizontal: SIZES.padding * 2,
@@ -191,9 +215,9 @@ export default class SuggestedRecipes extends React.Component {
 
 const styles = StyleSheet.create({
   fab: {
-    position: "fixed",
+    position: "absolute",
     margin: 16,
     right: 0,
-    bottom: 0,
+    top: 670,
   },
 });

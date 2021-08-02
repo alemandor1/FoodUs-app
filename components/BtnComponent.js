@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 import { Icon } from "react-native-elements";
 import '../components/Timer.css';
 
@@ -58,3 +58,4 @@ function BtnComponent(props) {
 }
 
 export default BtnComponent;
+ */

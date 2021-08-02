@@ -27,7 +27,7 @@ export default function Profile() {
         <View style={styles.container}>
             {
                 user && (
-                    <View>
+                    <View style={{paddingTop: "20%"}}>
                         <InfoUser
                             user={user}
                             setLoading={setLoading}

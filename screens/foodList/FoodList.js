@@ -5,12 +5,15 @@ import {
   CheckBox,
   TouchableOpacity,
   Text,
+  FlatList,
+  Switch, 
   Alert,
+  KeyboardAvoidingView
 } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import { Input, Icon, ListItem, Button } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation } from "@react-navigation/native";
 import { SIZES, FONTS } from "../../constants";
 
 import {
@@ -23,10 +26,15 @@ import { firebaseApp } from "../../utils/firebase";
 import "firebase/firebase-firestore";
 import { map } from "lodash";
 import Loading from "../../components/Loading";
+import { FAB } from "react-native-paper";
+
 
 export default function FoodList() {
-  const navigation = useNavigation()
+  
+  const navigation = useNavigation();
   const [ingredientsDB, setIngredientsDB] = useState([]);
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
   //cogemos los ingredientes de la tabla en firebase
   useEffect(() => {
@@ -74,25 +82,23 @@ export default function FoodList() {
   const db = firebase.firestore(firebaseApp);
 
   const getMyIngredients = async () => {
-    const result = { statusResponse: true, error: null, myIngredients: [] };
+    const result = {
+      statusResponse: true,
+      error: null,
+      myIngredients: [],
+      myIngredientsName: [],
+    };
     try {
       const response = await db
         .collection("foodList")
         .where("idUser", "==", getCurrentUser().uid)
         .get();
-      //const myIngredientsId = [];
       response.forEach((doc) => {
         const foodData = doc.data();
         result.myIngredients.push(foodData);
+        const names = foodData.name;
+        result.myIngredientsName.push(names);
       });
-      /* await Promise.all(
-        map(myIngredientsId, async (idIngredient) => {
-          const response2 = await getDocumentById("ingredients", idIngredient);
-          if (response2.statusResponse) {
-            result.myIngredients.push(response2.document);
-          }
-        })
-      ); */
     } catch (error) {
       result.statusResponse = false;
       result.error = error;
@@ -101,8 +107,32 @@ export default function FoodList() {
   };
 
   const [myFoodList, setMyFoodList] = useState([]);
+  const [myFoodListNames, setMyFoodListNames] = useState([]);
   const [loading, setLoading] = useState(false);
   const [reloadData, setReloadData] = useState(false);
+  const [ingredientsTrue, setIngredientsTrue] = useState([]);
+  const [visible, setVisible] = useState(true);
+
+  const offVisible = () => {
+    setVisible(false)
+  }
+
+  const getTrueIngredients = async () => {
+    const db = firebase.firestore(firebaseApp);
+    const myIngredientsTrue = [];
+
+    const response = await db
+      .collection("foodList")
+      .where("idUser", "==", getCurrentUser().uid)
+      .where("checked", "==", true)
+      .get();
+    response.forEach((doc) => {
+      const foodData = doc.data();
+      myIngredientsTrue.push(foodData.name);
+    });
+
+    return myIngredientsTrue;
+  }
 
   useFocusEffect(
     useCallback(() => {
@@ -110,6 +140,9 @@ export default function FoodList() {
         setLoading(true);
         const response = await getMyIngredients();
         setMyFoodList(response.myIngredients);
+        setMyFoodListNames(response.myIngredientsName);
+        const response2 = await getTrueIngredients();
+        setIngredientsTrue(response2)
         setLoading(false);
       }
       getData();
@@ -121,6 +154,7 @@ export default function FoodList() {
   const findDocId = async (id) => {
     return db
       .collection("foodList")
+      .where("idUser", "==", getCurrentUser().uid)
       .where("idIngredient", "==", id)
       .get()
       .then((collection) => {
@@ -134,6 +168,7 @@ export default function FoodList() {
   const findDataIngredient = async (id) => {
     return db
       .collection("foodList")
+      .where("idUser", "==", getCurrentUser().uid)
       .where("idIngredient", "==", id)
       .get()
       .then((collection) => {
@@ -155,6 +190,8 @@ export default function FoodList() {
       if (updateCheck.statusResponse) {
         const response2 = await getMyIngredients();
         setMyFoodList(response2.myIngredients);
+        const response3 = await getTrueIngredients();
+        setIngredientsTrue(response3)
       }
     } else {
       const docId = await findDocId(id);
@@ -164,6 +201,8 @@ export default function FoodList() {
       if (updateCheck.statusResponse) {
         const response2 = await getMyIngredients();
         setMyFoodList(response2.myIngredients);
+        const response3 = await getTrueIngredients();
+        setIngredientsTrue(response3)
       }
     }
   };
@@ -189,6 +228,33 @@ export default function FoodList() {
       setLoading(true);
       const response2 = await getMyIngredients();
       setMyFoodList(response2.myIngredients);
+      setMyFoodListNames(response2.myIngredientsName);
+      setLoading(false);
+    }
+    return result;
+  };
+
+  //Eliminar toda la lista de ingredientes
+  const deleteAllFoodList = async () => {
+    const result = { statusResponse: true, error: null };
+    try {
+      const response = await db
+        .collection("foodList")
+        .where("idUser", "==", getCurrentUser().uid)
+        .get();
+      response.forEach(async (doc) => {
+        const ingListId = doc.id;
+        await db.collection("foodList").doc(ingListId).delete();
+      });
+    } catch (error) {
+      result.statusResponse = false;
+      result.error = error;
+    }
+    if (result.statusResponse) {
+      setLoading(true);
+      const response2 = await getMyIngredients();
+      setMyFoodList(response2.myIngredients);
+      setMyFoodListNames(response2.myIngredientsName);
       setLoading(false);
     }
     return result;
@@ -209,57 +275,111 @@ export default function FoodList() {
     );
     return result;
   };
-  //añadimos el ingrediente a mi lista de ingredientes
-  const addIngredient = async (name) => {
-    setLoading(true);
 
-    const docIdColum = await findFoodId(name);
+  //Primero comprobamos que el ingrediente que queremos añadir no esté ya en la lista
+  const validateData = (name) => {
+    let isValid = true;
 
-    const response = await db
-      .collection("ingredients")
-      .doc(docIdColum[0])
-      .get();
-    const nameMyIngredient = response.data();
-
-    const addIngredient = await addDocumentWithoutId("foodList", {
-      idUser: getCurrentUser().uid,
-      idIngredient: docIdColum[0],
-      checked: false,
-      name: nameMyIngredient.name,
-    });
-
-    if (addIngredient.statusResponse) {
-      const response2 = await getMyIngredients();
-      setMyFoodList(response2.myIngredients);
+    if (myFoodListNames.includes(name)) {
+      alertIngredientRepeat();
+      isValid = false;
     }
-    setLoading(false);
+    return isValid;
   };
 
+  //añadimos el ingrediente a mi foodList
+  const addIngredient = async (name) => {
+    if (!validateData(name)) {
+      return;
+    } else {
+      setLoading(true);
+      const docIdColum = await findFoodId(name);
+
+      const response = await db
+        .collection("ingredients")
+        .doc(docIdColum[0])
+        .get();
+      const nameMyIngredient = response.data();
+
+      const addIngredient = await addDocumentWithoutId("foodList", {
+        idUser: getCurrentUser().uid,
+        idIngredient: docIdColum[0],
+        checked: false,
+        name: nameMyIngredient.name,
+      });
+
+      if (addIngredient.statusResponse) {
+        const response2 = await getMyIngredients();
+        setMyFoodList(response2.myIngredients);
+        setMyFoodListNames(response2.myIngredientsName);
+      }
+      setLoading(false);
+    }
+  };
+
+  const alertDeleteFoodList = () =>
+    Alert.alert(
+      "Alert Message",
+      "Are you sure you want to remove all the ingredients from your food list?.",
+      [
+        {
+          text: "Cancel",
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => deleteAllFoodList() }
+      ]
+    );
+
+  const alertIngredientRepeat = () =>
+    Alert.alert(
+      "Alert Message",
+      "This ingredient has already been added to the list before.",
+      [
+        { text: "OK" }
+      ]
+    );
+
+  const createTwoButtonAlert = () =>
+    Alert.alert(
+      "Alert Message",
+      "You must choose at least one ingredient",
+      [
+        { text: "OK" }
+      ]
+    );
+
   return (
-    <View>
-      <View style={{ padding: SIZES.padding * 2 }}>
-            <View
-              style={{
-                backgroundColor: "#CEC544",
-                borderBottomRightRadius: SIZES.radius,
-                borderBottomLeftRadius: SIZES.radius,
-                marginBottom: 15,
-              }}
-            >
-              <Text
-                style={{
-                  ...FONTS.h1,
-                  marginTop: 10,
-                  marginBottom: 15,
-                  textAlign: "center",
-                  color: "white",
-                }}
-              >
-                Food List
-              </Text>
-            </View>
-          </View>
-      <View style={styles.container}>
+    <KeyboardAvoidingView
+        behavior={Platform.OS == "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={Platform.OS == "ios" ? 0 : 20}
+        enabled={Platform.OS === "ios" ? true : false}
+        style={{flex:1}}>
+    <View style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
+      {/* TÍTULO */}
+      <View style={{ padding: SIZES.padding * 3 }}>
+        <View
+          style={{
+            backgroundColor: "#CEC544",
+            borderBottomRightRadius: SIZES.radius,
+            borderBottomLeftRadius: SIZES.radius,
+            marginBottom: 5,
+          }}
+        >
+          <Text
+            style={{
+              ...FONTS.h1,
+              marginTop: 10,
+              marginBottom: 15,
+              textAlign: "center",
+              color: "white",
+            }}
+          >
+            Food List
+          </Text>
+        </View>
+      </View>
+      {/* INPUT */}
+      <View>
         <Input
           containerStyle={styles.input}
           placeholder="Search an ingredient..."
@@ -274,107 +394,137 @@ export default function FoodList() {
             />
           }
         />
-        {/* LISTADO DE INGREDIENTES */}
-        <View style={styles.viewBody}>
-          <ScrollView>
-            {myFoodList.map((item) => {
-              return (
-                <ListItem key={item.id} bottomDivider>
-                  <View style={styles.containerList}>
-                    <View style={styles.checkboxContainer}>
-                      <CheckBox
-                        value={item.checked}
-                        onValueChange={() => {
-                          onchecked(item.idIngredient);
-                        }}
-                        style={styles.checkbox}
-                      />
-                    </View>
-                  </View>
-                  <ListItem.Content>
-                    <ListItem.Title>{item.name}</ListItem.Title>
-                  </ListItem.Content>
-                  <Icon
-                    type="material-comunity"
-                    name="delete-forever"
-                    color="#AA1408"
-                    onPress={() => deleteIngredientFoodList(item.id)}
-                  />
-                </ListItem>
-              );
-            })}
-            <Button
-              title="Search"
-              buttonStyle={styles.btnCloseSession}
-              titleStyle={styles.btnCloseSessionTitle}
-              onPress={() => navigation.navigate("SuggestedRecipes")}
-            ></Button>
-          </ScrollView>
-          <Loading isVisible={loading} text="Please wait..." />
-        </View>
       </View>
+      <View style={styles.switch}>
+        <Text>Add pantry ingredients</Text>
+            <Switch
+              trackColor={{ false: "#767577", true: "#81b0ff" }}
+              thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={toggleSwitch}
+              value={isEnabled}
+            />
+          </View> 
+      {/* LISTADO DE INGREDIENTES */}
+      <View style={{ paddingBottom: 280, paddingTop: 45 }}>
+        <ScrollView>
+          <FlatList
+            data={myFoodList}
+            keyExtractor={(item) => item.id}
+            contentContainerStyle={{
+              padding: 20,
+              height: "100%"
+            }}
+            renderItem={({ item }) => (
+              <View
+                style={{
+                  flexDirection: "row",
+                  padding: 20,
+                  marginBottom: 20,
+                  backgroundColor: "#FDEDEC",
+                  borderRadius: 12,
+                  shadowColor: "#000",
+                  shadowOffset: { width: 0, height: 10 },
+                  shadowOpacity: 0.3,
+                  shadowRadius: 20,
+                  justifyContent: "space-between",
+                }}
+              >
+                <CheckBox
+                  value={item.checked}
+                  onValueChange={() => {
+                    onchecked(item.idIngredient);
+                  }}
+                />
+                <View>
+                  <Text
+                    style={{
+                      ...FONTS.h3,
+                      color: "black",
+                      paddingLeft: 25,
+                      paddingRight: 5,
+                    }}
+                  >
+                    {item.name}
+                  </Text>
+                </View>
+                <Icon
+                  style={{ right: 0 }}
+                  type="material-comunity"
+                  name="delete-forever"
+                  color="#AA1408"
+                  onPress={() => deleteIngredientFoodList(item.idIngredient)}
+                />
+              </View>
+            )}
+          />
+          <Loading isVisible={loading} text="Please wait..." />
+        </ScrollView>
+      </View>
+      <FAB
+        style={styles.fab}
+        large
+        icon="magnify"
+        onPress={ingredientsTrue.length == 0 ?  createTwoButtonAlert : () =>  navigation.navigate("SuggestedRecipes", isEnabled)}
+      ></FAB>
+      <FAB
+        style={styles.fab2}
+        large
+        icon="delete"
+        onPress={() => alertDeleteFoodList()}
+      ></FAB>
       {/* SEARCHBAR */}
       {searching && (
-        //<SearchBar onPress={() => setSearching(false)} ings={filtered} />
         <TouchableOpacity
           onPress={() => setSearching(false)}
           style={styles.containerBar}
         >
           <View style={styles.subContainer}>
-            {filtered.length ? (
-              filtered.map((item) => {
-                return (
-                  <View style={styles.itemView}>
-                    <Text
-                      style={styles.itemText}
-                      onPress={() => addIngredient(item)}
-                    >
-                      {item}
-                    </Text>
-                  </View>
-                );
-              })
-            ) : (
-              <View style={styles.noResultView}>
-                <Text style={styles.noResultText}>No search items matched</Text>
-              </View>
-            )}
-            <Loading isVisible={loading} text="Please wait..." />
+          <ScrollView 
+            showsVerticalScrollIndicator = {false}
+            style={{ width: "90%" }}>
+              {filtered.length ? (
+                filtered.map((item) => {
+                  return (
+                    <View style={styles.itemView}>
+                      <Text
+                        style={styles.itemText}
+                        onPress={() => addIngredient(item)}
+                      >
+                        {item}
+                      </Text>
+                    </View>
+                  );
+                })
+              ) : (
+                <View style={styles.noResultView}>
+                  <Text style={styles.noResultText}>No search items matched</Text>
+                </View>
+              )}
+              <Loading isVisible={loading} text="Please wait..." />
+            </ScrollView>
           </View>
         </TouchableOpacity>
       )}
     </View>
-  );
+    </KeyboardAvoidingView>
+      );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    flex: 1,
-  },
   input: {
-    backgroundColor: "#BFBFBF",
+    backgroundColor: "#EEE9E9",
     width: "80%",
     borderRadius: 5,
     height: 50,
     fontSize: 20,
     fontWeight: "bold",
     paddingHorizontal: 10,
-  },
-  viewFavorite: {
-    flex: 1,
-    marginTop: 50,
-    marginLeft: 5,
-    marginRight: 5,
-  },
-  viewBody: {
-    backgroundColor: "#f2f2f2",
-    width: "100%",
-    marginTop: 20,
+    alignSelf: "center",
   },
   containerBar: {
     position: "absolute",
-    top: "11.2%",
+    top: "12%",
     left: 0,
     right: 0,
     bottom: 0,
@@ -386,6 +536,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
     flexWrap: "wrap",
+    height: 300,
 
     justifyContent: "center",
     alignItems: "center",
@@ -395,7 +546,7 @@ const styles = StyleSheet.create({
   itemView: {
     backgroundColor: "white",
     height: 30,
-    width: "90%",
+    width: "100%",
     marginBottom: 10,
     justifyContent: "center",
     borderRadius: 4,
@@ -417,31 +568,21 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "white",
   },
-  containerList: {
+  fab: {
+    position: "absolute",
+    margin: 16,
+    right: 0,
+    top: 570
+  },
+  fab2: {
+    position: "absolute",
+    margin: 16,
+    right: 0,
+    top: 630
+   },
+  switch: {
     flex: 1,
+    marginTop: 35,
     alignItems: "center",
-    justifyContent: "center",
   },
-  checkboxContainer: {
-    flexDirection: "row",
-    marginBottom: 20,
-  },
-  checkbox: {
-    alignSelf: "center",
-  },
-  btnCloseSession : {
-    marginTop: 30,
-    borderRadius: 5,
-    backgroundColor: "#F94F62",
-    borderTopWidth: 1,
-    borderTopColor: "#F6051F",
-    borderBottomWidth: 1,
-    borderBottomColor: "#F6051F",
-    paddingVertical: 10,
-    width: "25%",
-    alignSelf: "center"
-},
-btnCloseSessionTitle : {
-    color: "#FFFFFF"
-},
 });
