@@ -218,6 +218,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     margin: 16,
     right: 0,
-    top: 670,
+    marginBottom: 60 ,
+    bottom:0
   },
 });
