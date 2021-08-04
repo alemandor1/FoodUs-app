@@ -6,16 +6,16 @@ import {
   TouchableOpacity,
   Text,
   FlatList,
-  Switch, 
+  Switch,
   Alert,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
 } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
-import { Input, Icon, ListItem, Button } from "react-native-elements";
+import { Input, Icon } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
-import { SIZES, FONTS } from "../../constants";
 
+import { SIZES, FONTS } from "../../constants";
 import {
   getCurrentUser,
   addDocumentWithoutId,
@@ -28,9 +28,7 @@ import { map } from "lodash";
 import Loading from "../../components/Loading";
 import { FAB } from "react-native-paper";
 
-
 export default function FoodList() {
-  
   const navigation = useNavigation();
   const [ingredientsDB, setIngredientsDB] = useState([]);
   const [isEnabled, setIsEnabled] = useState(false);
@@ -111,11 +109,6 @@ export default function FoodList() {
   const [loading, setLoading] = useState(false);
   const [reloadData, setReloadData] = useState(false);
   const [ingredientsTrue, setIngredientsTrue] = useState([]);
-  const [visible, setVisible] = useState(true);
-
-  const offVisible = () => {
-    setVisible(false)
-  }
 
   const getTrueIngredients = async () => {
     const db = firebase.firestore(firebaseApp);
@@ -132,7 +125,7 @@ export default function FoodList() {
     });
 
     return myIngredientsTrue;
-  }
+  };
 
   useFocusEffect(
     useCallback(() => {
@@ -142,7 +135,7 @@ export default function FoodList() {
         setMyFoodList(response.myIngredients);
         setMyFoodListNames(response.myIngredientsName);
         const response2 = await getTrueIngredients();
-        setIngredientsTrue(response2)
+        setIngredientsTrue(response2);
         setLoading(false);
       }
       getData();
@@ -191,7 +184,7 @@ export default function FoodList() {
         const response2 = await getMyIngredients();
         setMyFoodList(response2.myIngredients);
         const response3 = await getTrueIngredients();
-        setIngredientsTrue(response3)
+        setIngredientsTrue(response3);
       }
     } else {
       const docId = await findDocId(id);
@@ -202,7 +195,7 @@ export default function FoodList() {
         const response2 = await getMyIngredients();
         setMyFoodList(response2.myIngredients);
         const response3 = await getTrueIngredients();
-        setIngredientsTrue(response3)
+        setIngredientsTrue(response3);
       }
     }
   };
@@ -324,9 +317,9 @@ export default function FoodList() {
       [
         {
           text: "Cancel",
-          style: "cancel"
+          style: "cancel",
         },
-        { text: "OK", onPress: () => deleteAllFoodList() }
+        { text: "OK", onPress: () => deleteAllFoodList() },
       ]
     );
 
@@ -334,181 +327,184 @@ export default function FoodList() {
     Alert.alert(
       "Alert Message",
       "This ingredient has already been added to the list before.",
-      [
-        { text: "OK" }
-      ]
+      [{ text: "OK" }]
     );
 
   const createTwoButtonAlert = () =>
-    Alert.alert(
-      "Alert Message",
-      "You must choose at least one ingredient",
-      [
-        { text: "OK" }
-      ]
-    );
+    Alert.alert("Alert Message", "You must choose at least one ingredient", [
+      { text: "OK" },
+    ]);
 
   return (
     <KeyboardAvoidingView
-        behavior={Platform.OS == "ios" ? "padding" : "height"}
-        keyboardVerticalOffset={Platform.OS == "ios" ? 0 : 20}
-        enabled={Platform.OS === "ios" ? true : false}
-        style={{flex:1}}>
-    <View style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
-      {/* TÍTULO */}
-      <View style={{ padding: SIZES.padding * 3 }}>
-        <View
-          style={{
-            backgroundColor: "#CEC544",
-            borderBottomRightRadius: SIZES.radius,
-            borderBottomLeftRadius: SIZES.radius,
-            marginBottom: 5,
-          }}
-        >
-          <Text
+      behavior={Platform.OS == "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS == "ios" ? 0 : 20}
+      enabled={Platform.OS === "ios" ? true : false}
+      style={{ flex: 1 }}
+    >
+      <View style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
+        {/* TÍTULO */}
+        <View style={{ padding: SIZES.padding * 3 }}>
+          <View
             style={{
-              ...FONTS.h1,
-              marginTop: 10,
-              marginBottom: 15,
-              textAlign: "center",
-              color: "white",
+              backgroundColor: "#CEC544",
+              borderBottomRightRadius: SIZES.radius,
+              borderBottomLeftRadius: SIZES.radius,
+              marginBottom: 5,
             }}
           >
-            Food List
-          </Text>
+            <Text
+              style={{
+                ...FONTS.h1,
+                marginTop: 10,
+                marginBottom: 15,
+                textAlign: "center",
+                color: "white",
+              }}
+            >
+              Food List
+            </Text>
+          </View>
         </View>
-      </View>
-      {/* INPUT */}
-      <View>
-        <Input
-          containerStyle={styles.input}
-          placeholder="Search an ingredient..."
-          placeholderTextColor="#000000"
-          onChangeText={onSearch}
-          rightIcon={
-            <Icon
-              type="material-community"
-              name="camera"
-              color="#000000"
-              //onPress={() => setShowPassword(!showPassword)}
-            />
-          }
-        />
-      </View>
-      <View style={styles.switch}>
-        <Text>Add pantry ingredients</Text>
-            <Switch
-              trackColor={{ false: "#767577", true: "#81b0ff" }}
-              thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-              ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitch}
-              value={isEnabled}
-            />
-          </View> 
-      {/* LISTADO DE INGREDIENTES */}
-      <View style={{ paddingBottom: 280, paddingTop: 45 }}>
-        <ScrollView>
-          <FlatList
-            data={myFoodList}
-            keyExtractor={(item) => item.id}
-            contentContainerStyle={{
-              padding: 20,
-              height: "100%"
-            }}
-            renderItem={({ item }) => (
-              <View
-                style={{
-                  flexDirection: "row",
-                  padding: 20,
-                  marginBottom: 20,
-                  backgroundColor: "#FDEDEC",
-                  borderRadius: 12,
-                  shadowColor: "#000",
-                  shadowOffset: { width: 0, height: 10 },
-                  shadowOpacity: 0.3,
-                  shadowRadius: 20,
-                  justifyContent: "space-between",
-                }}
-              >
-                <CheckBox
-                  value={item.checked}
-                  onValueChange={() => {
-                    onchecked(item.idIngredient);
-                  }}
-                />
-                <View>
-                  <Text
-                    style={{
-                      ...FONTS.h3,
-                      color: "black",
-                      paddingLeft: 25,
-                      paddingRight: 5,
-                    }}
-                  >
-                    {item.name}
-                  </Text>
-                </View>
-                <Icon
-                  style={{ right: 0 }}
-                  type="material-comunity"
-                  name="delete-forever"
-                  color="#AA1408"
-                  onPress={() => deleteIngredientFoodList(item.idIngredient)}
-                />
-              </View>
-            )}
+        {/* INPUT */}
+        <View>
+          <Input
+            containerStyle={styles.input}
+            placeholder="Search an ingredient..."
+            placeholderTextColor="#000000"
+            onChangeText={onSearch}
+            rightIcon={
+              <Icon
+                type="material-community"
+                name="camera"
+                color="#000000"
+                onPress={() => navigation.navigate("CameraVista")}
+              />
+            }
           />
-          <Loading isVisible={loading} text="Please wait..." />
-        </ScrollView>
-      </View>
-      <FAB
-        style={styles.fab}
-        large
-        icon="magnify"
-        onPress={ingredientsTrue.length == 0 ?  createTwoButtonAlert : () =>  navigation.navigate("SuggestedRecipes", isEnabled)}
-      ></FAB>
-      <FAB
-        style={styles.fab2}
-        large
-        icon="delete"
-        onPress={() => alertDeleteFoodList()}
-      ></FAB>
-      {/* SEARCHBAR */}
-      {searching && (
-        <TouchableOpacity
-          onPress={() => setSearching(false)}
-          style={styles.containerBar}
-        >
-          <View style={styles.subContainer}>
-          <ScrollView 
-            showsVerticalScrollIndicator = {false}
-            style={{ width: "90%" }}>
-              {filtered.length ? (
-                filtered.map((item) => {
-                  return (
-                    <View style={styles.itemView}>
-                      <Text
-                        style={styles.itemText}
-                        onPress={() => addIngredient(item)}
-                      >
-                        {item}
-                      </Text>
-                    </View>
-                  );
-                })
-              ) : (
-                <View style={styles.noResultView}>
-                  <Text style={styles.noResultText}>No search items matched</Text>
+        </View>
+        <View style={styles.switch}>
+          <Text>Add pantry ingredients</Text>
+          <Switch
+            trackColor={{ false: "#767577", true: "#81b0ff" }}
+            thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={toggleSwitch}
+            value={isEnabled}
+          />
+        </View>
+        {/* LISTADO DE INGREDIENTES */}
+        <View style={{ paddingBottom: 280, paddingTop: 45 }}>
+          <ScrollView>
+            <FlatList
+              data={myFoodList}
+              keyExtractor={(item) => item.id}
+              contentContainerStyle={{
+                padding: 20,
+                height: "100%",
+              }}
+              renderItem={({ item }) => (
+                <View
+                  style={{
+                    flexDirection: "row",
+                    padding: 20,
+                    marginBottom: 20,
+                    backgroundColor: "#FDEDEC",
+                    borderRadius: 12,
+                    shadowColor: "#000",
+                    shadowOffset: { width: 0, height: 10 },
+                    shadowOpacity: 0.3,
+                    shadowRadius: 20,
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <CheckBox
+                    value={item.checked}
+                    onValueChange={() => {
+                      onchecked(item.idIngredient);
+                    }}
+                  />
+                  <View>
+                    <Text
+                      style={{
+                        ...FONTS.h3,
+                        color: "black",
+                        paddingLeft: 25,
+                        paddingRight: 5,
+                      }}
+                    >
+                      {item.name}
+                    </Text>
+                  </View>
+                  <Icon
+                    style={{ right: 0 }}
+                    type="material-comunity"
+                    name="delete-forever"
+                    color="#AA1408"
+                    onPress={() => deleteIngredientFoodList(item.idIngredient)}
+                  />
                 </View>
               )}
-              <Loading isVisible={loading} text="Please wait..." />
-            </ScrollView>
-          </View>
-        </TouchableOpacity>
-      )}
-    </View>
+            />
+            <Loading isVisible={loading} text="Please wait..." />
+          </ScrollView>
+        </View>
+        
+        {/* SEARCHBAR */}
+        {searching && (
+          <TouchableOpacity
+            onPress={() => setSearching(false)}
+            style={styles.containerBar}
+          >
+            <View style={styles.subContainer}>
+              <ScrollView
+                showsVerticalScrollIndicator={false}
+                style={{ width: "90%" }}
+              >
+                {filtered.length ? (
+                  filtered.map((item) => {
+                    return (
+                      <View style={styles.itemView}>
+                        <Text
+                          style={styles.itemText}
+                          onPress={() => addIngredient(item)}
+                        >
+                          {item}
+                        </Text>
+                      </View>
+                    );
+                  })
+                ) : (
+                  <View style={styles.noResultView}>
+                    <Text style={styles.noResultText}>
+                      No search items matched
+                    </Text>
+                  </View>
+                )}
+                <Loading isVisible={loading} text="Please wait..." />
+              </ScrollView>
+            </View>
+          </TouchableOpacity>
+        )}
+      </View>
+      <FAB
+          style={styles.fab}
+          large
+          icon="magnify"
+          onPress={
+            ingredientsTrue.length == 0
+              ? createTwoButtonAlert
+              : () => navigation.navigate("SuggestedRecipes", isEnabled)
+          }
+        ></FAB>
+        <FAB
+          style={styles.fab2}
+          large
+          icon="delete"
+          onPress={() => alertDeleteFoodList()}
+        ></FAB>
     </KeyboardAvoidingView>
-      );
+  );
 }
 
 const styles = StyleSheet.create({
@@ -572,17 +568,40 @@ const styles = StyleSheet.create({
     position: "absolute",
     margin: 16,
     right: 0,
-    top: 570
+    marginBottom: 120 ,
+    bottom:0
   },
   fab2: {
     position: "absolute",
     margin: 16,
     right: 0,
-    top: 630
-   },
+    marginBottom: 55,
+    bottom:0
+  },
   switch: {
     flex: 1,
     marginTop: 35,
     alignItems: "center",
+  },
+  containerCamera: {
+    flex: 1,
+  },
+  camera: {
+    flex: 1,
+  },
+  buttonContainer: {
+    flex: 1,
+    backgroundColor: "transparent",
+    flexDirection: "row",
+    margin: 20,
+  },
+  button: {
+    flex: 0.1,
+    alignSelf: "flex-end",
+    alignItems: "center",
+  },
+  text: {
+    fontSize: 18,
+    color: "white",
   },
 });

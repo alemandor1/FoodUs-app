@@ -1,16 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { Button } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native'
-//import Toast from 'react-native-easy-toast'
 
-import { closeSession, getCurrentUser } from '../../utils/actions';
-import Loading from '../../components/Loading';
+import { getCurrentUser } from '../../utils/actions';
 import InfoUser from '../../components/account/InfoUser';
 import AccountOptions from '../../components/account/AccountOptions';
 
 export default function Profile() {
-    const toastRef = useRef()
     const navigation = useNavigation()
 
     const [loading, setLoading] = useState(false)
@@ -41,7 +38,7 @@ export default function Profile() {
                     )
             }
             <Button
-                title="Volver"
+                title="Return"
                 buttonStyle={styles.btnCloseSession}
                 titleStyle={styles.btnCloseSessionTitle}
                 onPress={() => navigation.navigate("Configuration")}

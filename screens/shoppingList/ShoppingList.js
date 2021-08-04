@@ -441,13 +441,15 @@ const styles = StyleSheet.create({
     position: "absolute",
     margin: 16,
     right: 0,
-    top: 670,
+    marginBottom: 90 ,
+    bottom:0
   },
   fab2: {
     position: "absolute",
     margin: 16,
     right: 0,
-    top: 610
+    marginBottom: 20 ,
+    bottom:0
    },
   input: {
     width: "75%",

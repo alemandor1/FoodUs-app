@@ -13,6 +13,8 @@ import HistoryList from "./screens/recipe/HistoryList";
 import SuggestedRecipes from "./screens/foodList/SuggestedRecipes";
 import ShoppingList from "./screens/shoppingList/ShoppingList";
 import Help from "./screens/help/Help";
+import CameraVista from "./screens/camera/CameraVista";
+import Picture from "./screens/camera/Picture";
 
 LogBox.ignoreAllLogs();
 
@@ -44,6 +46,8 @@ const App = () => {
         <Stack.Screen name="SuggestedRecipes" component={SuggestedRecipes} />
         <Stack.Screen name="ShoppingList" component={ShoppingList} />
         <Stack.Screen name="Help" component={Help} />
+        <Stack.Screen name="CameraVista" component={CameraVista} />
+        <Stack.Screen name="Picture" component={Picture} />
         <Stack.Screen name="Favourites" component={Tabs} />
         <Stack.Screen name="Account" component={Tabs} />
         <Stack.Screen name="FoodList" component={Tabs} />
