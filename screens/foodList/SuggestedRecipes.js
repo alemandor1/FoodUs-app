@@ -24,8 +24,9 @@ export default class SuggestedRecipes extends React.Component {
     this.state = {
       isEnabled: this.props.route.params.isEnabled,
       recipes: [],
+      predictions: [],
       loading: false,
-      APIkey: "6812c1d4a76d4a6dbe7b8ef99427f05d", //6812c1d4a76d4a6dbe7b8ef99427f05d o 61f5abd161c842db98a65aa187831f41
+      APIkey: "61f5abd161c842db98a65aa187831f41", //6812c1d4a76d4a6dbe7b8ef99427f05d o 61f5abd161c842db98a65aa187831f41
     };
   }
 
@@ -60,6 +61,13 @@ export default class SuggestedRecipes extends React.Component {
     return res;
   }
 
+  async getPredictions() {
+    const res = await Axios.post('http://localhost:5000/detections').then((result) => {
+      return result.data;
+    });
+    return res;
+  }
+
   async componentDidMount() {
     const ingredients = await this.getTrueIngredients();
     const stringIngredients = this.getURLParse(ingredients);
@@ -74,7 +82,6 @@ export default class SuggestedRecipes extends React.Component {
         recipes: res,
         loading: false,
       });
-      console.log(res);
     } else {
       const res = await this.getRecipes(
         "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" +
@@ -86,8 +93,12 @@ export default class SuggestedRecipes extends React.Component {
         recipes: res,
         loading: false,
       });
-      console.log(res);
     }
+    const pred = await this.getPredictions();
+    this.setState({
+      predictions: pred.response.detections
+    })
+    console.log(pred.response)
   }
 
   render() {
@@ -116,7 +127,7 @@ export default class SuggestedRecipes extends React.Component {
                     color: "white",
                   }}
                 >
-                  Suggested Recipe
+                  Suggested Recipes
                 </Text>
               </View>
             </View>

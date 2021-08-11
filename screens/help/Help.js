@@ -14,11 +14,11 @@ export default class Help extends React.Component {
     contents: [
       {
         title: "How can I view my recipes history?",
-        body: "In the view of your profile by pressing the last button on the bottom bar, you will find your recipe history.",
+        body: "In your profile view by pressing the last button on the bottom bar, you will find your recipe history.",
       },
       {
-        title: "How can I add a recipe to favorites?",
-        body: "When accessing the details of a recipe, you can add it to favorites by pressing the heart button.",
+        title: "How can I add a recipe to favourites?",
+        body: "When accessing the details of a recipe, you can add it to favourites by pressing the heart button.",
       },
       {
         title: "How can I change my password?",
@@ -29,7 +29,7 @@ export default class Help extends React.Component {
         body: "Currently, the entire application is in English, therefore all searches will have to be done in English.",
       },
       {
-        title: "What foods does the app recognize when adding a photo?",
+        title: "Which ingredients does the app recognize when adding a photo?",
         body: "Currently, through images, the application only recognizes apple, avocado, banana, cucumber, eggplant, lemon, onion, pepper, potato, lettuce, carrot, tomato, garlic",
       },
     ],
@@ -47,7 +47,7 @@ export default class Help extends React.Component {
       },
       {
         title: "What are pantry items?",
-        body: "Pantry items are basic ingredients such as: salt, oil...",
+        body: "Pantry items are basic ingredients such as: salt, oil, sugar, water...",
       },
       {
         title: "How to find a recipe with ingredients that I have?",
