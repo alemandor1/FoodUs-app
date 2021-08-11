@@ -1,13 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { Button, ListItem, Icon } from 'react-native-elements';
-import { useNavigation } from '@react-navigation/native'
 import { map } from 'lodash';
 
 import { closeSession, getCurrentUser } from '../../utils/actions';
 import InfoUser from '../../components/account/InfoUser';
 
-export default function Configuration() {
+export default function Configuration({navigation}) {
 
     const [loading, setLoading] = useState(false)
     const [loadingText, setLoadingText] = useState("")
@@ -16,8 +15,6 @@ export default function Configuration() {
     useEffect(() => {
         setUser(getCurrentUser())
     }, [])
-
-    const navigation = useNavigation()
 
     const generateOptions = () => {
         return [
@@ -59,7 +56,7 @@ export default function Configuration() {
     const menuOptions = generateOptions();
 
     return (
-        <View style={styles.container}>
+        <View style={styles.container} testID="list">
             {
                 user && (
                     <View style={{paddingTop: "20%"}}>
@@ -97,6 +94,7 @@ export default function Configuration() {
                     )
             }
             <Button
+                testID="buttonLogOut"
                 title="Log out"
                 buttonStyle={styles.btnCloseSession}
                 titleStyle={styles.btnCloseSessionTitle}

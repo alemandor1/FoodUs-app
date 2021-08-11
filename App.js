@@ -15,7 +15,7 @@ import ShoppingList from "./screens/shoppingList/ShoppingList";
 import Help from "./screens/help/Help";
 import CameraVista from "./screens/camera/CameraVista";
 import Picture from "./screens/camera/Picture";
-
+import CameraView from "./screens/camera/CameraView";
 LogBox.ignoreAllLogs();
 
 const Stack = createStackNavigator();
@@ -48,6 +48,7 @@ const App = () => {
         <Stack.Screen name="Help" component={Help} />
         <Stack.Screen name="CameraVista" component={CameraVista} />
         <Stack.Screen name="Picture" component={Picture} />
+        <Stack.Screen name="CameraView" component={CameraView} />
         <Stack.Screen name="Favourites" component={Tabs} />
         <Stack.Screen name="Account" component={Tabs} />
         <Stack.Screen name="FoodList" component={Tabs} />

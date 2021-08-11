@@ -10,7 +10,6 @@ import {
 import { useFocusEffect } from "@react-navigation/native";
 import { Input, Icon } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
-import { useNavigation } from "@react-navigation/native";
 import { SIZES, FONTS, COLORS } from "../../constants";
 import { FAB } from "react-native-paper";
 import { size } from "lodash";
@@ -26,8 +25,7 @@ import "firebase/firebase-firestore";
 import Loading from "../../components/Loading";
 import { onlyLetters } from "../../utils/helpers";
 
-export default function ShoopingList() {
-  const navigation = useNavigation();
+export default function ShoopingList({navigation}) {
   const db = firebase.firestore(firebaseApp);
 
   //añadimos el ingrediente a mi lista de la compra (firebase)
