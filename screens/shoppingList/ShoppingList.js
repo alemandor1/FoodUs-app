@@ -435,32 +435,10 @@ export default function ShoopingList({navigation}) {
 }
 
 const styles = StyleSheet.create({
-  fab: {
-    position: "absolute",
-    margin: 16,
-    right: 0,
-    marginBottom: 90 ,
-    bottom:0
-  },
-  fab2: {
-    position: "absolute",
-    margin: 16,
-    right: 0,
-    marginBottom: 20 ,
-    bottom:0
-   },
-  input: {
-    width: "75%",
-    alignSelf: "center",
-  },
-  actionBtn: {
-    width: 70,
-    height: 25,
-    backgroundColor: "#5B74CC",
-    borderRadius: 30,
-    paddingHorizontal: 5,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignContent: "center",
-  },
+    fab: {
+        position: "absolute",
+        margin: 16,
+        right: 0,
+        bottom: 0,
+      }  
 });
