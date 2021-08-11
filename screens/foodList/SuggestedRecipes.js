@@ -127,7 +127,7 @@ export default class SuggestedRecipes extends React.Component {
                     color: "white",
                   }}
                 >
-                  Suggested Recipes
+                  Suggested Recipe
                 </Text>
               </View>
             </View>
