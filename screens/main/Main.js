@@ -209,9 +209,9 @@ export default class Main extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         {this.state.loading == true ? (
-          <Loading isVisible={this.state.loading} text="Loading recipes..." />
+          <Loading isVisible={this.state.loading} text="Loading recipes..."/>
         ) : (
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 1 }} testID="list">
             <View style={{ padding: SIZES.padding * 1 }}>
               <Text style={{ ...FONTS.h1, marginTop: 30 }}>
                 Main Categories
@@ -243,6 +243,7 @@ export default class Main extends React.Component {
                     }
                   >
                     <View
+                      testID="icons"
                       style={{
                         width: 70,
                         height: 50,
@@ -307,6 +308,7 @@ export default class Main extends React.Component {
             ) : (
               <View style={{ flex: 1 }}>
                 <FlatList
+                  testID="list"
                   data={this.state.recipes}
                   keyExtractor={(item) => item.id}
                   renderItem={({ item }) => (

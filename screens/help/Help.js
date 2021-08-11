@@ -78,12 +78,12 @@ export default class Help extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView>
-          <Text style={{ ...FONTS.h1, marginTop: 70, alignSelf: "center" }}>
+          <Text style={{ ...FONTS.h1, marginTop: 70, alignSelf: "center" }} testID="tittle">
             Help of FoodUs
           </Text>
-          <View style={styles.container1}>
+          <View style={styles.container1} testID="container">
             <Text style={{ ...FONTS.h1, paddingLeft: 10 }}>General</Text>
-            <ScrollView style={{ alignSelf: "stretch" }}>
+            <ScrollView style={{ alignSelf: "stretch" }} testID="questions">
               {this.general.contents.map((param, i) => {
                 return (
                   <DropDownItem
@@ -201,7 +201,8 @@ export default class Help extends React.Component {
           style={styles.fab}
           large
           icon="undo"
-          onPress={() => navigation.goBack()}
+          onPress={() => navigation.navigate("Configuration")}
+          testID="button"
         ></FAB>
       </View>
     );

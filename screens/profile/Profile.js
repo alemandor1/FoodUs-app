@@ -1,14 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Button } from 'react-native-elements';
-import { useNavigation } from '@react-navigation/native'
 
 import { getCurrentUser } from '../../utils/actions';
 import InfoUser from '../../components/account/InfoUser';
 import AccountOptions from '../../components/account/AccountOptions';
 
-export default function Profile() {
-    const navigation = useNavigation()
+export default function Profile({navigation}) {
 
     const [loading, setLoading] = useState(false)
     const [loadingText, setLoadingText] = useState("")
@@ -38,6 +36,7 @@ export default function Profile() {
                     )
             }
             <Button
+                testID="buttonReturn"
                 title="Return"
                 buttonStyle={styles.btnCloseSession}
                 titleStyle={styles.btnCloseSessionTitle}

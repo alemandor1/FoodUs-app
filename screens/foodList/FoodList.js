@@ -13,7 +13,6 @@ import {
 import { useFocusEffect } from "@react-navigation/native";
 import { Input, Icon } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
-import { useNavigation } from "@react-navigation/native";
 
 import { SIZES, FONTS } from "../../constants";
 import {
@@ -28,8 +27,7 @@ import { map } from "lodash";
 import Loading from "../../components/Loading";
 import { FAB } from "react-native-paper";
 
-export default function FoodList() {
-  const navigation = useNavigation();
+export default function FoodList({navigation}) {
   const [ingredientsDB, setIngredientsDB] = useState([]);
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
@@ -378,7 +376,7 @@ export default function FoodList() {
                 type="material-community"
                 name="camera"
                 color="#000000"
-                onPress={() => navigation.navigate("CameraVista")}
+                onPress={() => navigation.navigate("CameraView")}
               />
             }
           />

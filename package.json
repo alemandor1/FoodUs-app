@@ -5,7 +5,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "test": "jest"
   },
   "dependencies": {
     "@material-ui/icons": "^4.11.2",
@@ -45,12 +46,19 @@
     "react-native-simple-toast": "^1.1.3",
     "react-native-svg": "12.1.0",
     "react-native-toast-message": "^1.4.9",
-    "react-native-web": "^0.16.1"
+    "react-native-web": "^0.16.1",
+    "react-test-renderer": "16.13.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
+    "@testing-library/react-native": "^7.2.0",
     "css-loader": "^5.2.4",
+    "jest": "^27.0.6",
+    "jest-expo": "^42.1.0",
     "style-loader": "^2.0.0"
+  },
+  "jest": {
+    "preset": "jest-expo"
   },
   "private": true
 }

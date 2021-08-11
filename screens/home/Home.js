@@ -7,9 +7,7 @@ import { ImageBackground } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { SIZES, FONTS, COLORS } from "../../constants";
 
-export default function Home() {
-  const navigation = useNavigation();
-
+export default function Home({navigation}) {
   const renderHeader = () => {
     return (
       <View style={{ height: SIZES.height > 700 ? "65%" : "60%" }}>
@@ -80,6 +78,7 @@ export default function Home() {
           }}
         >
           <Button
+            testID="buttonLogin"
             title="Sign In"
             containerStyle={styles.btnContainer}
             buttonStyle={styles.btn}
@@ -87,6 +86,7 @@ export default function Home() {
           />
 
           <Button
+            testID="buttonRegister"
             title="Sign Up"
             containerStyle={styles.btnContainer}
             buttonStyle={styles.btn}
