@@ -2,15 +2,15 @@ import React from "react";
 import Main from "../screens/main/Main";
 import {create} from 'react-test-renderer'
 import {render, waitFor, act, fireEvent} from "@testing-library/react-native";
+import renderer from 'react-test-renderer';
 
-//jest.useFakeTimers();
-
+//test snapshot
 const tree = create(<Main />)
-
 test('snapshot', () => {
     expect(tree).toMatchSnapshot();
 })
 
+//test renderización
 describe("<Main />", () => {
     beforeEach(() => {
         component = render(<Main />);
@@ -25,4 +25,12 @@ describe("<Main />", () => {
         waitFor(() => expect(component.getByTestId("list")).toBeDefined());
     }) 
 })
+
+//test unitario
+describe('<Main />', () => {
+    it('has 1 child', () => {
+      const tree = renderer.create(<Main />).toJSON();
+      expect(tree.children.length).toBe(1);
+    });
+  });
 
