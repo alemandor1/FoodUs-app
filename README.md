@@ -1,6 +1,6 @@
 # FoodUs-app
 
-Bienvenidos a la aplicación FoodUs! En la que podrás encontrar recetas a tu gusto.
+Bienvenidos a la aplicación **FoodUs**! En la que podrás encontrar recetas a tu gusto.
 
 <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/home.jpeg" width="240"> <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/login.jpeg" width="240"> <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/main.jpeg" width="240"> <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/foodlist.jpeg" width="240">
 
