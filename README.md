@@ -1,6 +1,6 @@
 # FoodUs-app
-![image](https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/main.jpeg {width=40px height=400px})
-<img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/main.jpeg" width="200">
+
+<img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/main.jpeg" width="250">
 
 
 # SetUp
