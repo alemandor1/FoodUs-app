@@ -12,7 +12,9 @@ y en el dispositivo móvil la aplicación Expo Go del Play Store o App Store, de
 Para proceder a la inslatación y ejecución de la app hay que seguir los siguientes pasos:
 
 1- Descargarse el proyecto .zip e importarlo a la herramienta Visual Studio Code
+
 2- Abrir una terminal y ejecutar el comando: "npm install"
+
 3- Abrir una segunda terminal y ejecutar los comandos:
   pip install -r requirements-gpu.txt
   Si da error al intentar instalar pycryptodome:
