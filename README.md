@@ -20,9 +20,15 @@ Para proceder a la inslatación y ejecución de la app hay que seguir los siguie
   Si da error al intentar instalar pycryptodome:
   Modificar nombre carpeta 'crypto' por 'Crypto' 
   "C:\Users\{user}\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\Crypto"
+  
 4- Ejecutar el comando: "python app.py"
+
 5- En la primera terminal, ejecutar el comando: "npm start"
+
 6- Tras ejecutar el comando anterior, se abrirá el navegador web que mostrará un código QR
+
 7- Desde la aplicación Expo Go del dispositivo móvil escaneamos el código QR
+
 8- Por último, habrá que esperar unos segundos a que se construya el proyecto
+
 9- Ya tendremos la aplicación lanzada correctamente y estará lista para usarla con total libertad
