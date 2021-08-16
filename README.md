@@ -1,14 +1,8 @@
 # FoodUs-app
 
-<img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/home.jpeg" width="250"> <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/login.jpeg" width="250">
+<img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/home.jpeg" width="250"> <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/login.jpeg" width="250"> <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/main.jpeg" width="250"> <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/foddlist.jpeg" width="250">
 
-<img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/main.jpeg" width="250">
-<img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/foddlist.jpeg" width="250">
-<img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/camera.jpeg" width="250">
-<img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/suggested.jpeg" width="250">
-<img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/shopping.jpeg" width="250">
-<img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/profile.jpeg" width="250">
-
+<img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/camera.jpeg" width="250"> <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/suggested.jpeg" width="250"> <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/shopping.jpeg" width="250"> <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/profile.jpeg" width="250">
 
 # SetUp
 
