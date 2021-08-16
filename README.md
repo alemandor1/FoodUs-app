@@ -15,8 +15,7 @@ Para proceder a la inslatación y ejecución de la app hay que seguir los siguie
 
 2- Abrir una terminal y ejecutar el comando: "npm install"
 
-3- Abrir una segunda terminal y ejecutar los comandos:
-  pip install -r requirements-gpu.txt
+3- Abrir una segunda terminal y ejecutar el comando: "pip install -r requirements-gpu.txt"
   
   Si da error al intentar instalar pycryptodome:
   Modificar nombre carpeta 'crypto' por 'Crypto' 
