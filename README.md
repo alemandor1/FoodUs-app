@@ -1,5 +1,5 @@
 # FoodUs-app
-(https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/main.jpeg)
+![ScreenShot](https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/main.jpeg)
 
 
 # SetUp
