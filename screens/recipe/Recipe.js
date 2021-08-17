@@ -76,7 +76,7 @@ export default class Recipe extends React.Component {
     this.run();
     this.setState({
       status: 1,
-      interv: setInterval(this.run(), 1000),
+      interv: setInterval(() => this.run(), 6000),
     });
   }
 
@@ -463,28 +463,17 @@ export default class Recipe extends React.Component {
               <View
                 style={{
                   margin: 10,
+                  flex: 1,
                 }}
               >
                 <Text style={{ ...FONTS.h4, color: COLORS.primary }}>
                   Record your time
                 </Text>
-                <View
-                  style={{
-                    backgroundColor: COLORS.transparent,
-                    maxHeight: 600,
-                  }}
-                >
-                  <View
-                    style={{
-                      width: "100%",
-                      backgroundColor: "#FFF",
-                      margin: 30,
-                      position: "relative",
-                    }}
-                  >
                     <View
                       style={{
                         alignContent: "center",
+                        flex: 1,
+                        marginTop:10
                       }}
                     >
                       <DisplayComponent
@@ -492,6 +481,7 @@ export default class Recipe extends React.Component {
                         minutos={this.state.minutos}
                         segundos={this.state.segundos}
                       />
+                      </View>
                       {/* <BtnComponent
                           status={this.state.status}
                           resume={this.resume}
@@ -499,22 +489,28 @@ export default class Recipe extends React.Component {
                           stop={this.stop}
                           start={this.start}
                         />  */}
-                      <View>
-                        {this.state.status === 0 ? (
+                     <View
+                        style={{
+                          paddingTop: 30,
+                          flex: 1,
+                        }}
+                      > 
+                      
+                        {this.state.status == 0 ? (
                           <Button
-                            style={{
-                              backgroundColor: "#fff",
+                            buttonStyle={{
+                              backgroundColor: "#4f44eb",
                               marginTop: 30,
                               marginLeft: 5,
-                              borderWidth: 0,
+                              borderWidth: 2,
                               padding: 12,
                               width: 70,
                               height: 70,
                               borderRadius: 100,
                               borderColor: "#eb2d2d",
-                              borderStyle: "solid",
+                              borderStyle: "solid", 
                             }}
-                            onPress={this.start()}
+                            //onPress={() =>this.start()}
                           >
                             <Icon
                               type="material-community"
@@ -526,10 +522,10 @@ export default class Recipe extends React.Component {
                           <Text></Text>
                         )}
 
-                        {this.state.status === 1 ? (
+                        {this.state.status == 1 ? (
                           <View>
                             <Button
-                              style={{
+                              buttonStyle={{
                                 backgroundColor: "#fff",
                                 marginTop: 30,
                                 marginLeft: 5,
@@ -551,7 +547,7 @@ export default class Recipe extends React.Component {
                               />
                             </Button>
                             <Button
-                              style={{
+                              buttonStyle={{
                                 backgroundColor: "#fff",
                                 marginTop: 30,
                                 marginLeft: 5,
@@ -577,10 +573,10 @@ export default class Recipe extends React.Component {
                           <Text></Text>
                         )}
 
-                        {this.state.status === 2 ? (
+                        {this.state.status == 2 ? (
                           <View>
                             <Button
-                              style={{
+                              buttonStyle={{
                                 backgroundColor: "#fff",
                                 marginTop: 30,
                                 marginLeft: 5,
@@ -602,7 +598,7 @@ export default class Recipe extends React.Component {
                               />
                             </Button>
                             <Button
-                              style={{
+                              buttonStyle={{
                                 backgroundColor: "#fff",
                                 marginTop: 30,
                                 marginLeft: 5,
@@ -627,11 +623,8 @@ export default class Recipe extends React.Component {
                         ) : (
                           <Text></Text>
                         )}
-                      </View>
                     </View>
                   </View>
-                </View>
-              </View>
               {/* <View>
                   <FAB
                     style={styles.fab}
@@ -749,14 +742,6 @@ export default class Recipe extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  btnContainer: {
-    marginTop: 20,
-    width: "70%",
-    alignSelf: "center",
-  },
-  btn: {
-    backgroundColor: "#C64755",
-  },
   fab: {
     marginTop: 10,
     alignContent: "center",
@@ -776,4 +761,19 @@ const styles = StyleSheet.create({
     padding: 15,
     flex: 1,
   },
+  btnCloseSession : {
+    marginTop: 30,
+    borderRadius: 5,
+    backgroundColor: "#F4F5A9",
+    borderTopWidth: 1,
+    borderTopColor: "#F4F5A9",
+    borderBottomWidth: 1,
+    borderBottomColor: "#F4F5A9",
+    paddingVertical: 10,
+    width: "50%",
+    alignSelf: "center"
+},
+btnCloseSessionTitle : {
+    color: "#000000"
+}
 });
