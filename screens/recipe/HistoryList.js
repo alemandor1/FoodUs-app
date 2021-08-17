@@ -187,7 +187,7 @@ export default class HistoryList extends React.Component {
                             paddingLeft: 5,
                           }}
                         >
-                          <DisplayComponent time={item.timeSpent} />
+                          <DisplayComponent time={item.timeSpent} /> 
                         </Text>
                       )}
                     </View>

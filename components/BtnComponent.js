@@ -1,6 +1,6 @@
 import React from "react";
 import { Icon, Button } from "react-native-elements";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 
 function BtnComponent(props) {
   return (
@@ -16,7 +16,6 @@ function BtnComponent(props) {
             width: 70,
             height: 70,
             borderRadius: 100,
-            borderWidth: 2,
             borderColor: "#eb2d2d",
             borderStyle: "solid"
           }}
@@ -25,7 +24,7 @@ function BtnComponent(props) {
           <Icon type="material-community" name="record" color="#eb2d2d" />
         </Button>
       ) : (
-        ""
+        <Text></Text>
       )}
 
       {props.status === 1 ? (
@@ -72,7 +71,7 @@ function BtnComponent(props) {
           </Button>
         </View>
       ) : (
-        ""
+        <Text></Text>
       )}
 
       {props.status === 2 ? (
@@ -119,7 +118,7 @@ function BtnComponent(props) {
           </Button>
         </View>
       ) : (
-        ""
+        <Text></Text>
       )}
     </View>
   );

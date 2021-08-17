@@ -26,7 +26,7 @@ export default class SuggestedRecipes extends React.Component {
       recipes: [],
       predictions: [],
       loading: false,
-      APIkey: "61f5abd161c842db98a65aa187831f41", //6812c1d4a76d4a6dbe7b8ef99427f05d o 61f5abd161c842db98a65aa187831f41
+      APIkey: "6812c1d4a76d4a6dbe7b8ef99427f05d", //6812c1d4a76d4a6dbe7b8ef99427f05d o 61f5abd161c842db98a65aa187831f41
     };
   }
 
