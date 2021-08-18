@@ -5,7 +5,7 @@ import * as ImagePicker from "expo-image-picker";
 import { Feather as Icon } from "@expo/vector-icons";
 import firebase from "firebase";
 import "firebase/firebase-firestore";
-
+import * as FileSystem from 'expo-file-system';
 import { fileToBlob } from "../../utils/helpers";
 import { getCurrentUser } from "../../utils/actions";
 
@@ -77,17 +77,14 @@ export default function CameraView({ navigation }) {
   };
 
   const uploadFlask = async (uri) => {
-    /*  const image = uri.split("/");
-    const length = image.length; */
-    //console.log(image[length-1]);
-
     const response = await uploadImage(uri, "foodImages", user.uid);
-    if (response.statusResponse) {
-      navigation.navigate("FoodList");
+    if (response.statusResponse) { 
+      navigation.navigate("FoodList");  
     } else {
       Alert.alert("An error occurred while uploading the picture.");
     }
   };
+
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.cameraContainer}>
@@ -106,27 +103,26 @@ export default function CameraView({ navigation }) {
           marginHorizontal: 20,
         }}
       >
-     
-      <Icon
-        name="refresh-ccw"
-        size={50}
-        onPress={() => {
-          setType(
-            type === Camera.Constants.Type.back
-              ? Camera.Constants.Type.front
-              : Camera.Constants.Type.back
-          );
-        }}
-      ></Icon>
-      <Icon name="aperture" size={50} onPress={() => takePicture()} />
-      <Icon name="image" size={50} onPress={() => pickImage()} />
-      <Icon
-        name="check"
-        color="green"
-        size={50}
-        onPress={() => uploadFlask(image)}
-      />
-      <Icon
+        <Icon
+          name="refresh-ccw"
+          size={50}
+          onPress={() => {
+            setType(
+              type === Camera.Constants.Type.back
+                ? Camera.Constants.Type.front
+                : Camera.Constants.Type.back
+            );
+          }}
+        ></Icon>
+        <Icon name="aperture" size={50} onPress={() => takePicture()} />
+        <Icon name="image" size={50} onPress={() => pickImage()} />
+        <Icon
+          name="check"
+          color="green"
+          size={50}
+          onPress={() => uploadFlask(image)}
+        />
+        <Icon
           name="x"
           color="red"
           size={50}

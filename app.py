@@ -54,6 +54,21 @@ print('classes loaded')
 # Initialize Flask application
 app = Flask(__name__)
 CORS(app)
+firebase = pyrebase.initialize_app(config)
+
+def login():
+    auth = firebase.auth()
+
+    email = input("Enter your email: ")
+    password = input("Enter your password: ")
+    try:
+        user = auth.sign_in_with_email_and_password(email, password)
+        print("Successfully logged!")
+    except:
+        print("Invalid user or password, try again.")
+        
+    userId = user['localId']
+    return userId
 
 # API that returns JSON with classes found in images
 @app.route('/detections', methods=['POST'])
@@ -62,9 +77,8 @@ def get_detections():
     firebase = pyrebase.initialize_app(config)
     storage = firebase.storage()
     auth = firebase.auth()
-
-    userId = auth.current_user['localId']
-    print(userId)
+    
+    userId = login()
     path_on_cloud = "foodImages/" + userId
     url = storage.child(path_on_cloud).get_url(userId)    
     urlformat = url + ".jpg"
@@ -74,6 +88,7 @@ def get_detections():
 
     raw_images = []
     images = []
+    images = request.files.getlist("images")
     
     path = glob.glob("data/images/*.jpg")
     for file in path:

@@ -36,7 +36,7 @@ export default function Home({navigation}) {
                 ...FONTS.largeTitle,
               }}
             >
-              FoodUs
+              FoodUS
             </Text>
           </LinearGradient>
         </ImageBackground>

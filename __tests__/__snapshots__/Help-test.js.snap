@@ -27,7 +27,7 @@ exports[`snapshot 1`] = `
         }
         testID="tittle"
       >
-        Help of FoodUs
+        Help of FoodUS
       </Text>
       <View
         style={

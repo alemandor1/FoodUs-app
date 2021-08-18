@@ -82,7 +82,7 @@ exports[`snapshot 1`] = `
             }
           }
         >
-          FoodUs
+          FoodUS
         </Text>
       </ViewManagerAdapter_ExpoLinearGradient>
     </View>
