@@ -25,7 +25,7 @@ import "firebase/firebase-firestore";
 import Loading from "../../components/Loading";
 import { onlyLetters } from "../../utils/helpers";
 
-export default function ShoopingList({navigation}) {
+export default function ShoopingList({ navigation }) {
   const db = firebase.firestore(firebaseApp);
 
   //añadimos el ingrediente a mi lista de la compra (firebase)
@@ -276,9 +276,9 @@ export default function ShoopingList({navigation}) {
       [
         {
           text: "Cancel",
-          style: "cancel"
+          style: "cancel",
         },
-        { text: "OK", onPress: () => deleteAllShoppingList() }
+        { text: "OK", onPress: () => deleteAllShoppingList() },
       ]
     );
 
@@ -322,11 +322,6 @@ export default function ShoopingList({navigation}) {
         />
       </View>
       <View style={{ flex: 1, paddingBottom: 35 }}>
-        {/* <Image
-          source={require("../../assets/fondoshooping.jpg")}
-          style={StyleSheet.absoluteFillObject}
-          blurRadius={10}
-        /> */}
         <ScrollView>
           <FlatList
             data={myShoppingList}
@@ -435,10 +430,30 @@ export default function ShoopingList({navigation}) {
 }
 
 const styles = StyleSheet.create({
-    fab: {
-        position: "absolute",
-        margin: 16,
-        right: 0,
-        bottom: 0,
-      }  
+  fab: {
+    position: "absolute",
+    margin: 16,
+    right: 0,
+    top: 670,
+  },
+  fab2: {
+    position: "absolute",
+    margin: 16,
+    right: 0,
+    top: 610,
+  },
+  input: {
+    width: "75%",
+    alignSelf: "center",
+  },
+  actionBtn: {
+    width: 70,
+    height: 25,
+    backgroundColor: "#5B74CC",
+    borderRadius: 30,
+    paddingHorizontal: 5,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignContent: "center",
+  },
 });

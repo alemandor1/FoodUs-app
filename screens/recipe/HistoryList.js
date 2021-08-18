@@ -169,7 +169,7 @@ export default class HistoryList extends React.Component {
                       <Text style={{ ...FONTS.body4, fontWeight: "bold" }}>
                         Your time:
                       </Text>
-                      {item.timeSpent.s == 0 ? (
+                      {item.timeSpent.segundos == 0 && item.timeSpent.minutos == 0 && item.timeSpent.horas  == 0 ? (
                         <Text
                           style={{
                             ...FONTS.body4,
@@ -187,7 +187,10 @@ export default class HistoryList extends React.Component {
                             paddingLeft: 5,
                           }}
                         >
-                          <DisplayComponent time={item.timeSpent} /> 
+                          <DisplayComponent
+                            horas={item.timeSpent.horas}
+                            minutos={item.timeSpent.minutos}
+                            segundos={item.timeSpent.segundos} /> 
                         </Text>
                       )}
                     </View>

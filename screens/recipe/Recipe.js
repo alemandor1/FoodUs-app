@@ -17,7 +17,6 @@ import { Icon, Button } from "react-native-elements";
 import { SIZES, COLORS, FONTS } from "../../constants";
 import Axios from "axios";
 import DisplayComponent from "../../components/DisplayComponent";
-import BtnComponent from "../../components/BtnComponent";
 import { FAB } from "react-native-paper";
 import Loading from "../../components/Loading";
 import { ScrollView } from "react-native";
@@ -154,13 +153,7 @@ export default class Recipe extends React.Component {
 
   async addToHistory() {
     const { navigation } = this.props;
-    const time = "";
-    if (this.state.horas > 0) {
-      time =
-        this.state.horas + ":" + this.state.minutos + ":" + this.state.segundos;
-    } else {
-      time = this.state.minutos + ":" + this.state.segundos;
-    }
+    const time = { segundos: this.state.segundos, minutos: this.state.minutos, horas: this.state.horas }
     if (this.state.recipe.image == null) {
       const response1 = await addDocumentWithoutId("history", {
         idUser: getCurrentUser().uid,
@@ -330,7 +323,6 @@ export default class Recipe extends React.Component {
                     </View>
                   )}
                 />
-                {/* </View> */}
               </View>
               <View
                 style={{
@@ -352,6 +344,7 @@ export default class Recipe extends React.Component {
                   style={{
                     flexDirection: "column",
                     alignItems: "center",
+                    marginTop: 20,
                     flex: 1,
                   }}
                 >
@@ -387,7 +380,7 @@ export default class Recipe extends React.Component {
                   style={{
                     ...FONTS.h4,
                     color: COLORS.primary,
-                    marginTop: 20,
+                    marginTop: 10,
                     marginLeft: 10,
                     marginBottom: 10,
                   }}
@@ -462,7 +455,9 @@ export default class Recipe extends React.Component {
               </View>
               <View
                 style={{
-                  margin: 10,
+                  marginTop: 20,
+                  marginLeft: 10,
+                  marginBottom: 10,
                   flex: 1,
                 }}
               >
@@ -473,7 +468,7 @@ export default class Recipe extends React.Component {
                   style={{
                     alignContent: "center",
                     flex: 1,
-                    marginTop: 10,
+                    marginTop: 30,
                   }}
                 >
                   <DisplayComponent
@@ -484,7 +479,6 @@ export default class Recipe extends React.Component {
                 </View>
                 <View
                   style={{
-                    paddingTop: 30,
                     flex: 1,
                   }}
                 >
@@ -503,15 +497,15 @@ export default class Recipe extends React.Component {
                         borderStyle: "solid",
                         alignSelf: "center",
                       }}
+                      icon={
+                        <Icon
+                          type="material-community"
+                          name="record"
+                          color="#eb2d2d"
+                        />
+                      }
                       onPress={() => this.start()}
-                      
-                    >
-                      <Icon
-                        type="material-community"
-                        name="record"
-                        color="#eb2d2d"
-                      />
-                    </Button>
+                    />
                   ) : (
                     <Text></Text>
                   )}
@@ -526,10 +520,10 @@ export default class Recipe extends React.Component {
                       <Button
                         buttonStyle={{
                           backgroundColor: "#fff",
-                          marginTop: 30,
+                          //marginTop: 20,
                           marginLeft: 5,
                           borderWidth: 0,
-                          padding: 12,
+                          //padding: 12,
                           width: 70,
                           height: 70,
                           borderRadius: 100,
@@ -537,21 +531,22 @@ export default class Recipe extends React.Component {
                           borderColor: "#00ABA9",
                           borderStyle: "solid",
                         }}
+                        icon={
+                          <Icon
+                            type="material-community"
+                            name="pause"
+                            color="#00ABA9"
+                          />
+                        }
                         onPress={() => this.stop()}
-                      >
-                        <Icon
-                          type="material-community"
-                          name="pause"
-                          color="#00ABA9"
-                        />
-                      </Button>
+                      />
                       <Button
                         buttonStyle={{
                           backgroundColor: "#fff",
-                          marginTop: 30,
+                          //marginTop: 20,
                           marginLeft: 5,
                           borderWidth: 0,
-                          padding: 12,
+                          //padding: 12,
                           width: 70,
                           height: 70,
                           borderRadius: 100,
@@ -559,14 +554,15 @@ export default class Recipe extends React.Component {
                           borderColor: "#FFC900",
                           borderStyle: "solid",
                         }}
+                        icon={
+                          <Icon
+                            type="material-community"
+                            name="step-backward"
+                            color="#FFC900"
+                          />
+                        }
                         onPress={() => this.reset()}
-                      >
-                        <Icon
-                          type="material-community"
-                          name="step-backward"
-                          color="#FFC900"
-                        />
-                      </Button>
+                      />
                     </View>
                   ) : (
                     <Text></Text>
@@ -582,10 +578,10 @@ export default class Recipe extends React.Component {
                       <Button
                         buttonStyle={{
                           backgroundColor: "#fff",
-                          marginTop: 30,
+                          //marginTop: 10,
                           marginLeft: 5,
                           borderWidth: 0,
-                          padding: 12,
+                          //padding: 12,
                           width: 70,
                           height: 70,
                           borderRadius: 100,
@@ -593,21 +589,22 @@ export default class Recipe extends React.Component {
                           borderColor: "#4f44eb",
                           borderStyle: "solid",
                         }}
+                        icon={
+                          <Icon
+                            type="material-community"
+                            name="play"
+                            color="#4f44eb"
+                          />
+                        }
                         onPress={() => this.resume()}
-                      >
-                        <Icon
-                          type="material-community"
-                          name="play"
-                          color="#4f44eb"
-                        />
-                      </Button>
+                      />
                       <Button
                         buttonStyle={{
                           backgroundColor: "#fff",
-                          marginTop: 30,
+                          //marginTop: 10,
                           marginLeft: 5,
                           borderWidth: 0,
-                          padding: 12,
+                          //padding: 12,
                           width: 70,
                           height: 70,
                           borderRadius: 100,
@@ -615,28 +612,27 @@ export default class Recipe extends React.Component {
                           borderColor: "#FFC900",
                           borderStyle: "solid",
                         }}
+                        icon={
+                          <Icon
+                            type="material-community"
+                            name="step-backward"
+                            color="#FFC900"
+                          />
+                        }
                         onPress={() => this.reset()}
-                      >
-                        <Icon
-                          type="material-community"
-                          name="step-backward"
-                          color="#FFC900"
-                        />
-                      </Button>
+                      />
                     </View>
                   ) : (
                     <Text></Text>
                   )}
                 </View>
               </View>
-              {/* <View>
                   <FAB
                     style={styles.fab}
                     small
                     label="Finish recipe"
                     onPress={() => this.addToHistory()}
                   ></FAB>
-                </View> */}
               {/* </View> */}
 
               <View
@@ -749,7 +745,7 @@ const styles = StyleSheet.create({
   fab: {
     marginTop: 10,
     alignContent: "center",
-    width: "fit-content",
+    //width: "fit-content",
     alignSelf: "center",
     marginBottom: 25,
   },
