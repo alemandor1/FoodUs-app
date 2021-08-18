@@ -79,7 +79,7 @@ export default class Help extends React.Component {
       <View style={styles.container}>
         <ScrollView>
           <Text style={{ ...FONTS.h1, marginTop: 70, alignSelf: "center" }} testID="tittle">
-            Help of FoodUs
+            Help of FoodUS
           </Text>
           <View style={styles.container1} testID="container">
             <Text style={{ ...FONTS.h1, paddingLeft: 10 }}>General</Text>

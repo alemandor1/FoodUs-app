@@ -11,9 +11,8 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
-import { Input, Icon } from "react-native-elements";
+import { Input, Icon, Overlay, Button } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
-
 import { SIZES, FONTS } from "../../constants";
 import {
   getCurrentUser,
@@ -26,8 +25,9 @@ import "firebase/firebase-firestore";
 import { map } from "lodash";
 import Loading from "../../components/Loading";
 import { FAB } from "react-native-paper";
+import Axios from "axios";
 
-export default function FoodList({navigation}) {
+export default function FoodList({ navigation }) {
   const [ingredientsDB, setIngredientsDB] = useState([]);
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
@@ -48,6 +48,13 @@ export default function FoodList({navigation}) {
         setIngredientsDB(ingredients);
       });
   }, []);
+
+  /* const [visible, setVisible] = useState(true);
+
+  const offVisible = () => {
+    setVisible(false)
+    setPredictions(null)
+  } */
 
   const ingredientsName = [];
 
@@ -107,6 +114,7 @@ export default function FoodList({navigation}) {
   const [loading, setLoading] = useState(false);
   const [reloadData, setReloadData] = useState(false);
   const [ingredientsTrue, setIngredientsTrue] = useState([]);
+  const [predictions, setPredictions] = useState([]);
 
   const getTrueIngredients = async () => {
     const db = firebase.firestore(firebaseApp);
@@ -125,6 +133,15 @@ export default function FoodList({navigation}) {
     return myIngredientsTrue;
   };
 
+  const getPredictions = async () => {
+    const res = await Axios.post("http://localhost:5000/detections").then(
+      (result) => {
+        return result.data;
+      }
+    );
+    return res;
+  };
+
   useFocusEffect(
     useCallback(() => {
       async function getData() {
@@ -134,6 +151,9 @@ export default function FoodList({navigation}) {
         setMyFoodListNames(response.myIngredientsName);
         const response2 = await getTrueIngredients();
         setIngredientsTrue(response2);
+        const response3 = await getPredictions();
+        setPredictions(response3.response[0].detections);
+        console.log(response3.response[0].detections);
         setLoading(false);
       }
       getData();
@@ -335,9 +355,9 @@ export default function FoodList({navigation}) {
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS == "ios" ? "padding" : "height"}
+      /* behavior={Platform.OS == "ios" ? "padding" : "height"}
       keyboardVerticalOffset={Platform.OS == "ios" ? 0 : 20}
-      enabled={Platform.OS === "ios" ? true : false}
+      enabled={Platform.OS === "ios" ? true : false} */
       style={{ flex: 1 }}
     >
       <View style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
@@ -447,7 +467,7 @@ export default function FoodList({navigation}) {
             <Loading isVisible={loading} text="Please wait..." />
           </ScrollView>
         </View>
-        
+
         {/* SEARCHBAR */}
         {searching && (
           <TouchableOpacity
@@ -486,21 +506,42 @@ export default function FoodList({navigation}) {
         )}
       </View>
       <FAB
-          style={styles.fab}
-          large
-          icon="magnify"
-          onPress={
-            ingredientsTrue.length == 0
-              ? createTwoButtonAlert
-              : () => navigation.navigate("SuggestedRecipes", isEnabled)
-          }
-        ></FAB>
-        <FAB
-          style={styles.fab2}
-          large
-          icon="delete"
-          onPress={() => alertDeleteFoodList()}
-        ></FAB>
+        style={styles.fab}
+        large
+        icon="magnify"
+        onPress={
+          ingredientsTrue.length == 0
+            ? createTwoButtonAlert
+            : () => navigation.navigate("SuggestedRecipes", isEnabled)
+        }
+      ></FAB>
+      <FAB
+        style={styles.fab2}
+        large
+        icon="delete"
+        onPress={() => alertDeleteFoodList()}
+      ></FAB>
+      {/* {predictions != null && (
+        <Overlay
+          isVisible = {visible}
+          windowBackgoundColor="rgba(0,0,0,0.5)"
+          overlayBackgroundColor="transparent"
+          overlayStyle={styles.overlay}
+        >
+          <View style={styles.view}>
+            <FlatList
+              data={predictions}
+              keyExtractor={(item) => item.id}
+              contentContainerStyle={{
+                padding: 20,
+                height: "100%",
+              }}
+              renderItem={({ item }) => <Text>{item.class}</Text>}
+            ></FlatList>
+            <Button title="OK" onPress={offVisible} />
+          </View>
+        </Overlay>
+      )} */}
     </KeyboardAvoidingView>
   );
 }
@@ -566,15 +607,15 @@ const styles = StyleSheet.create({
     position: "absolute",
     margin: 16,
     right: 0,
-    marginBottom: 120 ,
-    bottom:0
+    marginBottom: 120,
+    bottom: 0,
   },
   fab2: {
     position: "absolute",
     margin: 16,
     right: 0,
     marginBottom: 55,
-    bottom:0
+    bottom: 0,
   },
   switch: {
     flex: 1,
@@ -597,6 +638,19 @@ const styles = StyleSheet.create({
     flex: 0.1,
     alignSelf: "flex-end",
     alignItems: "center",
+  },
+  overlay: {
+    height: 100,
+    width: 200,
+    backgroundColor: "#fff",
+    borderColor: "#442484",
+    borderWidth: 2,
+    borderRadius: 10,
+  },
+  view: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
   },
   text: {
     fontSize: 18,
