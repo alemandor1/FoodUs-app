@@ -76,7 +76,7 @@ export default class Recipe extends React.Component {
     this.run();
     this.setState({
       status: 1,
-      interv: setInterval(() => this.run(), 6000),
+      interv: setInterval(() => this.run(), 1000),
     });
   }
 
@@ -469,162 +469,166 @@ export default class Recipe extends React.Component {
                 <Text style={{ ...FONTS.h4, color: COLORS.primary }}>
                   Record your time
                 </Text>
+                <View
+                  style={{
+                    alignContent: "center",
+                    flex: 1,
+                    marginTop: 10,
+                  }}
+                >
+                  <DisplayComponent
+                    horas={this.state.horas}
+                    minutos={this.state.minutos}
+                    segundos={this.state.segundos}
+                  />
+                </View>
+                <View
+                  style={{
+                    paddingTop: 30,
+                    flex: 1,
+                  }}
+                >
+                  {this.state.status == 0 ? (
+                    <Button
+                      buttonStyle={{
+                        backgroundColor: "#fff",
+                        marginTop: 30,
+                        marginLeft: 5,
+                        borderWidth: 2,
+                        padding: 12,
+                        width: 70,
+                        height: 70,
+                        borderRadius: 100,
+                        borderColor: "#eb2d2d",
+                        borderStyle: "solid",
+                        alignSelf: "center",
+                      }}
+                      onPress={() => this.start()}
+                      
+                    >
+                      <Icon
+                        type="material-community"
+                        name="record"
+                        color="#eb2d2d"
+                      />
+                    </Button>
+                  ) : (
+                    <Text></Text>
+                  )}
+
+                  {this.state.status == 1 ? (
                     <View
                       style={{
-                        alignContent: "center",
-                        flex: 1,
-                        marginTop:10
+                        alignSelf: "center",
+                        flexDirection: "row",
                       }}
                     >
-                      <DisplayComponent
-                        horas={this.state.horas}
-                        minutos={this.state.minutos}
-                        segundos={this.state.segundos}
-                      />
-                      </View>
-                      {/* <BtnComponent
-                          status={this.state.status}
-                          resume={this.resume}
-                          reset={this.reset}
-                          stop={this.stop}
-                          start={this.start}
-                        />  */}
-                     <View
-                        style={{
-                          paddingTop: 30,
-                          flex: 1,
+                      <Button
+                        buttonStyle={{
+                          backgroundColor: "#fff",
+                          marginTop: 30,
+                          marginLeft: 5,
+                          borderWidth: 0,
+                          padding: 12,
+                          width: 70,
+                          height: 70,
+                          borderRadius: 100,
+                          borderWidth: 2,
+                          borderColor: "#00ABA9",
+                          borderStyle: "solid",
                         }}
-                      > 
-                      
-                        {this.state.status == 0 ? (
-                          <Button
-                            buttonStyle={{
-                              backgroundColor: "#4f44eb",
-                              marginTop: 30,
-                              marginLeft: 5,
-                              borderWidth: 2,
-                              padding: 12,
-                              width: 70,
-                              height: 70,
-                              borderRadius: 100,
-                              borderColor: "#eb2d2d",
-                              borderStyle: "solid", 
-                            }}
-                            //onPress={() =>this.start()}
-                          >
-                            <Icon
-                              type="material-community"
-                              name="record"
-                              color="#eb2d2d"
-                            />
-                          </Button>
-                        ) : (
-                          <Text></Text>
-                        )}
-
-                        {this.state.status == 1 ? (
-                          <View>
-                            <Button
-                              buttonStyle={{
-                                backgroundColor: "#fff",
-                                marginTop: 30,
-                                marginLeft: 5,
-                                borderWidth: 0,
-                                padding: 12,
-                                width: 70,
-                                height: 70,
-                                borderRadius: 100,
-                                borderWidth: 2,
-                                borderColor: "#00ABA9",
-                                borderStyle: "solid",
-                              }}
-                              onPress={this.stop()}
-                            >
-                              <Icon
-                                type="material-community"
-                                name="pause"
-                                color="#00ABA9"
-                              />
-                            </Button>
-                            <Button
-                              buttonStyle={{
-                                backgroundColor: "#fff",
-                                marginTop: 30,
-                                marginLeft: 5,
-                                borderWidth: 0,
-                                padding: 12,
-                                width: 70,
-                                height: 70,
-                                borderRadius: 100,
-                                borderWidth: 2,
-                                borderColor: "#FFC900",
-                                borderStyle: "solid",
-                              }}
-                              onPress={this.reset()}
-                            >
-                              <Icon
-                                type="material-community"
-                                name="step-backward"
-                                color="#FFC900"
-                              />
-                            </Button>
-                          </View>
-                        ) : (
-                          <Text></Text>
-                        )}
-
-                        {this.state.status == 2 ? (
-                          <View>
-                            <Button
-                              buttonStyle={{
-                                backgroundColor: "#fff",
-                                marginTop: 30,
-                                marginLeft: 5,
-                                borderWidth: 0,
-                                padding: 12,
-                                width: 70,
-                                height: 70,
-                                borderRadius: 100,
-                                borderWidth: 2,
-                                borderColor: "#4f44eb",
-                                borderStyle: "solid",
-                              }}
-                              onPress={this.resume()}
-                            >
-                              <Icon
-                                type="material-community"
-                                name="play"
-                                color="#4f44eb"
-                              />
-                            </Button>
-                            <Button
-                              buttonStyle={{
-                                backgroundColor: "#fff",
-                                marginTop: 30,
-                                marginLeft: 5,
-                                borderWidth: 0,
-                                padding: 12,
-                                width: 70,
-                                height: 70,
-                                borderRadius: 100,
-                                borderWidth: 2,
-                                borderColor: "#FFC900",
-                                borderStyle: "solid",
-                              }}
-                              onPress={this.reset()}
-                            >
-                              <Icon
-                                type="material-community"
-                                name="step-backward"
-                                color="#FFC900"
-                              />
-                            </Button>
-                          </View>
-                        ) : (
-                          <Text></Text>
-                        )}
+                        onPress={() => this.stop()}
+                      >
+                        <Icon
+                          type="material-community"
+                          name="pause"
+                          color="#00ABA9"
+                        />
+                      </Button>
+                      <Button
+                        buttonStyle={{
+                          backgroundColor: "#fff",
+                          marginTop: 30,
+                          marginLeft: 5,
+                          borderWidth: 0,
+                          padding: 12,
+                          width: 70,
+                          height: 70,
+                          borderRadius: 100,
+                          borderWidth: 2,
+                          borderColor: "#FFC900",
+                          borderStyle: "solid",
+                        }}
+                        onPress={() => this.reset()}
+                      >
+                        <Icon
+                          type="material-community"
+                          name="step-backward"
+                          color="#FFC900"
+                        />
+                      </Button>
                     </View>
-                  </View>
+                  ) : (
+                    <Text></Text>
+                  )}
+
+                  {this.state.status == 2 ? (
+                    <View
+                      style={{
+                        alignSelf: "center",
+                        flexDirection: "row",
+                      }}
+                    >
+                      <Button
+                        buttonStyle={{
+                          backgroundColor: "#fff",
+                          marginTop: 30,
+                          marginLeft: 5,
+                          borderWidth: 0,
+                          padding: 12,
+                          width: 70,
+                          height: 70,
+                          borderRadius: 100,
+                          borderWidth: 2,
+                          borderColor: "#4f44eb",
+                          borderStyle: "solid",
+                        }}
+                        onPress={() => this.resume()}
+                      >
+                        <Icon
+                          type="material-community"
+                          name="play"
+                          color="#4f44eb"
+                        />
+                      </Button>
+                      <Button
+                        buttonStyle={{
+                          backgroundColor: "#fff",
+                          marginTop: 30,
+                          marginLeft: 5,
+                          borderWidth: 0,
+                          padding: 12,
+                          width: 70,
+                          height: 70,
+                          borderRadius: 100,
+                          borderWidth: 2,
+                          borderColor: "#FFC900",
+                          borderStyle: "solid",
+                        }}
+                        onPress={() => this.reset()}
+                      >
+                        <Icon
+                          type="material-community"
+                          name="step-backward"
+                          color="#FFC900"
+                        />
+                      </Button>
+                    </View>
+                  ) : (
+                    <Text></Text>
+                  )}
+                </View>
+              </View>
               {/* <View>
                   <FAB
                     style={styles.fab}
@@ -761,7 +765,7 @@ const styles = StyleSheet.create({
     padding: 15,
     flex: 1,
   },
-  btnCloseSession : {
+  btnCloseSession: {
     marginTop: 30,
     borderRadius: 5,
     backgroundColor: "#F4F5A9",
@@ -771,9 +775,9 @@ const styles = StyleSheet.create({
     borderBottomColor: "#F4F5A9",
     paddingVertical: 10,
     width: "50%",
-    alignSelf: "center"
-},
-btnCloseSessionTitle : {
-    color: "#000000"
-}
+    alignSelf: "center",
+  },
+  btnCloseSessionTitle: {
+    color: "#000000",
+  },
 });

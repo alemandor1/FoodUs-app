@@ -4,7 +4,7 @@ import { View, Text } from "react-native";
 function DisplayComponent(props) {
   const h = () => {
     if (props.horas === 0) {
-      return (<Text></Text>)
+      return <Text></Text>;
     } else {
       return (
         <View
@@ -14,16 +14,29 @@ function DisplayComponent(props) {
             padding: 20,
             borderRadius: 5,
             width: 70,
+            margin: 10,
           }}
         >
-          <Text>{props.horas >= 10 ? props.horas : "0" + props.horas}</Text>
-          
+          <Text
+            style={{
+              textAlign: "center",
+              fontWeight: "bold",
+              fontSize: 20,
+              color: "white"
+          }}>
+            {props.horas >= 10 ? props.horas : "0" + props.horas}
+          </Text>
         </View>
       );
     }
   };
   return (
-    <View>
+    <View
+      style={{
+        flexDirection: "row",
+        alignSelf: "center"
+      }}
+    >
       {h()}
       <View
         style={{
@@ -32,9 +45,18 @@ function DisplayComponent(props) {
           padding: 20,
           borderRadius: 5,
           width: 70,
+          margin: 10,
         }}
       >
-      <Text>{props.minutos >= 10 ? props.minutos : "0" + props.minutos}</Text>
+        <Text
+          style={{
+            textAlign: "center",
+            fontWeight: "bold",
+            fontSize: 20,
+            color: "white"
+          }}>
+          {props.minutos >= 10 ? props.minutos : "0" + props.minutos}
+        </Text>
       </View>
       <View
         style={{
@@ -43,9 +65,18 @@ function DisplayComponent(props) {
           padding: 20,
           borderRadius: 5,
           width: 70,
+          margin: 10,
         }}
       >
-        <Text>{props.segundos >= 10 ? props.segundos : "0" + props.segundos}</Text>
+        <Text
+          style={{
+            textAlign: "center",
+            fontWeight: "bold",
+            fontSize: 20,
+            color: "white"
+          }}>
+          {props.segundos >= 10 ? props.segundos : "0" + props.segundos}
+        </Text>
       </View>
     </View>
   );
