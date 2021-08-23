@@ -30,7 +30,7 @@ export default class Recipe extends React.Component {
       recipeNutrition: "",
       loading: false,
       recipeId: this.props.route.params.id,
-      APIkey: "6812c1d4a76d4a6dbe7b8ef99427f05d", //6812c1d4a76d4a6dbe7b8ef99427f05d o 61f5abd161c842db98a65aa187831f41
+      APIkey: "61f5abd161c842db98a65aa187831f41", //6812c1d4a76d4a6dbe7b8ef99427f05d o 61f5abd161c842db98a65aa187831f41
       favourite: false,
       date: "",
       //time: { s: 0, m: 0, h: 0 },
@@ -153,7 +153,17 @@ export default class Recipe extends React.Component {
 
   async addToHistory() {
     const { navigation } = this.props;
-    const time = { segundos: this.state.segundos, minutos: this.state.minutos, horas: this.state.horas }
+    var secs = "", mins = "", hours = ""
+    if(this.state.segundos < 10) {
+      secs = "0" + this.state.segundos
+    }
+    if(this.state.minutos < 10) {
+      mins = "0" + this.state.minutos
+    }
+    if(this.state.horas < 10) {
+      hours = "0" + this.state.horas
+    }
+    const time = { secs, mins, hours }
     if (this.state.recipe.image == null) {
       const response1 = await addDocumentWithoutId("history", {
         idUser: getCurrentUser().uid,

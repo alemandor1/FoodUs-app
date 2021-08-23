@@ -5,6 +5,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { FAB } from "react-native-paper";
 import DropDownItem from "react-native-drop-down-item";
 import { FONTS } from "../../constants";
+import { Icon } from "react-native-elements";
 
 export default class Help extends React.Component {
   constructor(props) {
@@ -25,7 +26,8 @@ export default class Help extends React.Component {
         body: "In the profile screen by pressing the last button on the bottom bar, in the user settings screen you can change the password, email, name and surname.",
       },
       {
-        title: "Why can't I find anything when searching for recipes in Spanish?",
+        title:
+          "Why can't I find anything when searching for recipes in Spanish?",
         body: "Currently, the entire application is in English, therefore all searches will have to be done in English.",
       },
       {
@@ -78,12 +80,25 @@ export default class Help extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView>
-          <Text style={{ ...FONTS.h1, marginTop: 70, alignSelf: "center" }} testID="tittle">
+          <Text
+            style={{ ...FONTS.h1, marginTop: 70, alignSelf: "center" }}
+            testID="tittle"
+          >
             Help of FoodUs
           </Text>
           <View style={styles.container1} testID="container">
-            <Text style={{ ...FONTS.h1, paddingLeft: 10 }}>General</Text>
-            <ScrollView style={{ alignSelf: "stretch" }} testID="questions">
+            <Text style={{ ...FONTS.h1, paddingLeft: 10, color: "navy" }}>
+              General
+            </Text>
+            <ScrollView
+              style={{
+                alignSelf: "stretch",
+                borderColor: "midnightblue",
+                borderWidth: 2,
+                marginTop: 5,
+              }}
+              testID="questions"
+            >
               {this.general.contents.map((param, i) => {
                 return (
                   <DropDownItem
@@ -92,37 +107,66 @@ export default class Help extends React.Component {
                     contentVisible={false}
                     header={
                       <View style={styles.header}>
-                        <Text
+                        <View
                           style={{
-                            fontSize: 25,
-                            color: "blue",
+                            width: "90%",
                           }}
                         >
-                          {param.title}
-                        </Text>
+                          <Text
+                            style={{
+                              fontSize: 20,
+                              color: "darkslategrey",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            {param.title}
+                          </Text>
+                        </View>
+                        <View
+                          style={{
+                            right: 0,
+                            width: "10%",
+                          }}
+                        >
+                          <Icon
+                            type="material-community"
+                            name="chevron-down"
+                            color="darkslategrey"
+                          />
+                        </View>
                       </View>
                     }
                   >
-                    <Text
-                      style={[
-                        styles.txt,
-                        {
-                          fontSize: 20,
-                        },
-                      ]}
+                    <View
+                      style={{
+                        backgroundColor: "aliceblue",
+                      }}
                     >
-                      {param.body}
-                    </Text>
+                      <Text style={[styles.txt]}>{param.body}</Text>
+                    </View>
                   </DropDownItem>
                 );
               })}
             </ScrollView>
           </View>
           <View style={styles.container2}>
-            <Text style={{ ...FONTS.h1, marginTop: 30, paddingLeft: 10 }}>
+            <Text
+              style={{
+                ...FONTS.h1,
+                marginTop: 30,
+                paddingLeft: 10,
+                color: "navy",
+              }}
+            >
               Food List
             </Text>
-            <ScrollView>
+            <ScrollView
+              style={{
+                borderColor: "midnightblue",
+                borderWidth: 2,
+                marginTop: 5,
+              }}
+            >
               {this.foodList.contents.map((param, i) => {
                 return (
                   <DropDownItem
@@ -131,37 +175,66 @@ export default class Help extends React.Component {
                     contentVisible={false}
                     header={
                       <View style={styles.header}>
-                        <Text
+                        <View
                           style={{
-                            fontSize: 25,
-                            color: "blue",
+                            width: "90%",
                           }}
                         >
-                          {param.title}
-                        </Text>
+                          <Text
+                            style={{
+                              fontSize: 20,
+                              color: "darkslategrey",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            {param.title}
+                          </Text>
+                        </View>
+                        <View
+                          style={{
+                            right: 0,
+                            width: "10%",
+                          }}
+                        >
+                          <Icon
+                            type="material-community"
+                            name="chevron-down"
+                            color="darkslategrey"
+                          />
+                        </View>
                       </View>
                     }
                   >
-                    <Text
-                      style={[
-                        styles.txt,
-                        {
-                          fontSize: 20,
-                        },
-                      ]}
+                    <View
+                      style={{
+                        backgroundColor: "aliceblue",
+                      }}
                     >
-                      {param.body}
-                    </Text>
+                      <Text style={[styles.txt]}>{param.body}</Text>
+                    </View>
                   </DropDownItem>
                 );
               })}
             </ScrollView>
           </View>
           <View style={styles.container2}>
-            <Text style={{ ...FONTS.h1, marginTop: 30, paddingLeft: 10 }}>
+            <Text
+              style={{
+                ...FONTS.h1,
+                marginTop: 30,
+                paddingLeft: 10,
+                color: "navy",
+              }}
+            >
               Shopping List
             </Text>
-            <ScrollView>
+            <ScrollView
+              style={{
+                borderColor: "midnightblue",
+                borderWidth: 2,
+                marginTop: 5,
+              }}
+            >
               {this.shoppingList.contents.map((param, i) => {
                 return (
                   <DropDownItem
@@ -170,27 +243,43 @@ export default class Help extends React.Component {
                     contentVisible={false}
                     header={
                       <View style={styles.header}>
-                        <Text
+                        <View
                           style={{
-                            fontSize: 25,
-                            color: "blue",
+                            width: "90%",
                           }}
                         >
-                          {param.title}
-                        </Text>
+                          <Text
+                            style={{
+                              fontSize: 20,
+                              color: "darkslategrey",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            {param.title}
+                          </Text>
+                        </View>
+                        <View
+                          style={{
+                            right: 0,
+                            width: "10%",
+                          }}
+                        >
+                          <Icon
+                            type="material-community"
+                            name="chevron-down"
+                            color="darkslategrey"
+                          />
+                        </View>
                       </View>
                     }
                   >
-                    <Text
-                      style={[
-                        styles.txt,
-                        {
-                          fontSize: 20,
-                        },
-                      ]}
+                    <View
+                      style={{
+                        backgroundColor: "aliceblue",
+                      }}
                     >
-                      {param.body}
-                    </Text>
+                      <Text style={[styles.txt]}>{param.body}</Text>
+                    </View>
                   </DropDownItem>
                 );
               })}
@@ -212,13 +301,13 @@ export default class Help extends React.Component {
 const styles = StyleSheet.create({
   container: {
     minHeight: "100%",
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#FFFFFF"
   },
   fab: {
     position: "absolute",
     margin: 16,
     right: 0,
-    top: 670,
+    top: 700,
   },
   container1: {
     //justifyContent: "center",
@@ -236,8 +325,12 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     flexDirection: "row",
     alignItems: "center",
+    backgroundColor: "lightcyan",
+    flex: 1,
   },
   txt: {
-    fontSize: 14,
+    fontSize: 17,
+    fontWeight: "bold",
+    color: "slategray",
   },
 });

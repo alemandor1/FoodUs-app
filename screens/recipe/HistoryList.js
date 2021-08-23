@@ -169,7 +169,7 @@ export default class HistoryList extends React.Component {
                       <Text style={{ ...FONTS.body4, fontWeight: "bold" }}>
                         Your time:
                       </Text>
-                      {item.timeSpent.segundos == 0 && item.timeSpent.minutos == 0 && item.timeSpent.horas  == 0 ? (
+                      {item.timeSpent.secs == 0 && item.timeSpent.mins == 0 && item.timeSpent.hours  == 0 ? (
                         <Text
                           style={{
                             ...FONTS.body4,
@@ -187,10 +187,11 @@ export default class HistoryList extends React.Component {
                             paddingLeft: 5,
                           }}
                         >
-                          <DisplayComponent
-                            horas={item.timeSpent.horas}
-                            minutos={item.timeSpent.minutos}
-                            segundos={item.timeSpent.segundos} /> 
+                          {item.timeSpent.hours > 0 ? (
+                            item.timeSpent.hours + ":" + item.timeSpent.mins + ":" + item.timeSpent.secs
+                          ) : (
+                            item.timeSpent.mins + ":" + item.timeSpent.secs
+                          ) }
                         </Text>
                       )}
                     </View>
@@ -226,6 +227,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     margin: 16,
     right: 0,
-    top: 630
+    top: 700
   },
 });

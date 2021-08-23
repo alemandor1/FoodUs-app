@@ -13,7 +13,7 @@ import {
 import { useFocusEffect } from "@react-navigation/native";
 import { Input, Icon } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
-
+import Axios from "axios";
 import { SIZES, FONTS } from "../../constants";
 import {
   getCurrentUser,
@@ -107,6 +107,7 @@ export default function FoodList({navigation}) {
   const [loading, setLoading] = useState(false);
   const [reloadData, setReloadData] = useState(false);
   const [ingredientsTrue, setIngredientsTrue] = useState([]);
+  const[predictions, setPredictions] = useState([])
 
   const getTrueIngredients = async () => {
     const db = firebase.firestore(firebaseApp);
@@ -134,12 +135,16 @@ export default function FoodList({navigation}) {
         setMyFoodListNames(response.myIngredientsName);
         const response2 = await getTrueIngredients();
         setIngredientsTrue(response2);
+        /* const response3 = await getPredictions(); */
+        /* setPredictions(response3.response[0].detections) */
         setLoading(false);
       }
       getData();
       setReloadData(false);
     }, [reloadData])
   );
+
+  
 
   //Encontrar el id del documento del ingrediente seleccionado (check)
   const findDocId = async (id) => {
@@ -251,6 +256,13 @@ export default function FoodList({navigation}) {
     return result;
   };
 
+  const getPredictions = async () => {
+    const res = await Axios.get('http://localhost:5000/test').then((result) => {
+      return result.data;
+    });
+    return res;
+  }
+
   //SEARCHBAR
   //encontrar en la coleccion de ingredientes el que pasamos por parametros
   const findFoodId = async (name) => {
@@ -311,7 +323,7 @@ export default function FoodList({navigation}) {
   const alertDeleteFoodList = () =>
     Alert.alert(
       "Alert Message",
-      "Are you sure you want to remove all the ingredients from your food list?.",
+      "Are you sure you want to remove all the ingredients from your food list?",
       [
         {
           text: "Cancel",
@@ -335,9 +347,9 @@ export default function FoodList({navigation}) {
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS == "ios" ? "padding" : "height"}
+     /*  behavior={Platform.OS == "ios" ? "padding" : "height"}
       keyboardVerticalOffset={Platform.OS == "ios" ? 0 : 20}
-      enabled={Platform.OS === "ios" ? true : false}
+      enabled={Platform.OS === "ios" ? true : false} */
       style={{ flex: 1 }}
     >
       <View style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
@@ -360,7 +372,7 @@ export default function FoodList({navigation}) {
                 color: "white",
               }}
             >
-              Food List
+              Food List 
             </Text>
           </View>
         </View>

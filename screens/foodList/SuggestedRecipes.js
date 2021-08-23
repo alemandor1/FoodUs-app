@@ -26,7 +26,7 @@ export default class SuggestedRecipes extends React.Component {
       recipes: [],
       predictions: [],
       loading: false,
-      APIkey: "6812c1d4a76d4a6dbe7b8ef99427f05d", //6812c1d4a76d4a6dbe7b8ef99427f05d o 61f5abd161c842db98a65aa187831f41
+      APIkey: "61f5abd161c842db98a65aa187831f41", //6812c1d4a76d4a6dbe7b8ef99427f05d o 61f5abd161c842db98a65aa187831f41
     };
   }
 
@@ -56,13 +56,6 @@ export default class SuggestedRecipes extends React.Component {
   async getRecipes(url) {
     this.setState({ loading: true });
     const res = await Axios.get(url).then((result) => {
-      return result.data;
-    });
-    return res;
-  }
-
-  async getPredictions() {
-    const res = await Axios.post('http://localhost:5000/detections').then((result) => {
       return result.data;
     });
     return res;

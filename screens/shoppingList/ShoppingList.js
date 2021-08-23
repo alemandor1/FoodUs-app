@@ -272,7 +272,7 @@ export default function ShoopingList({ navigation }) {
   const alertDeleteShoppingList = () =>
     Alert.alert(
       "Alert Message",
-      "Are you sure you want to remove all the ingredients from your shopping list?.",
+      "Are you sure you want to remove all the ingredients from your shopping list?",
       [
         {
           text: "Cancel",
@@ -434,13 +434,13 @@ const styles = StyleSheet.create({
     position: "absolute",
     margin: 16,
     right: 0,
-    top: 670,
+    top: 700,
   },
   fab2: {
     position: "absolute",
     margin: 16,
     right: 0,
-    top: 610,
+    top: 640,
   },
   input: {
     width: "75%",

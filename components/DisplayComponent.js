@@ -24,7 +24,7 @@ function DisplayComponent(props) {
               fontSize: 20,
               color: "white"
           }}>
-            {props.horas >= 10 ? props.horas + ":" : "0" + props.horas + ":"}
+            {props.horas >= 10 ? props.horas : "0" + props.horas}
           </Text>
         </View>
       );
@@ -75,7 +75,7 @@ function DisplayComponent(props) {
             fontSize: 20,
             color: "white"
           }}>
-          {props.segundos >= 10 ? ":" + props.segundos : ":0" + props.segundos}
+          {props.segundos >= 10 ? props.segundos : "0" + props.segundos}
         </Text>
       </View>
     </View>
