@@ -55,51 +55,17 @@ print('classes loaded')
 app = Flask(__name__)
 CORS(app)
 
-def login():
-    firebase = pyrebase.initialize_app(config)
-    auth = firebase.auth()
-
-    email = input("Enter your email:  ")
-    password = input("Enter your password:  ")
-    user = auth.sign_in_with_email_and_password(email, password)
-
-    userId = user['localId']
-
-    return userId
-
-@app.route('/test', methods=['GET'])
-@cross_origin(supports_credentials=True)
-def test_method():
-    return jsonify({"title": 'Hi everyone!'})
-
 # API that returns JSON with classes found in images
 @app.route('/detections', methods=['POST'])
 @cross_origin(supports_credentials=True)
 def get_detections():
-    """ firebase = pyrebase.initialize_app(config)
-    storage = firebase.storage()
-
-    userId = login()
-    print(userId)
-    path_on_cloud = "foodImages/" + userId
-    url = storage.child(path_on_cloud).get_url(userId)    
-    urlformat = url + ".jpg"
-
-    full_path = 'data/images/fd.jpg'
-    urllib.request.urlretrieve(urlformat, full_path) """
-
     raw_images = []
     images = []
-
-    file = request.files["photo"]
-    """ im = Image.open(file.stream) """
-    images.append(file)  
-    
-    """ path = glob.glob("data/images/*.jpg")
-    for file in path:
-        im = Image.open(file)
-        images.append(im)  """   
-        
+    jsonData = request.json
+    image_data = jsonData["image"]
+    print(image_data)
+    im = Image.open(image_data)
+    images.append(im)
     image_names = []
     for image in images:
         image_name = image.filename
@@ -192,4 +158,5 @@ def get_image():
         abort(404)
 
 if __name__ == '__main__':
-    app.run(debug=True, host = '0.0.0.0', port=5000)
+    app.run(debug=True, host = '192.168.1.63', port=5000)
+    

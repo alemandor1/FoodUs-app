@@ -135,8 +135,9 @@ export default function FoodList({navigation}) {
         setMyFoodListNames(response.myIngredientsName);
         const response2 = await getTrueIngredients();
         setIngredientsTrue(response2);
-        /* const response3 = await getPredictions(); */
-        /* setPredictions(response3.response[0].detections) */
+        /* const response3 = await getPredictions();
+        setPredictions(response3.response[0].detections)
+        console.log(response3.response[0].detections) */
         setLoading(false);
       }
       getData();
@@ -257,7 +258,7 @@ export default function FoodList({navigation}) {
   };
 
   const getPredictions = async () => {
-    const res = await Axios.get('http://localhost:5000/test').then((result) => {
+    const res = await Axios.post('http://192.168.1.63:5000/detections').then((result) => {
       return result.data;
     });
     return res;

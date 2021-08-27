@@ -8,7 +8,8 @@ import "firebase/firebase-firestore";
 import { FAB } from "react-native-paper";
 import { fileToBlob } from "../../utils/helpers";
 import { getCurrentUser } from "../../utils/actions";
-
+import Axios from "axios";
+import mime from "mime";
 export default function CameraView({ navigation }) {
   const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
@@ -19,12 +20,14 @@ export default function CameraView({ navigation }) {
 
   useEffect(() => {
     (async () => {
-      const cameraStatus = await Camera.requestPermissionsAsync();
-      setHasCameraPermission(cameraStatus.status === "granted");
+      /*  const cameraStatus = await Camera.requestPermissionsAsync();
+      setHasCameraPermission(cameraStatus.status === "granted"); */
+      setHasCameraPermission(true);
 
-      const galleryStatus =
+      /* const galleryStatus =
         await ImagePicker.requestCameraRollPermissionsAsync();
-      setHasGalleryPermission(galleryStatus.status === "granted");
+      setHasGalleryPermission(galleryStatus.status === "granted"); */
+      setHasGalleryPermission(true);
 
       setUser(getCurrentUser());
     })();
@@ -82,50 +85,41 @@ export default function CameraView({ navigation }) {
     );
   }
 
-  const uploadImage = async (image, path, name) => {
-    const result = { statusResponse: false, error: null, url: null };
-    const ref = firebase.storage().ref(path).child(name);
-    const blob = await fileToBlob(image);
-
-    try {
-      await ref.put(blob);
-      const url = await firebase
-        .storage()
-        .ref(`${path}/${name}`)
-        .getDownloadURL();
-      result.statusResponse = true;
-      result.url = url;
-    } catch (error) {
-      result.error = error;
-    }
-    return result;
-  };
-
   const uploadFlask = async (img) => {
-    /* const response = await uploadImage(img, "foodImages", user.uid);
-    if (response.statusResponse) {
-      navigation.navigate("FoodList");
+    /* const filename = img.split('/').pop() */
+    /* const filename = img.split('file://').pop() */
+    const blob = await fileToBlob(img);
+
+
+    var data = JSON.stringify({
+      image: blob
+    });
+
+    console.log(data)
+
+    const response = await fetch("http://192.168.1.63:5000/detections", {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: data
+    });
+
+    /* const response = await Axios.post(
+      "http://192.168.1.63:5000/detections",
+      { data: formData },
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "Access-Control-Allow-Origin": "*",
+        },
+      }
+    ); */
+
+    console.log(response);
+    if (response.status == 200) {
+      navigation.navigate("Detections");
     } else {
       Alert.alert("An error occurred while uploading the picture.");
-    } */
-
-    let filename = img.split("/").pop();
-    console.log(filename);
-
-    let match = /\.(\w+)$/.exec(filename);
-    let type = match ? `image/${match[1]}` : `image`;
-    console.log(type);
-
-    let form_data = new FormData();
-    form_data.append("photo", { uri: img, name: filename, type });
-
-    return await fetch("http://localhost:5000/detections", {
-      body: form_data,
-      method: "POST",
-      headers: {
-        "content-type": "multipart/form-data",
-      },
-    });
+    }
   };
 
   return (
@@ -186,11 +180,4 @@ const styles = StyleSheet.create({
     flex: 1,
     aspectRatio: 1,
   },
-  /* fab: {
-    position: "absolute",
-    margin: 16,
-    right: 0,
-    marginBottom: 60,
-    bottom: 0,
-  }, */
 });

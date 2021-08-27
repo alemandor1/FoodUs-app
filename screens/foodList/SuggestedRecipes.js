@@ -24,7 +24,6 @@ export default class SuggestedRecipes extends React.Component {
     this.state = {
       isEnabled: this.props.route.params.isEnabled,
       recipes: [],
-      predictions: [],
       loading: false,
       APIkey: "61f5abd161c842db98a65aa187831f41", //6812c1d4a76d4a6dbe7b8ef99427f05d o 61f5abd161c842db98a65aa187831f41
     };
@@ -87,11 +86,6 @@ export default class SuggestedRecipes extends React.Component {
         loading: false,
       });
     }
-    const pred = await this.getPredictions();
-    this.setState({
-      predictions: pred.response.detections
-    })
-    console.log(pred.response)
   }
 
   render() {
