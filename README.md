@@ -24,6 +24,8 @@ Para proceder a la inslatación y ejecución de la app hay que seguir los siguie
    Si da error al intentar instalar pycryptodome:
    Modificar nombre carpeta 'crypto' por 'Crypto' 
    "C:\Users\\"user"\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\Crypto"
+   
+   Si salta un error con respecto a alguna dependencia, habrá que desinstalarla primero con el comando "**pip uninstall nombreDependencia**" y luego volver a ejecutar **el paso 3**. 
   
   **4-** Ejecutar el comando: "**python app.py**"
 
