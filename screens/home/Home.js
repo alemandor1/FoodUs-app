@@ -1,13 +1,12 @@
 import React from "react";
-import { View, Image, StyleSheet, Text, StatusBar } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { View, StyleSheet, Text } from "react-native";
 
 import { Button } from "react-native-elements";
 import { ImageBackground } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { SIZES, FONTS, COLORS } from "../../constants";
 
-export default function Home({navigation}) {
+export default function Home({ navigation }) {
   const renderHeader = () => {
     return (
       <View style={{ height: SIZES.height > 700 ? "65%" : "60%" }}>
@@ -45,7 +44,6 @@ export default function Home({navigation}) {
   };
 
   return (
-    /*  <View style={styles.container}> */
     <View
       style={{
         flex: 1,
@@ -74,7 +72,7 @@ export default function Home({navigation}) {
         <View
           style={{
             flex: 1,
-            margin:40
+            margin: 40,
           }}
         >
           <Button
@@ -94,13 +92,6 @@ export default function Home({navigation}) {
           />
         </View>
       </View>
-
-      {/* <Image
-                style={styles.logo}
-                source={require("../../assets/logo.png")}
-            />
-
-             */}
     </View>
   );
 }

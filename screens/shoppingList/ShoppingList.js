@@ -22,7 +22,6 @@ import {
 import firebase from "firebase";
 import { firebaseApp } from "../../utils/firebase";
 import "firebase/firebase-firestore";
-import Loading from "../../components/Loading";
 import { onlyLetters } from "../../utils/helpers";
 
 export default function ShoopingList({ navigation }) {
@@ -42,7 +41,7 @@ export default function ShoopingList({ navigation }) {
     firebase
       .firestore()
       .collection("shoppingList")
-      .where("idUser", "==", getCurrentUser().uid) //HE AÑADIDO ESTA LÍNEA REVISAR BIEN
+      .where("idUser", "==", getCurrentUser().uid) 
       .onSnapshot((querySnapshot) => {
         const ingredients = [];
         querySnapshot.docs.forEach((doc) => {
@@ -406,7 +405,6 @@ export default function ShoopingList({ navigation }) {
                     color={COLORS.white}
                   />
                 </View>
-                {/* </View> */}
               </View>
             )}
           />

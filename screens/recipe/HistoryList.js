@@ -2,7 +2,6 @@ import React from "react";
 import { firebaseApp } from "../../utils/firebase";
 import firebase from "firebase";
 import "firebase/firebase-firestore";
-import DisplayComponent from "../../components/DisplayComponent";
 import { FAB } from "react-native-paper";
 import Loading from "../../components/Loading";
 import {

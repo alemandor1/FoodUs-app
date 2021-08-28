@@ -336,9 +336,9 @@ export default function FoodList({navigation}) {
 
   return (
     <KeyboardAvoidingView
-     /*  behavior={Platform.OS == "ios" ? "padding" : "height"}
+      behavior={Platform.OS == "ios" ? "padding" : "height"}
       keyboardVerticalOffset={Platform.OS == "ios" ? 0 : 20}
-      enabled={Platform.OS === "ios" ? true : false} */
+      enabled={Platform.OS === "ios" ? true : false}
       style={{ flex: 1 }}
     >
       <View style={{ flex: 1, backgroundColor: "#FFFFFF" }}>

@@ -20,13 +20,8 @@ export default function CameraView({ navigation }) {
 
   useEffect(() => {
     (async () => {
-      /*  const cameraStatus = await Camera.requestPermissionsAsync();
-      setHasCameraPermission(cameraStatus.status === "granted"); */
       setHasCameraPermission(true);
 
-      /* const galleryStatus =
-        await ImagePicker.requestCameraRollPermissionsAsync();
-      setHasGalleryPermission(galleryStatus.status === "granted"); */
       setHasGalleryPermission(true);
 
       setUser(getCurrentUser());
@@ -94,7 +89,6 @@ export default function CameraView({ navigation }) {
     await uploadImage(img, "foodImages", user.uid);
 
     const ip = await showIp();
-    console.log(ip);
 
     var data = JSON.stringify({
       filename: user.uid,
@@ -110,9 +104,7 @@ export default function CameraView({ navigation }) {
       return data;
     });
 
-    console.log(dataResponse);
     const foodData = dataResponse.response[0].detections;
-    console.log(foodData);
 
     if (response.status == 200) {
       navigation.navigate("Detections", { food: foodData });
@@ -136,6 +128,7 @@ export default function CameraView({ navigation }) {
             flexDirection: "row",
             height: 0,
             alignItems: "flex-end",
+            marginHorizontal: 20
           }}
         >
           <IconButton

@@ -86,7 +86,7 @@ export default class Help extends React.Component {
           >
             Help of FoodUs
           </Text>
-          <View style={styles.container1} testID="container">
+          <View testID="container">
             <Text style={{ ...FONTS.h1, paddingLeft: 10, color: "navy" }}>
               General
             </Text>
@@ -149,7 +149,7 @@ export default class Help extends React.Component {
               })}
             </ScrollView>
           </View>
-          <View style={styles.container2}>
+          <View>
             <Text
               style={{
                 ...FONTS.h1,
@@ -217,7 +217,7 @@ export default class Help extends React.Component {
               })}
             </ScrollView>
           </View>
-          <View style={styles.container2}>
+          <View>
             <Text
               style={{
                 ...FONTS.h1,
@@ -308,15 +308,6 @@ const styles = StyleSheet.create({
     margin: 16,
     right: 0,
     top: 700,
-  },
-  container1: {
-    //justifyContent: "center",
-    //alignItems: "center",
-    paddingTop: 30,
-  },
-  container2: {
-    //justifyContent: "center",
-    //alignItems: "center",
   },
   header: {
     width: "100%",

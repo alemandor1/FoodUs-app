@@ -33,7 +33,6 @@ export default class Recipe extends React.Component {
       APIkey: "61f5abd161c842db98a65aa187831f41", //6812c1d4a76d4a6dbe7b8ef99427f05d o 61f5abd161c842db98a65aa187831f41
       favourite: false,
       date: "",
-      //time: { s: 0, m: 0, h: 0 },
       segundos: 0,
       minutos: 0,
       horas: 0,
@@ -530,10 +529,8 @@ export default class Recipe extends React.Component {
                       <Button
                         buttonStyle={{
                           backgroundColor: "#fff",
-                          //marginTop: 20,
                           marginLeft: 5,
                           borderWidth: 0,
-                          //padding: 12,
                           width: 70,
                           height: 70,
                           borderRadius: 100,
@@ -553,10 +550,8 @@ export default class Recipe extends React.Component {
                       <Button
                         buttonStyle={{
                           backgroundColor: "#fff",
-                          //marginTop: 20,
                           marginLeft: 5,
                           borderWidth: 0,
-                          //padding: 12,
                           width: 70,
                           height: 70,
                           borderRadius: 100,
@@ -588,10 +583,8 @@ export default class Recipe extends React.Component {
                       <Button
                         buttonStyle={{
                           backgroundColor: "#fff",
-                          //marginTop: 10,
                           marginLeft: 5,
                           borderWidth: 0,
-                          //padding: 12,
                           width: 70,
                           height: 70,
                           borderRadius: 100,
@@ -611,10 +604,8 @@ export default class Recipe extends React.Component {
                       <Button
                         buttonStyle={{
                           backgroundColor: "#fff",
-                          //marginTop: 10,
                           marginLeft: 5,
                           borderWidth: 0,
-                          //padding: 12,
                           width: 70,
                           height: 70,
                           borderRadius: 100,
@@ -643,7 +634,6 @@ export default class Recipe extends React.Component {
                     label="Finish recipe"
                     onPress={() => this.addToHistory()}
                   ></FAB>
-              {/* </View> */}
 
               <View
                 style={{
@@ -755,7 +745,6 @@ const styles = StyleSheet.create({
   fab: {
     marginTop: 10,
     alignContent: "center",
-    //width: "fit-content",
     alignSelf: "center",
     marginBottom: 25,
   },

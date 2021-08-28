@@ -30,16 +30,12 @@ exports[`snapshot 1`] = `
         Help of FoodUs
       </Text>
       <View
-        style={
-          Object {
-            "paddingTop": 30,
-          }
-        }
         testID="container"
       >
         <Text
           style={
             Object {
+              "color": "navy",
               "fontFamily": "Roboto-Black",
               "fontSize": 30,
               "lineHeight": 36,
@@ -56,6 +52,9 @@ exports[`snapshot 1`] = `
           style={
             Object {
               "alignSelf": "stretch",
+              "borderColor": "midnightblue",
+              "borderWidth": 2,
+              "marginTop": 5,
             }
           }
           testID="questions"
@@ -95,6 +94,8 @@ exports[`snapshot 1`] = `
                     style={
                       Object {
                         "alignItems": "center",
+                        "backgroundColor": "lightcyan",
+                        "flex": 1,
                         "flexDirection": "row",
                         "flexWrap": "wrap",
                         "paddingHorizontal": 12,
@@ -103,16 +104,55 @@ exports[`snapshot 1`] = `
                       }
                     }
                   >
-                    <Text
+                    <View
                       style={
                         Object {
-                          "color": "blue",
-                          "fontSize": 25,
+                          "width": "90%",
                         }
                       }
                     >
-                      How can I view my recipes history?
-                    </Text>
+                      <Text
+                        style={
+                          Object {
+                            "color": "darkslategrey",
+                            "fontSize": 20,
+                            "fontWeight": "bold",
+                          }
+                        }
+                      >
+                        How can I view my recipes history?
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "right": 0,
+                          "width": "10%",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "overflow": "hidden",
+                          }
+                        }
+                      >
+                        <View>
+                          <View
+                            style={
+                              Object {
+                                "alignItems": "center",
+                                "backgroundColor": "transparent",
+                                "justifyContent": "center",
+                              }
+                            }
+                          >
+                            <Text />
+                          </View>
+                        </View>
+                      </View>
+                    </View>
                   </View>
                   <Image
                     source={false}
@@ -147,20 +187,27 @@ exports[`snapshot 1`] = `
                     ]
                   }
                 >
-                  <Text
+                  <View
                     style={
-                      Array [
-                        Object {
-                          "fontSize": 14,
-                        },
-                        Object {
-                          "fontSize": 20,
-                        },
-                      ]
+                      Object {
+                        "backgroundColor": "aliceblue",
+                      }
                     }
                   >
-                    In the view of your profile by pressing the last button on the bottom bar, you will find your recipe history.
-                  </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "slategray",
+                            "fontSize": 17,
+                            "fontWeight": "bold",
+                          },
+                        ]
+                      }
+                    >
+                      In your profile view by pressing the last button on the bottom bar, you will find your recipe history.
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>
@@ -198,6 +245,8 @@ exports[`snapshot 1`] = `
                     style={
                       Object {
                         "alignItems": "center",
+                        "backgroundColor": "lightcyan",
+                        "flex": 1,
                         "flexDirection": "row",
                         "flexWrap": "wrap",
                         "paddingHorizontal": 12,
@@ -206,16 +255,55 @@ exports[`snapshot 1`] = `
                       }
                     }
                   >
-                    <Text
+                    <View
                       style={
                         Object {
-                          "color": "blue",
-                          "fontSize": 25,
+                          "width": "90%",
                         }
                       }
                     >
-                      How can I add a recipe to favorites?
-                    </Text>
+                      <Text
+                        style={
+                          Object {
+                            "color": "darkslategrey",
+                            "fontSize": 20,
+                            "fontWeight": "bold",
+                          }
+                        }
+                      >
+                        How can I add a recipe to favourites?
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "right": 0,
+                          "width": "10%",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "overflow": "hidden",
+                          }
+                        }
+                      >
+                        <View>
+                          <View
+                            style={
+                              Object {
+                                "alignItems": "center",
+                                "backgroundColor": "transparent",
+                                "justifyContent": "center",
+                              }
+                            }
+                          >
+                            <Text />
+                          </View>
+                        </View>
+                      </View>
+                    </View>
                   </View>
                   <Image
                     source={false}
@@ -250,20 +338,27 @@ exports[`snapshot 1`] = `
                     ]
                   }
                 >
-                  <Text
+                  <View
                     style={
-                      Array [
-                        Object {
-                          "fontSize": 14,
-                        },
-                        Object {
-                          "fontSize": 20,
-                        },
-                      ]
+                      Object {
+                        "backgroundColor": "aliceblue",
+                      }
                     }
                   >
-                    When accessing the details of a recipe, you can add it to favorites by pressing the heart button.
-                  </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "slategray",
+                            "fontSize": 17,
+                            "fontWeight": "bold",
+                          },
+                        ]
+                      }
+                    >
+                      When accessing the details of a recipe, you can add it to favourites by pressing the heart button.
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>
@@ -301,6 +396,8 @@ exports[`snapshot 1`] = `
                     style={
                       Object {
                         "alignItems": "center",
+                        "backgroundColor": "lightcyan",
+                        "flex": 1,
                         "flexDirection": "row",
                         "flexWrap": "wrap",
                         "paddingHorizontal": 12,
@@ -309,16 +406,55 @@ exports[`snapshot 1`] = `
                       }
                     }
                   >
-                    <Text
+                    <View
                       style={
                         Object {
-                          "color": "blue",
-                          "fontSize": 25,
+                          "width": "90%",
                         }
                       }
                     >
-                      How can I change my password?
-                    </Text>
+                      <Text
+                        style={
+                          Object {
+                            "color": "darkslategrey",
+                            "fontSize": 20,
+                            "fontWeight": "bold",
+                          }
+                        }
+                      >
+                        How can I change my password?
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "right": 0,
+                          "width": "10%",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "overflow": "hidden",
+                          }
+                        }
+                      >
+                        <View>
+                          <View
+                            style={
+                              Object {
+                                "alignItems": "center",
+                                "backgroundColor": "transparent",
+                                "justifyContent": "center",
+                              }
+                            }
+                          >
+                            <Text />
+                          </View>
+                        </View>
+                      </View>
+                    </View>
                   </View>
                   <Image
                     source={false}
@@ -353,20 +489,27 @@ exports[`snapshot 1`] = `
                     ]
                   }
                 >
-                  <Text
+                  <View
                     style={
-                      Array [
-                        Object {
-                          "fontSize": 14,
-                        },
-                        Object {
-                          "fontSize": 20,
-                        },
-                      ]
+                      Object {
+                        "backgroundColor": "aliceblue",
+                      }
                     }
                   >
-                    In the profile screen by pressing the last button on the bottom bar, in the user settings screen you can change the password, email, name and surname.
-                  </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "slategray",
+                            "fontSize": 17,
+                            "fontWeight": "bold",
+                          },
+                        ]
+                      }
+                    >
+                      In the profile screen by pressing the last button on the bottom bar, in the user settings screen you can change the password, email, name and surname.
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>
@@ -404,6 +547,8 @@ exports[`snapshot 1`] = `
                     style={
                       Object {
                         "alignItems": "center",
+                        "backgroundColor": "lightcyan",
+                        "flex": 1,
                         "flexDirection": "row",
                         "flexWrap": "wrap",
                         "paddingHorizontal": 12,
@@ -412,16 +557,55 @@ exports[`snapshot 1`] = `
                       }
                     }
                   >
-                    <Text
+                    <View
                       style={
                         Object {
-                          "color": "blue",
-                          "fontSize": 25,
+                          "width": "90%",
                         }
                       }
                     >
-                      Why can't I find anything when searching for recipes in Spanish?
-                    </Text>
+                      <Text
+                        style={
+                          Object {
+                            "color": "darkslategrey",
+                            "fontSize": 20,
+                            "fontWeight": "bold",
+                          }
+                        }
+                      >
+                        Why can't I find anything when searching for recipes in Spanish?
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "right": 0,
+                          "width": "10%",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "overflow": "hidden",
+                          }
+                        }
+                      >
+                        <View>
+                          <View
+                            style={
+                              Object {
+                                "alignItems": "center",
+                                "backgroundColor": "transparent",
+                                "justifyContent": "center",
+                              }
+                            }
+                          >
+                            <Text />
+                          </View>
+                        </View>
+                      </View>
+                    </View>
                   </View>
                   <Image
                     source={false}
@@ -456,20 +640,27 @@ exports[`snapshot 1`] = `
                     ]
                   }
                 >
-                  <Text
+                  <View
                     style={
-                      Array [
-                        Object {
-                          "fontSize": 14,
-                        },
-                        Object {
-                          "fontSize": 20,
-                        },
-                      ]
+                      Object {
+                        "backgroundColor": "aliceblue",
+                      }
                     }
                   >
-                    Currently, the entire application is in English, therefore all searches will have to be done in English.
-                  </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "slategray",
+                            "fontSize": 17,
+                            "fontWeight": "bold",
+                          },
+                        ]
+                      }
+                    >
+                      Currently, the entire application is in English, therefore all searches will have to be done in English.
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>
@@ -507,6 +698,8 @@ exports[`snapshot 1`] = `
                     style={
                       Object {
                         "alignItems": "center",
+                        "backgroundColor": "lightcyan",
+                        "flex": 1,
                         "flexDirection": "row",
                         "flexWrap": "wrap",
                         "paddingHorizontal": 12,
@@ -515,16 +708,55 @@ exports[`snapshot 1`] = `
                       }
                     }
                   >
-                    <Text
+                    <View
                       style={
                         Object {
-                          "color": "blue",
-                          "fontSize": 25,
+                          "width": "90%",
                         }
                       }
                     >
-                      What foods does the app recognize when adding a photo?
-                    </Text>
+                      <Text
+                        style={
+                          Object {
+                            "color": "darkslategrey",
+                            "fontSize": 20,
+                            "fontWeight": "bold",
+                          }
+                        }
+                      >
+                        Which ingredients does the app recognize when adding a photo?
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "right": 0,
+                          "width": "10%",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "overflow": "hidden",
+                          }
+                        }
+                      >
+                        <View>
+                          <View
+                            style={
+                              Object {
+                                "alignItems": "center",
+                                "backgroundColor": "transparent",
+                                "justifyContent": "center",
+                              }
+                            }
+                          >
+                            <Text />
+                          </View>
+                        </View>
+                      </View>
+                    </View>
                   </View>
                   <Image
                     source={false}
@@ -559,32 +791,38 @@ exports[`snapshot 1`] = `
                     ]
                   }
                 >
-                  <Text
+                  <View
                     style={
-                      Array [
-                        Object {
-                          "fontSize": 14,
-                        },
-                        Object {
-                          "fontSize": 20,
-                        },
-                      ]
+                      Object {
+                        "backgroundColor": "aliceblue",
+                      }
                     }
                   >
-                    Currently, through images, the application only recognizes apple, avocado, banana, cucumber, eggplant, lemon, onion, pepper, potato, lettuce, carrot, tomato, garlic
-                  </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "slategray",
+                            "fontSize": 17,
+                            "fontWeight": "bold",
+                          },
+                        ]
+                      }
+                    >
+                      Currently, through images, the application only recognizes apple, avocado, banana, cucumber, eggplant, lemon, onion, pepper, potato, lettuce, carrot, tomato and garlic
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>
           </View>
         </RCTScrollView>
       </View>
-      <View
-        style={Object {}}
-      >
+      <View>
         <Text
           style={
             Object {
+              "color": "navy",
               "fontFamily": "Roboto-Black",
               "fontSize": 30,
               "lineHeight": 36,
@@ -599,6 +837,13 @@ exports[`snapshot 1`] = `
           collapsable={false}
           onGestureHandlerEvent={[Function]}
           onGestureHandlerStateChange={[Function]}
+          style={
+            Object {
+              "borderColor": "midnightblue",
+              "borderWidth": 2,
+              "marginTop": 5,
+            }
+          }
         >
           <View>
             <View
@@ -635,6 +880,8 @@ exports[`snapshot 1`] = `
                     style={
                       Object {
                         "alignItems": "center",
+                        "backgroundColor": "lightcyan",
+                        "flex": 1,
                         "flexDirection": "row",
                         "flexWrap": "wrap",
                         "paddingHorizontal": 12,
@@ -643,16 +890,55 @@ exports[`snapshot 1`] = `
                       }
                     }
                   >
-                    <Text
+                    <View
                       style={
                         Object {
-                          "color": "blue",
-                          "fontSize": 25,
+                          "width": "90%",
                         }
                       }
                     >
-                      How can I add an ingredient?
-                    </Text>
+                      <Text
+                        style={
+                          Object {
+                            "color": "darkslategrey",
+                            "fontSize": 20,
+                            "fontWeight": "bold",
+                          }
+                        }
+                      >
+                        How can I add an ingredient?
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "right": 0,
+                          "width": "10%",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "overflow": "hidden",
+                          }
+                        }
+                      >
+                        <View>
+                          <View
+                            style={
+                              Object {
+                                "alignItems": "center",
+                                "backgroundColor": "transparent",
+                                "justifyContent": "center",
+                              }
+                            }
+                          >
+                            <Text />
+                          </View>
+                        </View>
+                      </View>
+                    </View>
                   </View>
                   <Image
                     source={false}
@@ -687,20 +973,27 @@ exports[`snapshot 1`] = `
                     ]
                   }
                 >
-                  <Text
+                  <View
                     style={
-                      Array [
-                        Object {
-                          "fontSize": 14,
-                        },
-                        Object {
-                          "fontSize": 20,
-                        },
-                      ]
+                      Object {
+                        "backgroundColor": "aliceblue",
+                      }
                     }
                   >
-                    Typing an ingredient in the search bar will bring up the ingredients available in the app that match your search.
-                  </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "slategray",
+                            "fontSize": 17,
+                            "fontWeight": "bold",
+                          },
+                        ]
+                      }
+                    >
+                      Typing an ingredient in the search bar will bring up the ingredients available in the app that match your search.
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>
@@ -738,6 +1031,8 @@ exports[`snapshot 1`] = `
                     style={
                       Object {
                         "alignItems": "center",
+                        "backgroundColor": "lightcyan",
+                        "flex": 1,
                         "flexDirection": "row",
                         "flexWrap": "wrap",
                         "paddingHorizontal": 12,
@@ -746,16 +1041,55 @@ exports[`snapshot 1`] = `
                       }
                     }
                   >
-                    <Text
+                    <View
                       style={
                         Object {
-                          "color": "blue",
-                          "fontSize": 25,
+                          "width": "90%",
                         }
                       }
                     >
-                      How can I remove an ingredient?
-                    </Text>
+                      <Text
+                        style={
+                          Object {
+                            "color": "darkslategrey",
+                            "fontSize": 20,
+                            "fontWeight": "bold",
+                          }
+                        }
+                      >
+                        How can I remove an ingredient?
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "right": 0,
+                          "width": "10%",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "overflow": "hidden",
+                          }
+                        }
+                      >
+                        <View>
+                          <View
+                            style={
+                              Object {
+                                "alignItems": "center",
+                                "backgroundColor": "transparent",
+                                "justifyContent": "center",
+                              }
+                            }
+                          >
+                            <Text />
+                          </View>
+                        </View>
+                      </View>
+                    </View>
                   </View>
                   <Image
                     source={false}
@@ -790,20 +1124,27 @@ exports[`snapshot 1`] = `
                     ]
                   }
                 >
-                  <Text
+                  <View
                     style={
-                      Array [
-                        Object {
-                          "fontSize": 14,
-                        },
-                        Object {
-                          "fontSize": 20,
-                        },
-                      ]
+                      Object {
+                        "backgroundColor": "aliceblue",
+                      }
                     }
                   >
-                    You can remove an individual ingredient by clicking on the trash can to the right of the ingredient name, you can also remove all ingredients from the list by pressing the floating button with the trash can.
-                  </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "slategray",
+                            "fontSize": 17,
+                            "fontWeight": "bold",
+                          },
+                        ]
+                      }
+                    >
+                      You can remove an individual ingredient by clicking on the trash can to the right of the ingredient name, you can also remove all ingredients from the list by pressing the floating button with the trash can.
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>
@@ -841,6 +1182,8 @@ exports[`snapshot 1`] = `
                     style={
                       Object {
                         "alignItems": "center",
+                        "backgroundColor": "lightcyan",
+                        "flex": 1,
                         "flexDirection": "row",
                         "flexWrap": "wrap",
                         "paddingHorizontal": 12,
@@ -849,16 +1192,55 @@ exports[`snapshot 1`] = `
                       }
                     }
                   >
-                    <Text
+                    <View
                       style={
                         Object {
-                          "color": "blue",
-                          "fontSize": 25,
+                          "width": "90%",
                         }
                       }
                     >
-                      What are pantry items?
-                    </Text>
+                      <Text
+                        style={
+                          Object {
+                            "color": "darkslategrey",
+                            "fontSize": 20,
+                            "fontWeight": "bold",
+                          }
+                        }
+                      >
+                        What are pantry items?
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "right": 0,
+                          "width": "10%",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "overflow": "hidden",
+                          }
+                        }
+                      >
+                        <View>
+                          <View
+                            style={
+                              Object {
+                                "alignItems": "center",
+                                "backgroundColor": "transparent",
+                                "justifyContent": "center",
+                              }
+                            }
+                          >
+                            <Text />
+                          </View>
+                        </View>
+                      </View>
+                    </View>
                   </View>
                   <Image
                     source={false}
@@ -893,20 +1275,27 @@ exports[`snapshot 1`] = `
                     ]
                   }
                 >
-                  <Text
+                  <View
                     style={
-                      Array [
-                        Object {
-                          "fontSize": 14,
-                        },
-                        Object {
-                          "fontSize": 20,
-                        },
-                      ]
+                      Object {
+                        "backgroundColor": "aliceblue",
+                      }
                     }
                   >
-                    Pantry items are basic ingredients such as: salt, oil...
-                  </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "slategray",
+                            "fontSize": 17,
+                            "fontWeight": "bold",
+                          },
+                        ]
+                      }
+                    >
+                      Pantry items are basic ingredients such as: salt, oil, sugar, water...
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>
@@ -944,6 +1333,8 @@ exports[`snapshot 1`] = `
                     style={
                       Object {
                         "alignItems": "center",
+                        "backgroundColor": "lightcyan",
+                        "flex": 1,
                         "flexDirection": "row",
                         "flexWrap": "wrap",
                         "paddingHorizontal": 12,
@@ -952,16 +1343,55 @@ exports[`snapshot 1`] = `
                       }
                     }
                   >
-                    <Text
+                    <View
                       style={
                         Object {
-                          "color": "blue",
-                          "fontSize": 25,
+                          "width": "90%",
                         }
                       }
                     >
-                      How to find a recipe with ingredients that I have?
-                    </Text>
+                      <Text
+                        style={
+                          Object {
+                            "color": "darkslategrey",
+                            "fontSize": 20,
+                            "fontWeight": "bold",
+                          }
+                        }
+                      >
+                        How to find a recipe with ingredients that I have?
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "right": 0,
+                          "width": "10%",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "overflow": "hidden",
+                          }
+                        }
+                      >
+                        <View>
+                          <View
+                            style={
+                              Object {
+                                "alignItems": "center",
+                                "backgroundColor": "transparent",
+                                "justifyContent": "center",
+                              }
+                            }
+                          >
+                            <Text />
+                          </View>
+                        </View>
+                      </View>
+                    </View>
                   </View>
                   <Image
                     source={false}
@@ -996,32 +1426,38 @@ exports[`snapshot 1`] = `
                     ]
                   }
                 >
-                  <Text
+                  <View
                     style={
-                      Array [
-                        Object {
-                          "fontSize": 14,
-                        },
-                        Object {
-                          "fontSize": 20,
-                        },
-                      ]
+                      Object {
+                        "backgroundColor": "aliceblue",
+                      }
                     }
                   >
-                    Select by pressing the checkbox of the ingredients that you want your recipe to contain, and then press the floating button that contains a magnifying glass.
-                  </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "slategray",
+                            "fontSize": 17,
+                            "fontWeight": "bold",
+                          },
+                        ]
+                      }
+                    >
+                      Select by pressing the checkbox of the ingredients that you want your recipe to contain, and then press the floating button that contains a magnifying glass.
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>
           </View>
         </RCTScrollView>
       </View>
-      <View
-        style={Object {}}
-      >
+      <View>
         <Text
           style={
             Object {
+              "color": "navy",
               "fontFamily": "Roboto-Black",
               "fontSize": 30,
               "lineHeight": 36,
@@ -1036,6 +1472,13 @@ exports[`snapshot 1`] = `
           collapsable={false}
           onGestureHandlerEvent={[Function]}
           onGestureHandlerStateChange={[Function]}
+          style={
+            Object {
+              "borderColor": "midnightblue",
+              "borderWidth": 2,
+              "marginTop": 5,
+            }
+          }
         >
           <View>
             <View
@@ -1072,6 +1515,8 @@ exports[`snapshot 1`] = `
                     style={
                       Object {
                         "alignItems": "center",
+                        "backgroundColor": "lightcyan",
+                        "flex": 1,
                         "flexDirection": "row",
                         "flexWrap": "wrap",
                         "paddingHorizontal": 12,
@@ -1080,16 +1525,55 @@ exports[`snapshot 1`] = `
                       }
                     }
                   >
-                    <Text
+                    <View
                       style={
                         Object {
-                          "color": "blue",
-                          "fontSize": 25,
+                          "width": "90%",
                         }
                       }
                     >
-                      How can I add an ingredient to my shopping list?
-                    </Text>
+                      <Text
+                        style={
+                          Object {
+                            "color": "darkslategrey",
+                            "fontSize": 20,
+                            "fontWeight": "bold",
+                          }
+                        }
+                      >
+                        How can I add an ingredient to my shopping list?
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "right": 0,
+                          "width": "10%",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "overflow": "hidden",
+                          }
+                        }
+                      >
+                        <View>
+                          <View
+                            style={
+                              Object {
+                                "alignItems": "center",
+                                "backgroundColor": "transparent",
+                                "justifyContent": "center",
+                              }
+                            }
+                          >
+                            <Text />
+                          </View>
+                        </View>
+                      </View>
+                    </View>
                   </View>
                   <Image
                     source={false}
@@ -1124,20 +1608,27 @@ exports[`snapshot 1`] = `
                     ]
                   }
                 >
-                  <Text
+                  <View
                     style={
-                      Array [
-                        Object {
-                          "fontSize": 14,
-                        },
-                        Object {
-                          "fontSize": 20,
-                        },
-                      ]
+                      Object {
+                        "backgroundColor": "aliceblue",
+                      }
                     }
                   >
-                    You can add an ingredient to your list by writing the text in the top bar and then pressing the add button.
-                  </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "slategray",
+                            "fontSize": 17,
+                            "fontWeight": "bold",
+                          },
+                        ]
+                      }
+                    >
+                      You can add an ingredient to your list by writing the text in the top bar and then pressing the add button.
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>
@@ -1175,6 +1666,8 @@ exports[`snapshot 1`] = `
                     style={
                       Object {
                         "alignItems": "center",
+                        "backgroundColor": "lightcyan",
+                        "flex": 1,
                         "flexDirection": "row",
                         "flexWrap": "wrap",
                         "paddingHorizontal": 12,
@@ -1183,16 +1676,55 @@ exports[`snapshot 1`] = `
                       }
                     }
                   >
-                    <Text
+                    <View
                       style={
                         Object {
-                          "color": "blue",
-                          "fontSize": 25,
+                          "width": "90%",
                         }
                       }
                     >
-                      How can I remove an ingredient from my shopping list?
-                    </Text>
+                      <Text
+                        style={
+                          Object {
+                            "color": "darkslategrey",
+                            "fontSize": 20,
+                            "fontWeight": "bold",
+                          }
+                        }
+                      >
+                        How can I remove an ingredient from my shopping list?
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "right": 0,
+                          "width": "10%",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "overflow": "hidden",
+                          }
+                        }
+                      >
+                        <View>
+                          <View
+                            style={
+                              Object {
+                                "alignItems": "center",
+                                "backgroundColor": "transparent",
+                                "justifyContent": "center",
+                              }
+                            }
+                          >
+                            <Text />
+                          </View>
+                        </View>
+                      </View>
+                    </View>
                   </View>
                   <Image
                     source={false}
@@ -1227,20 +1759,27 @@ exports[`snapshot 1`] = `
                     ]
                   }
                 >
-                  <Text
+                  <View
                     style={
-                      Array [
-                        Object {
-                          "fontSize": 14,
-                        },
-                        Object {
-                          "fontSize": 20,
-                        },
-                      ]
+                      Object {
+                        "backgroundColor": "aliceblue",
+                      }
                     }
                   >
-                    You can remove an individual ingredient by clicking on the trash can to the right of the ingredient name, you can also remove all ingredients from the list by pressing the floating button with the trash can.
-                  </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "slategray",
+                            "fontSize": 17,
+                            "fontWeight": "bold",
+                          },
+                        ]
+                      }
+                    >
+                      You can remove an individual ingredient by clicking on the trash can to the right of the ingredient name, you can also remove all ingredients from the list by pressing the floating button with the trash can.
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>
@@ -1278,6 +1817,8 @@ exports[`snapshot 1`] = `
                     style={
                       Object {
                         "alignItems": "center",
+                        "backgroundColor": "lightcyan",
+                        "flex": 1,
                         "flexDirection": "row",
                         "flexWrap": "wrap",
                         "paddingHorizontal": 12,
@@ -1286,16 +1827,55 @@ exports[`snapshot 1`] = `
                       }
                     }
                   >
-                    <Text
+                    <View
                       style={
                         Object {
-                          "color": "blue",
-                          "fontSize": 25,
+                          "width": "90%",
                         }
                       }
                     >
-                      How can I mark a food on the list as purchased?
-                    </Text>
+                      <Text
+                        style={
+                          Object {
+                            "color": "darkslategrey",
+                            "fontSize": 20,
+                            "fontWeight": "bold",
+                          }
+                        }
+                      >
+                        How can I mark a food on the list as purchased?
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "right": 0,
+                          "width": "10%",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "overflow": "hidden",
+                          }
+                        }
+                      >
+                        <View>
+                          <View
+                            style={
+                              Object {
+                                "alignItems": "center",
+                                "backgroundColor": "transparent",
+                                "justifyContent": "center",
+                              }
+                            }
+                          >
+                            <Text />
+                          </View>
+                        </View>
+                      </View>
+                    </View>
                   </View>
                   <Image
                     source={false}
@@ -1330,20 +1910,27 @@ exports[`snapshot 1`] = `
                     ]
                   }
                 >
-                  <Text
+                  <View
                     style={
-                      Array [
-                        Object {
-                          "fontSize": 14,
-                        },
-                        Object {
-                          "fontSize": 20,
-                        },
-                      ]
+                      Object {
+                        "backgroundColor": "aliceblue",
+                      }
                     }
                   >
-                    By pressing the checkbox button to the left of an ingredient, that ingredient will appear crossed out.
-                  </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "slategray",
+                            "fontSize": 17,
+                            "fontWeight": "bold",
+                          },
+                        ]
+                      }
+                    >
+                      By pressing the checkbox button to the left of an ingredient, that ingredient will appear crossed out.
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>
@@ -1371,7 +1958,7 @@ exports[`snapshot 1`] = `
         },
         "shadowOpacity": 0.24,
         "shadowRadius": 6,
-        "top": 670,
+        "top": 700,
         "transform": Array [
           Object {
             "scale": 1,

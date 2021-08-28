@@ -87,12 +87,10 @@ export default class Detections extends React.Component {
 
     for (i = 0; i < finalFood.length; i++) {
       if (!this.validateData(finalFood[i].class)) {
-        console.log(finalFood[i].class)
         Alert.alert("Alert Message", finalFood[i].class + " already added.", [
           { text: "OK" },
         ]);
       } else {
-        console.log(finalFood[i].class)
         this.setState({
           loading: true,
         });
@@ -153,7 +151,6 @@ export default class Detections extends React.Component {
 
   render() {
     const { navigation } = this.props;
-    console.log(this.state.food);
     return (
       <View style={{ flex: 1 }}>
         {this.state.loading == true ? (
