@@ -2,9 +2,9 @@
 
 Bienvenidos a la aplicación **FoodUs**! En la que podrás encontrar recetas a tu gusto.
 
-<img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/home.jpeg" width="210"> <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/login.jpeg" width="210"> <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/main.jpeg" width="210"> <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/foodlist.jpeg" width="150">
+<img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/home.jpeg" width="200"> <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/login.jpeg" width="200"> <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/main.jpeg" width="200"> <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/foodlist.jpeg" width="200">
 
-<img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/camera.jpeg" width="210"> <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/suggested.jpeg" width="210"> <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/shopping.jpeg" width="210"> <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/profile.jpeg" width="210">
+<img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/camera.jpeg" width="200"> <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/suggested.jpeg" width="200"> <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/shopping.jpeg" width="200"> <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/profile.jpeg" width="200">
 
 # SetUp
 
