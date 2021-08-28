@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Button, Image } from "react-native";
+import { StyleSheet, Text, View, Image, Alert } from "react-native";
 import { Camera } from "expo-camera";
 import * as ImagePicker from "expo-image-picker";
-import { Feather as Icon } from "@expo/vector-icons";
-import firebase from "firebase";
 import "firebase/firebase-firestore";
 import { FAB } from "react-native-paper";
-import { fileToBlob } from "../../utils/helpers";
+import { uploadImage } from "../../utils/actions";
 import { getCurrentUser } from "../../utils/actions";
-import Axios from "axios";
-import mime from "mime";
+import Constants from "expo-constants";
+import { IconButton } from "react-native-paper";
+import { Feather as Icon } from "@expo/vector-icons";
+
 export default function CameraView({ navigation }) {
   const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
@@ -75,48 +75,47 @@ export default function CameraView({ navigation }) {
         >
           No access to camera
         </Text>
-        <FAB
-          style={styles.fab}
-          large
-          icon="undo"
-          onPress={() => navigation.goBack()}
-        ></FAB>
+        <FAB large icon="undo" onPress={() => navigation.goBack()}></FAB>
       </View>
     );
   }
 
-  const uploadFlask = async (img) => {
-    /* const filename = img.split('/').pop() */
-    /* const filename = img.split('file://').pop() */
-    const blob = await fileToBlob(img);
+  const showIp = async () => {
+    const { manifest } = Constants;
+    const api =
+      typeof manifest.packagerOpts === `object` && manifest.packagerOpts.dev
+        ? manifest.debuggerHost.split(`:`).shift()
+        : `api.example.com`;
 
+    return api;
+  };
+
+  const uploadFlask = async (img) => {
+    await uploadImage(img, "foodImages", user.uid);
+
+    const ip = await showIp();
+    console.log(ip);
 
     var data = JSON.stringify({
-      image: blob
+      filename: user.uid,
     });
 
-    console.log(data)
-
-    const response = await fetch("http://192.168.1.63:5000/detections", {
-      method: 'POST',
+    const response = await fetch("http://" + ip + ":5000/detections", {
+      method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: data
+      body: data,
     });
 
-    /* const response = await Axios.post(
-      "http://192.168.1.63:5000/detections",
-      { data: formData },
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          "Access-Control-Allow-Origin": "*",
-        },
-      }
-    ); */
+    const dataResponse = await response.json().then((data) => {
+      return data;
+    });
 
-    console.log(response);
+    console.log(dataResponse);
+    const foodData = dataResponse.response[0].detections;
+    console.log(foodData);
+
     if (response.status == 200) {
-      navigation.navigate("Detections");
+      navigation.navigate("Detections", { food: foodData });
     } else {
       Alert.alert("An error occurred while uploading the picture.");
     }
@@ -124,47 +123,59 @@ export default function CameraView({ navigation }) {
 
   return (
     <View style={{ flex: 1 }}>
-      <View style={styles.cameraContainer}>
+      <View style={{flex: 1}}>
         <Camera
           ref={(ref) => setCamera(ref)}
-          style={styles.fixedRatio}
+          style={{flex: 1}}
           type={type}
           ratio={"1:1"}
         />
-      </View>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "flex-end",
-          marginHorizontal: 20,
-        }}
-      >
-        <Icon
-          name="refresh-ccw"
-          size={50}
-          onPress={() => {
-            setType(
-              type === Camera.Constants.Type.back
-                ? Camera.Constants.Type.front
-                : Camera.Constants.Type.back
-            );
+
+        <View
+          style={{
+            flexDirection: "row",
+            height: 0,
+            alignItems: "flex-end",
           }}
-        ></Icon>
-        <Icon name="image" size={50} onPress={() => pickImage()} />
-        <Icon name="aperture" size={65} onPress={() => takePicture()} />
-        <Icon
-          name="check"
-          color="green"
-          size={50}
-          onPress={() => uploadFlask(image)}
-        />
-        <Icon
-          name="x"
-          color="red"
-          size={50}
-          onPress={() => navigation.goBack()}
-        />
+        >
+          <IconButton
+            icon="autorenew"
+            color="white"
+            size={40}
+            onPress={() => {
+              setType(
+                type === Camera.Constants.Type.back
+                  ? Camera.Constants.Type.front
+                  : Camera.Constants.Type.back
+              );
+            }}
+          />
+          <IconButton
+            icon="image"
+            color="white"
+            size={40}
+            onPress={() => pickImage()}
+          />
+          <Icon
+            name="aperture"
+            color="black"
+            size={65}
+            onPress={() => takePicture()}
+            style={styles.shadow}
+          />
+          <IconButton
+            icon="check"
+            color="green"
+            size={40}
+            onPress={() => uploadFlask(image)}
+          />
+          <IconButton
+            icon="window-close"
+            color="red"
+            size={40}
+            onPress={() => navigation.goBack()}
+          />
+        </View>
       </View>
       {image && <Image source={{ uri: image }} style={{ flex: 1 }} />}
     </View>
@@ -172,12 +183,11 @@ export default function CameraView({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  cameraContainer: {
-    flex: 1,
-    flexDirection: "row",
-  },
-  fixedRatio: {
-    flex: 1,
-    aspectRatio: 1,
-  },
+  shadow: {
+    marginBottom: 25,
+    textShadowColor: "lightgray",
+    shadowOpacity: 2,
+    textShadowRadius: 4,
+    textShadowOffset: { width: 0.5, height: 0.5 }
+  }
 });

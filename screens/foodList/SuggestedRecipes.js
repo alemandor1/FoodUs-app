@@ -95,7 +95,7 @@ export default class SuggestedRecipes extends React.Component {
         {this.state.loading == true ? (
           <Loading isVisible={this.state.loading} text="Loading recipes..." />
         ) : (
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 1, marginBottom: 80 }}>
             <View style={{ padding: SIZES.padding * 3 }}>
               <View
                 style={{

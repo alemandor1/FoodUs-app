@@ -211,7 +211,7 @@ export default class Main extends React.Component {
         {this.state.loading == true ? (
           <Loading isVisible={this.state.loading} text="Loading recipes..."/>
         ) : (
-          <View style={{ flex: 1 }} testID="list">
+          <View style={{ flex: 1, marginBottom: 30 }} testID="list">
             <View style={{ padding: SIZES.padding * 1 }}>
               <Text style={{ ...FONTS.h1, marginTop: 30 }}>
                 Main Categories

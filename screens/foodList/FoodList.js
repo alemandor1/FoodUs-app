@@ -13,7 +13,6 @@ import {
 import { useFocusEffect } from "@react-navigation/native";
 import { Input, Icon } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
-import Axios from "axios";
 import { SIZES, FONTS } from "../../constants";
 import {
   getCurrentUser,
@@ -107,7 +106,6 @@ export default function FoodList({navigation}) {
   const [loading, setLoading] = useState(false);
   const [reloadData, setReloadData] = useState(false);
   const [ingredientsTrue, setIngredientsTrue] = useState([]);
-  const[predictions, setPredictions] = useState([])
 
   const getTrueIngredients = async () => {
     const db = firebase.firestore(firebaseApp);
@@ -135,9 +133,6 @@ export default function FoodList({navigation}) {
         setMyFoodListNames(response.myIngredientsName);
         const response2 = await getTrueIngredients();
         setIngredientsTrue(response2);
-        /* const response3 = await getPredictions();
-        setPredictions(response3.response[0].detections)
-        console.log(response3.response[0].detections) */
         setLoading(false);
       }
       getData();
@@ -256,13 +251,6 @@ export default function FoodList({navigation}) {
     }
     return result;
   };
-
-  const getPredictions = async () => {
-    const res = await Axios.post('http://192.168.1.63:5000/detections').then((result) => {
-      return result.data;
-    });
-    return res;
-  }
 
   //SEARCHBAR
   //encontrar en la coleccion de ingredientes el que pasamos por parametros

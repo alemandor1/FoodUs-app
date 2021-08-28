@@ -32,7 +32,7 @@ export default class Help extends React.Component {
       },
       {
         title: "Which ingredients does the app recognize when adding a photo?",
-        body: "Currently, through images, the application only recognizes apple, avocado, banana, cucumber, eggplant, lemon, onion, pepper, potato, lettuce, carrot, tomato, garlic",
+        body: "Currently, through images, the application only recognizes apple, avocado, banana, cucumber, eggplant, lemon, onion, pepper, potato, lettuce, carrot, tomato and garlic",
       },
     ],
   };

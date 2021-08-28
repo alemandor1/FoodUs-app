@@ -15,6 +15,7 @@ from PIL import Image
 import pyrebase
 import urllib.request
 import glob
+import socket
 
 config = {
     "apiKey": "AIzaSyAzONd4o8YcuMWUgiAINl6jWws-YxJ5vq0",
@@ -59,13 +60,26 @@ CORS(app)
 @app.route('/detections', methods=['POST'])
 @cross_origin(supports_credentials=True)
 def get_detections():
+    firebase = pyrebase.initialize_app(config)
+    storage = firebase.storage()
+
     raw_images = []
     images = []
+
     jsonData = request.json
-    image_data = jsonData["image"]
-    print(image_data)
-    im = Image.open(image_data)
-    images.append(im)
+    filename = jsonData["filename"]
+    print(filename)
+    path_on_cloud = "foodImages/" + filename
+    url = storage.child(path_on_cloud).get_url(filename)    
+    urlformat = url + ".jpg"
+    full_path = 'data/images/fd.jpg'
+    urllib.request.urlretrieve(urlformat, full_path)
+
+    path = glob.glob("data/images/*.jpg")
+    for file in path:
+        im = Image.open(file)
+        images.append(im)  
+
     image_names = []
     for image in images:
         image_name = image.filename
@@ -158,5 +172,8 @@ def get_image():
         abort(404)
 
 if __name__ == '__main__':
-    app.run(debug=True, host = '192.168.1.63', port=5000)
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(("8.8.8.8", 80))
+    app.run(debug=True, host = s.getsockname()[0], port=5000)
+    s.close()
     

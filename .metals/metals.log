@@ -161,3 +161,6 @@ INFORMACIÓN: Unsupported notification method: $/setTrace
 [0m2021.08.27 16:16:12 INFO  time: initialize in 0.44s[0m
 [0m2021.08.27 16:16:12 WARN  Build server is not auto-connectable.[0m
 [0m2021.08.27 16:16:12 WARN  no build tool detected in workspace 'C:\PABLO\4º\TFG\FoodUs-app'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+ago 27, 2021 4:40:02 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFORMACIÓN: Unsupported notification method: $/setTrace
+[0m2021.08.27 20:55:30 INFO  shutting down Metals[0m
