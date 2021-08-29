@@ -20,9 +20,12 @@ export default function CameraView({ navigation }) {
 
   useEffect(() => {
     (async () => {
-      setHasCameraPermission(true);
+      const cameraStatus = await Camera.requestPermissionsAsync();
+      setHasCameraPermission(cameraStatus.status === "granted");
 
-      setHasGalleryPermission(true);
+      const galleryStatus =
+        await ImagePicker.requestCameraRollPermissionsAsync();
+      setHasGalleryPermission(galleryStatus.status === "granted");
 
       setUser(getCurrentUser());
     })();
