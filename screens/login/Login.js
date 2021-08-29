@@ -8,19 +8,19 @@ import LoginForm from "../../components/account/LoginForm";
 
 export default function Login() {
   return (
-    <View style={{backgroundColor: "white"}}>
-    <KeyboardAwareScrollView style={styles.fondo}>
-      <View style={styles.container}>
-        <Image
-          source={require("../../assets/logo.png")}
-          resizeMode="contain"
-          style={styles.image}
-        />
-        <LoginForm />
-        <CreateAccount />
-      </View>
-      <Divider style={styles.divider} />
-    </KeyboardAwareScrollView>
+    <View style={{ backgroundColor: "white" }}>
+      <KeyboardAwareScrollView style={styles.fondo}>
+        <View style={styles.container}>
+          <Image
+            source={require("../../assets/logo.png")}
+            resizeMode="contain"
+            style={styles.image}
+          />
+          <LoginForm />
+          <CreateAccount />
+        </View>
+        <Divider style={styles.divider} />
+      </KeyboardAwareScrollView>
     </View>
   );
 }
@@ -40,7 +40,7 @@ function CreateAccount(props) {
 const styles = StyleSheet.create({
   fondo: {
     backgroundColor: "white",
-    marginTop: "20%"
+    marginTop: "20%",
   },
   image: {
     height: 150,

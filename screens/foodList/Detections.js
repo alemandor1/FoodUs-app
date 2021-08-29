@@ -36,6 +36,7 @@ export default class Detections extends React.Component {
     });
   }
 
+  //obtener la lista de ingredientes del usuario activo
   async getMyIngredients() {
     const db = firebase.firestore(firebaseApp);
     const result = {
@@ -62,6 +63,7 @@ export default class Detections extends React.Component {
     return result;
   }
 
+  //eliminar de la lista de detecciones los elementos repetidos
   removeElements() {
     const finalFood = [];
     this.state.food.forEach((obj) => {
@@ -73,6 +75,7 @@ export default class Detections extends React.Component {
     this.setState({ food: finalFood });
   }
 
+  //añadir las detecciones a la lista de alimentos del usuario activo
   async addToFoodList() {
     const db = firebase.firestore(firebaseApp);
     const finalFood = [];
@@ -125,6 +128,7 @@ export default class Detections extends React.Component {
     this.props.navigation.navigate("Main");
   }
 
+  //comporbar que el alimento no está añadido ya a la lista de alimentos del usuario
   validateData(name) {
     let isValid = true;
 
@@ -134,6 +138,7 @@ export default class Detections extends React.Component {
     return isValid;
   }
 
+  //encontrar el id del documento de un alimento en la base de datos
   async findFoodId(name) {
     const db = firebase.firestore(firebaseApp);
     const result = [];
@@ -317,7 +322,7 @@ export default class Detections extends React.Component {
                       marginBottom: 40,
                       bottom: 50,
                       alignSelf: "flex-end",
-                      right: 30
+                      right: 30,
                     }}
                     large
                     icon="undo"

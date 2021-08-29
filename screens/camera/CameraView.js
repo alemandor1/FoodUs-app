@@ -18,6 +18,7 @@ export default function CameraView({ navigation }) {
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [user, setUser] = useState(null);
 
+  //pedimos los permisos para acceder a la cámara y a la galería
   useEffect(() => {
     (async () => {
       const cameraStatus = await Camera.requestPermissionsAsync();
@@ -31,6 +32,7 @@ export default function CameraView({ navigation }) {
     })();
   }, []);
 
+  //toma una fotografía con la cámara
   const takePicture = async () => {
     if (camera) {
       const data = await camera.takePictureAsync(null);
@@ -38,6 +40,7 @@ export default function CameraView({ navigation }) {
     }
   };
 
+  //elige una imagen de la galería
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -78,6 +81,7 @@ export default function CameraView({ navigation }) {
     );
   }
 
+  //obtener la IPv4 del usuario
   const showIp = async () => {
     const { manifest } = Constants;
     const api =
@@ -88,6 +92,7 @@ export default function CameraView({ navigation }) {
     return api;
   };
 
+  //enviar la imagen al servidor de flask para procesarla y devolver el resultado a la vista 'Detections'
   const uploadFlask = async (img) => {
     await uploadImage(img, "foodImages", user.uid);
 
@@ -118,10 +123,10 @@ export default function CameraView({ navigation }) {
 
   return (
     <View style={{ flex: 1 }}>
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <Camera
           ref={(ref) => setCamera(ref)}
-          style={{flex: 1}}
+          style={{ flex: 1 }}
           type={type}
           ratio={"1:1"}
         />
@@ -131,7 +136,7 @@ export default function CameraView({ navigation }) {
             flexDirection: "row",
             height: 0,
             alignItems: "flex-end",
-            marginHorizontal: 20
+            marginHorizontal: 20,
           }}
         >
           <IconButton
@@ -184,6 +189,6 @@ const styles = StyleSheet.create({
     textShadowColor: "lightgray",
     shadowOpacity: 2,
     textShadowRadius: 4,
-    textShadowOffset: { width: 0.5, height: 0.5 }
-  }
+    textShadowOffset: { width: 0.5, height: 0.5 },
+  },
 });

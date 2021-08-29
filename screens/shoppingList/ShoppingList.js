@@ -41,7 +41,7 @@ export default function ShoopingList({ navigation }) {
     firebase
       .firestore()
       .collection("shoppingList")
-      .where("idUser", "==", getCurrentUser().uid) 
+      .where("idUser", "==", getCurrentUser().uid)
       .onSnapshot((querySnapshot) => {
         const ingredients = [];
         querySnapshot.docs.forEach((doc) => {
@@ -61,6 +61,7 @@ export default function ShoopingList({ navigation }) {
     ingredientsName.push(element);
   }
 
+  //comprobar que el producto no está añadido ya a la lista
   const validateData = () => {
     setErrorName("");
     let isValid = true;
@@ -84,6 +85,7 @@ export default function ShoopingList({ navigation }) {
     return isValid;
   };
 
+  //añadir producto a la lista
   const addIngredient = async () => {
     if (!validateData()) {
       return;
@@ -104,6 +106,7 @@ export default function ShoopingList({ navigation }) {
     }
   };
 
+  //obtener los productos de la base de datos de la lista de la compra
   const getMyIngredients = async () => {
     const result = { statusResponse: true, error: null, myIngredients: [] };
     try {
@@ -168,6 +171,7 @@ export default function ShoopingList({ navigation }) {
       });
   };
 
+  //marcar o desmarcar producto de la lista
   const onchecked = async (name) => {
     const docDataIngredient = await findDataIngredient(name);
     const valueChecked = docDataIngredient.checked;

@@ -70,6 +70,7 @@ export default class Recipe extends React.Component {
     });
   }
 
+  //configurar el cronómetro
   start() {
     this.run();
     this.setState({
@@ -78,6 +79,7 @@ export default class Recipe extends React.Component {
     });
   }
 
+  //arrancar el cronómetro
   run() {
     var updatedS = this.state.segundos,
       updatedM = this.state.minutos,
@@ -96,6 +98,7 @@ export default class Recipe extends React.Component {
     this.setState({ segundos: updatedS, minutos: updatedM, horas: updatedH });
   }
 
+  //parar el cronómetro
   stop() {
     clearInterval(this.state.interv);
     this.setState({
@@ -103,6 +106,7 @@ export default class Recipe extends React.Component {
     });
   }
 
+  //reiniciar el cronómetro
   reset() {
     clearInterval(this.state.interv);
     this.setState({
@@ -113,10 +117,12 @@ export default class Recipe extends React.Component {
     });
   }
 
+  //reanudar el cronómetro
   resume() {
     this.start();
   }
 
+  //añadir receta a la lista de favoritos
   async addFavourite() {
     if (this.state.recipe.image == null) {
       const response1 = await addDocumentWithoutId("favourites", {
@@ -142,6 +148,7 @@ export default class Recipe extends React.Component {
     }
   }
 
+  //borrar receta de la lista de favoritos
   async removeFavourite() {
     const response = await deleteFavorite(this.state.recipeId);
 
@@ -150,19 +157,22 @@ export default class Recipe extends React.Component {
     }
   }
 
+  //finalizar receta y añadirla al historial
   async addToHistory() {
     const { navigation } = this.props;
-    var secs = "", mins = "", hours = ""
-    if(this.state.segundos < 10) {
-      secs = "0" + this.state.segundos
+    var secs = "",
+      mins = "",
+      hours = "";
+    if (this.state.segundos < 10) {
+      secs = "0" + this.state.segundos;
     }
-    if(this.state.minutos < 10) {
-      mins = "0" + this.state.minutos
+    if (this.state.minutos < 10) {
+      mins = "0" + this.state.minutos;
     }
-    if(this.state.horas < 10) {
-      hours = "0" + this.state.horas
+    if (this.state.horas < 10) {
+      hours = "0" + this.state.horas;
     }
-    const time = { secs, mins, hours }
+    const time = { secs, mins, hours };
     if (this.state.recipe.image == null) {
       const response1 = await addDocumentWithoutId("history", {
         idUser: getCurrentUser().uid,
@@ -191,6 +201,7 @@ export default class Recipe extends React.Component {
     }
   }
 
+  //obtener datos de una receta a partir de una url
   async getRecipe(url) {
     this.setState({ loading: true });
     const res = await Axios.get(url).then((result) => {
@@ -628,12 +639,12 @@ export default class Recipe extends React.Component {
                   )}
                 </View>
               </View>
-                  <FAB
-                    style={styles.fab}
-                    small
-                    label="Finish recipe"
-                    onPress={() => this.addToHistory()}
-                  ></FAB>
+              <FAB
+                style={styles.fab}
+                small
+                label="Finish recipe"
+                onPress={() => this.addToHistory()}
+              ></FAB>
 
               <View
                 style={{

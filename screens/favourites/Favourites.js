@@ -16,6 +16,7 @@ export default function Favourites({ navigation }) {
   const [recipes, setRecipes] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  //actualizar la lista de favoritos cada vez que se acceda
   useFocusEffect(
     React.useCallback(() => {
       async function getData() {
@@ -23,14 +24,13 @@ export default function Favourites({ navigation }) {
         const response = await getFavourites();
         if (response.statusResponse == true) {
           setRecipes(response.favourites);
-        }        
+        }
         setLoading(false);
       }
 
       getData();
     }, [])
   );
-
 
   return (
     <View style={{ flex: 1 }}>

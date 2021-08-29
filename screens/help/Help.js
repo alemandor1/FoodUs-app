@@ -301,7 +301,7 @@ export default class Help extends React.Component {
 const styles = StyleSheet.create({
   container: {
     minHeight: "100%",
-    backgroundColor: "#FFFFFF"
+    backgroundColor: "#FFFFFF",
   },
   fab: {
     position: "absolute",

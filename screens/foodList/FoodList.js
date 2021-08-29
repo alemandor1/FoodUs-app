@@ -26,7 +26,7 @@ import { map } from "lodash";
 import Loading from "../../components/Loading";
 import { FAB } from "react-native-paper";
 
-export default function FoodList({navigation}) {
+export default function FoodList({ navigation }) {
   const [ingredientsDB, setIngredientsDB] = useState([]);
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
@@ -76,6 +76,7 @@ export default function FoodList({navigation}) {
 
   const db = firebase.firestore(firebaseApp);
 
+  //obtener la lista de alimentos del usuario activo
   const getMyIngredients = async () => {
     const result = {
       statusResponse: true,
@@ -107,6 +108,7 @@ export default function FoodList({navigation}) {
   const [reloadData, setReloadData] = useState(false);
   const [ingredientsTrue, setIngredientsTrue] = useState([]);
 
+  //obtener la base de datos completa de todos los ingredientes de la aplicación
   const getTrueIngredients = async () => {
     const db = firebase.firestore(firebaseApp);
     const myIngredientsTrue = [];
@@ -140,8 +142,6 @@ export default function FoodList({navigation}) {
     }, [reloadData])
   );
 
-  
-
   //Encontrar el id del documento del ingrediente seleccionado (check)
   const findDocId = async (id) => {
     return db
@@ -170,6 +170,7 @@ export default function FoodList({navigation}) {
       });
   };
 
+  //seleccionar o deseleccionar un alimento en concreto de la lista
   const onchecked = async (id) => {
     const docDataIngredient = await findDataIngredient(id);
     const valueChecked = docDataIngredient.checked;
@@ -342,7 +343,6 @@ export default function FoodList({navigation}) {
       style={{ flex: 1 }}
     >
       <View style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
-        {/* TÍTULO */}
         <View style={{ padding: SIZES.padding * 3 }}>
           <View
             style={{
@@ -361,11 +361,10 @@ export default function FoodList({navigation}) {
                 color: "white",
               }}
             >
-              Food List 
+              Food List
             </Text>
           </View>
         </View>
-        {/* INPUT */}
         <View>
           <Input
             containerStyle={styles.input}
@@ -392,7 +391,6 @@ export default function FoodList({navigation}) {
             value={isEnabled}
           />
         </View>
-        {/* LISTADO DE INGREDIENTES */}
         <View style={{ paddingBottom: 280, paddingTop: 45 }}>
           <ScrollView>
             <FlatList
@@ -448,8 +446,7 @@ export default function FoodList({navigation}) {
             <Loading isVisible={loading} text="Please wait..." />
           </ScrollView>
         </View>
-        
-        {/* SEARCHBAR */}
+
         {searching && (
           <TouchableOpacity
             onPress={() => setSearching(false)}
@@ -487,21 +484,21 @@ export default function FoodList({navigation}) {
         )}
       </View>
       <FAB
-          style={styles.fab}
-          large
-          icon="magnify"
-          onPress={
-            ingredientsTrue.length == 0
-              ? createTwoButtonAlert
-              : () => navigation.navigate("SuggestedRecipes", isEnabled)
-          }
-        ></FAB>
-        <FAB
-          style={styles.fab2}
-          large
-          icon="delete"
-          onPress={() => alertDeleteFoodList()}
-        ></FAB>
+        style={styles.fab}
+        large
+        icon="magnify"
+        onPress={
+          ingredientsTrue.length == 0
+            ? createTwoButtonAlert
+            : () => navigation.navigate("SuggestedRecipes", isEnabled)
+        }
+      ></FAB>
+      <FAB
+        style={styles.fab2}
+        large
+        icon="delete"
+        onPress={() => alertDeleteFoodList()}
+      ></FAB>
     </KeyboardAvoidingView>
   );
 }
@@ -567,15 +564,15 @@ const styles = StyleSheet.create({
     position: "absolute",
     margin: 16,
     right: 0,
-    marginBottom: 120 ,
-    bottom:0
+    marginBottom: 120,
+    bottom: 0,
   },
   fab2: {
     position: "absolute",
     margin: 16,
     right: 0,
     marginBottom: 55,
-    bottom:0
+    bottom: 0,
   },
   switch: {
     flex: 1,

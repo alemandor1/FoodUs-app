@@ -47,11 +47,13 @@ export default class SuggestedRecipes extends React.Component {
     return ingredientsTrue;
   }
 
+  //crear url de busqueda de todos los alimentos seleccionados
   getURLParse(ingredients) {
     var urlIngredients = ingredients.join(",+");
     return urlIngredients;
   }
 
+  //obtener los datos de las recetas a partir de una url
   async getRecipes(url) {
     this.setState({ loading: true });
     const res = await Axios.get(url).then((result) => {
@@ -216,7 +218,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     margin: 16,
     right: 0,
-    marginBottom: 60 ,
-    bottom:0
+    marginBottom: 60,
+    bottom: 0,
   },
 });

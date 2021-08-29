@@ -34,6 +34,7 @@ export default class HistoryList extends React.Component {
     });
   }
 
+  //obtener la lista de recetas realizadas de la base de datos
   async getHistory() {
     this.setState({ loading: true });
     const db = firebase.firestore(firebaseApp);
@@ -168,7 +169,9 @@ export default class HistoryList extends React.Component {
                       <Text style={{ ...FONTS.body4, fontWeight: "bold" }}>
                         Your time:
                       </Text>
-                      {item.timeSpent.secs == 0 && item.timeSpent.mins == 0 && item.timeSpent.hours  == 0 ? (
+                      {item.timeSpent.secs == 0 &&
+                      item.timeSpent.mins == 0 &&
+                      item.timeSpent.hours == 0 ? (
                         <Text
                           style={{
                             ...FONTS.body4,
@@ -186,11 +189,13 @@ export default class HistoryList extends React.Component {
                             paddingLeft: 5,
                           }}
                         >
-                          {item.timeSpent.hours > 0 ? (
-                            item.timeSpent.hours + ":" + item.timeSpent.mins + ":" + item.timeSpent.secs
-                          ) : (
-                            item.timeSpent.mins + ":" + item.timeSpent.secs
-                          ) }
+                          {item.timeSpent.hours > 0
+                            ? item.timeSpent.hours +
+                              ":" +
+                              item.timeSpent.mins +
+                              ":" +
+                              item.timeSpent.secs
+                            : item.timeSpent.mins + ":" + item.timeSpent.secs}
                         </Text>
                       )}
                     </View>
@@ -226,6 +231,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     margin: 16,
     right: 0,
-    top: 700
+    top: 700,
   },
 });
