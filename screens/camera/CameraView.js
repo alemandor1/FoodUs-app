@@ -9,6 +9,7 @@ import { getCurrentUser } from "../../utils/actions";
 import Constants from "expo-constants";
 import { IconButton } from "react-native-paper";
 import { Feather as Icon } from "@expo/vector-icons";
+import Loading from "../../components/Loading";
 
 export default function CameraView({ navigation }) {
   const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
@@ -17,6 +18,7 @@ export default function CameraView({ navigation }) {
   const [image, setImage] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   //pedimos los permisos para acceder a la cámara y a la galería
   useEffect(() => {
@@ -94,6 +96,7 @@ export default function CameraView({ navigation }) {
 
   //enviar la imagen al servidor de flask para procesarla y devolver el resultado a la vista 'Detections'
   const uploadFlask = async (img) => {
+    setLoading(true)
     await uploadImage(img, "foodImages", user.uid);
 
     const ip = await showIp();
@@ -114,6 +117,7 @@ export default function CameraView({ navigation }) {
 
     const foodData = dataResponse.response[0].detections;
 
+    setLoading(false)
     if (response.status == 200) {
       navigation.navigate("Detections", { food: foodData });
     } else {
@@ -123,6 +127,7 @@ export default function CameraView({ navigation }) {
 
   return (
     <View style={{ flex: 1 }}>
+      <Loading isVisible={loading} text="Loading..." />
       <View style={{ flex: 1 }}>
         <Camera
           ref={(ref) => setCamera(ref)}
