@@ -11,7 +11,7 @@ Bienvenidos a la aplicación **FoodUs**! En la que podrás encontrar recetas a t
 En este apartado de detalla mediante una serie de pasos el proceso de instalación y lanzamiento de la aplicación móvil FoodUs.
 
 Antes que nada, habrá que tener instalado la herramienta **Visual Studio Code** y **Node.js** en el ordenador para proceder a la instalación del proyecto,
-y en el dispositivo móvil la aplicación **Expo Go** del Play Store o App Store, dependiendo si usa un dispositivo con sistema Android o iOS.
+y en el dispositivo móvil la aplicación **Expo** del Play Store o App Store, dependiendo si usa un dispositivo con sistema Android o iOS.
 
 Para proceder a la inslatación y ejecución de la app hay que seguir los siguientes pasos:
 
