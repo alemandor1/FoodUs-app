@@ -4,23 +4,26 @@ import RegisterForm from "../../components/account/RegisterForm";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Divider } from "react-native-elements";
 
-export default function Register({navigation}) {
+export default function Register({ navigation }) {
   return (
-    <View style={{backgroundColor: "white"}}>
-    <KeyboardAwareScrollView style={styles.fondo}>
-      <View style={styles.container}>
-        <Image
-          source={require("../../assets/logo.png")}
-          resizeMode="contain"
-          style={styles.image}
-        />
-        <RegisterForm />
-        <Text style={styles.login} onPress={() => navigation.navigate("Login")}>
-          Have an Account? <Text style={styles.btnLogin}>Sign in</Text>
-        </Text>
-      </View>
-      <Divider style={styles.divider} />
-    </KeyboardAwareScrollView>
+    <View style={{ backgroundColor: "white" }}>
+      <KeyboardAwareScrollView style={styles.fondo}>
+        <View style={styles.container}>
+          <Image
+            source={require("../../assets/logo.png")}
+            resizeMode="contain"
+            style={styles.image}
+          />
+          <RegisterForm />
+          <Text
+            style={styles.login}
+            onPress={() => navigation.navigate("Login")}
+          >
+            Have an Account? <Text style={styles.btnLogin}>Sign in</Text>
+          </Text>
+        </View>
+        <Divider style={styles.divider} />
+      </KeyboardAwareScrollView>
     </View>
   );
 }
@@ -28,12 +31,12 @@ export default function Register({navigation}) {
 const styles = StyleSheet.create({
   fondo: {
     backgroundColor: "white",
-    marginTop: "20%"
+    marginTop: "20%",
   },
   image: {
     height: 150,
     width: "100%",
-    marginBottom: 20
+    marginBottom: 20,
   },
   login: {
     marginTop: 15,

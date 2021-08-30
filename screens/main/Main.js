@@ -25,7 +25,7 @@ export default class Main extends React.Component {
       query: "",
       APIkey: "61f5abd161c842db98a65aa187831f41", //6812c1d4a76d4a6dbe7b8ef99427f05d o 61f5abd161c842db98a65aa187831f41
       searching: false,
-      visible: true
+      visible: true,
     };
   }
 
@@ -42,6 +42,7 @@ export default class Main extends React.Component {
     });
   }
 
+  //mostrar las recetas al seleccionar una categoría
   async onSelectCategory(category) {
     const recipesList = await this.getRecipes(category.url);
     this.setState({
@@ -52,6 +53,7 @@ export default class Main extends React.Component {
     });
   }
 
+  //mostrar recetas aleatorias al deseleccionar una categoría
   async offSelectCategory() {
     const recipesList = await this.getRecipes(
       "https://api.spoonacular.com/recipes/random?number=20&apiKey=" +
@@ -65,12 +67,14 @@ export default class Main extends React.Component {
     });
   }
 
+  //ocultar el overlay al no encontrar ninguna receta
   offVisible() {
     this.setState({
-      visible: false
-    })
+      visible: false,
+    });
   }
 
+  //obtener las recetas a partir de una url
   async getRecipes(url) {
     this.setState({ loading: true });
     const res = await Axios.get(url).then((result) => {
@@ -79,6 +83,7 @@ export default class Main extends React.Component {
     return res;
   }
 
+  //realizar la búsqueda de recetas a partir de una query
   async doSearch() {
     const res = await this.getRecipes(
       "https://api.spoonacular.com/recipes/complexSearch?query=" +
@@ -90,10 +95,11 @@ export default class Main extends React.Component {
       recipes: res.results,
       searching: true,
       loading: false,
-      visible: true
+      visible: true,
     });
   }
 
+  //definir las categorías
   async getCategories() {
     const categoryData = [
       {
@@ -209,9 +215,9 @@ export default class Main extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         {this.state.loading == true ? (
-          <Loading isVisible={this.state.loading} text="Loading recipes..."/>
+          <Loading isVisible={this.state.loading} text="Loading recipes..." />
         ) : (
-          <View style={{ flex: 1 }} testID="list">
+          <View style={{ flex: 1, marginBottom: 30 }} testID="list">
             <View style={{ padding: SIZES.padding * 1 }}>
               <Text style={{ ...FONTS.h1, marginTop: 30 }}>
                 Main Categories
@@ -266,9 +272,10 @@ export default class Main extends React.Component {
                     <Text
                       style={{
                         marginTop: SIZES.padding,
-                        color: this.state.selectedCategory?.id == item.id
-                        ? COLORS.white
-                        : COLORS.black,
+                        color:
+                          this.state.selectedCategory?.id == item.id
+                            ? COLORS.white
+                            : COLORS.black,
                         ...FONTS.body5,
                       }}
                     >
@@ -391,7 +398,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: SIZES.radius,
     backgroundColor: "white",
-    padding: 10
+    padding: 10,
   },
   overlay: {
     height: 100,
@@ -410,6 +417,6 @@ const styles = StyleSheet.create({
     color: "#442484",
     marginTop: 8,
     fontWeight: "bold",
-    fontSize: 25
+    fontSize: 25,
   },
 });

@@ -14,6 +14,7 @@ import SuggestedRecipes from "./screens/foodList/SuggestedRecipes";
 import ShoppingList from "./screens/shoppingList/ShoppingList";
 import Help from "./screens/help/Help";
 import CameraView from "./screens/camera/CameraView";
+import Detections from "./screens/foodList/Detections";
 LogBox.ignoreAllLogs();
 
 const Stack = createStackNavigator();
@@ -50,6 +51,7 @@ const App = () => {
         <Stack.Screen name="FoodList" component={Tabs} />
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="HistoryList" component={HistoryList} />
+        <Stack.Screen name="Detections" component={Detections} />
       </Stack.Navigator>
     </NavigationContainer>
   );

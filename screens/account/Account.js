@@ -1,27 +1,27 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import { StyleSheet, Text, ScrollView, Image, View } from 'react-native'
-import Loading from '../../components/Loading'
-import { getCurrentUser } from '../../utils/actions'
-import { useFocusEffect } from '@react-navigation/native'
+import React, { useState, useEffect, useCallback } from "react";
+import { StyleSheet, Text, ScrollView, Image, View } from "react-native";
+import Loading from "../../components/Loading";
+import { getCurrentUser } from "../../utils/actions";
+import { useFocusEffect } from "@react-navigation/native";
 
-import UserGuest from './UserGuest'
-import Main from '../main/Main'
+import UserGuest from "./UserGuest";
+import Main from "../main/Main";
 
 export default function Account() {
-    const [login, setLogin] = useState(null)
+  const [login, setLogin] = useState(null);
 
-    useFocusEffect (
-        useCallback (() => {
-            const user = getCurrentUser()
-            user ? setLogin(true) : setLogin(false)
-        }, [])
-    )
+  useFocusEffect(
+    useCallback(() => {
+      const user = getCurrentUser();
+      user ? setLogin(true) : setLogin(false);
+    }, [])
+  );
 
-    if (login == null){
-        return <Loading isVisible={true} text="Loading..."/>
-    }
+  if (login == null) {
+    return <Loading isVisible={true} text="Loading..." />;
+  }
 
-    return login ? <Main/> : <UserGuest/>
+  return login ? <Main /> : <UserGuest />;
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

@@ -1,12 +1,10 @@
 import React from "react";
-import {
-  View
-} from "react-native";
+import { View, Text } from "react-native";
 
 function DisplayComponent(props) {
   const h = () => {
-    if (props.time.h === 0) {
-      return "";
+    if (props.horas === 0) {
+      return <Text></Text>;
     } else {
       return (
         <View
@@ -16,35 +14,70 @@ function DisplayComponent(props) {
             padding: 20,
             borderRadius: 5,
             width: 70,
+            margin: 10,
           }}
         >
-          {props.time.h >= 10 ? props.time.h : "0" + props.time.h}
+          <Text
+            style={{
+              textAlign: "center",
+              fontWeight: "bold",
+              fontSize: 20,
+              color: "white"
+          }}>
+            {props.horas >= 10 ? props.horas : "0" + props.horas}
+          </Text>
         </View>
       );
     }
   };
   return (
-    <View>
-      {h()}&nbsp;&nbsp;
+    <View
+      style={{
+        flexDirection: "row",
+        alignSelf: "center"
+      }}
+    >
+      {h()}
       <View
+        style={{
+          backgroundColor: "#00ABA9",
+          display: "flex",
+          padding: 20,
+          borderRadius: 5,
+          width: 70,
+          margin: 10,
+        }}
+      >
+        <Text
           style={{
-            backgroundColor: "#00ABA9",
-            display: "flex",
-            padding: 20,
-            borderRadius: 5,
-            width: 70,
-          }}
-        >{props.time.m >= 10 ? props.time.m : "0" + props.time.m}</View>
-      &nbsp;:&nbsp;
+            textAlign: "center",
+            fontWeight: "bold",
+            fontSize: 20,
+            color: "white"
+          }}>
+          {props.minutos >= 10 ? props.minutos : "0" + props.minutos}
+        </Text>
+      </View>
       <View
+        style={{
+          backgroundColor: "#00ABA9",
+          display: "flex",
+          padding: 20,
+          borderRadius: 5,
+          width: 70,
+          margin: 10,
+        }}
+      >
+        <Text
           style={{
-            backgroundColor: "#00ABA9",
-            display: "flex",
-            padding: 20,
-            borderRadius: 5,
-            width: 70,
-          }}
-        >{props.time.s >= 10 ? props.time.s : "0" + props.time.s}</View>
+            textAlign: "center",
+            fontWeight: "bold",
+            fontSize: 20,
+            color: "white"
+          }}>
+          {props.segundos >= 10 ? props.segundos : "0" + props.segundos}
+        </Text>
+      </View>
     </View>
   );
 }

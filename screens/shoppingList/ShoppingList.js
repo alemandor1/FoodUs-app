@@ -22,10 +22,9 @@ import {
 import firebase from "firebase";
 import { firebaseApp } from "../../utils/firebase";
 import "firebase/firebase-firestore";
-import Loading from "../../components/Loading";
 import { onlyLetters } from "../../utils/helpers";
 
-export default function ShoopingList({navigation}) {
+export default function ShoopingList({ navigation }) {
   const db = firebase.firestore(firebaseApp);
 
   //añadimos el ingrediente a mi lista de la compra (firebase)
@@ -42,7 +41,7 @@ export default function ShoopingList({navigation}) {
     firebase
       .firestore()
       .collection("shoppingList")
-      .where("idUser", "==", getCurrentUser().uid) //HE AÑADIDO ESTA LÍNEA REVISAR BIEN
+      .where("idUser", "==", getCurrentUser().uid)
       .onSnapshot((querySnapshot) => {
         const ingredients = [];
         querySnapshot.docs.forEach((doc) => {
@@ -62,6 +61,7 @@ export default function ShoopingList({navigation}) {
     ingredientsName.push(element);
   }
 
+  //comprobar que el producto no está añadido ya a la lista
   const validateData = () => {
     setErrorName("");
     let isValid = true;
@@ -85,6 +85,7 @@ export default function ShoopingList({navigation}) {
     return isValid;
   };
 
+  //añadir producto a la lista
   const addIngredient = async () => {
     if (!validateData()) {
       return;
@@ -105,6 +106,7 @@ export default function ShoopingList({navigation}) {
     }
   };
 
+  //obtener los productos de la base de datos de la lista de la compra
   const getMyIngredients = async () => {
     const result = { statusResponse: true, error: null, myIngredients: [] };
     try {
@@ -169,6 +171,7 @@ export default function ShoopingList({navigation}) {
       });
   };
 
+  //marcar o desmarcar producto de la lista
   const onchecked = async (name) => {
     const docDataIngredient = await findDataIngredient(name);
     const valueChecked = docDataIngredient.checked;
@@ -272,13 +275,13 @@ export default function ShoopingList({navigation}) {
   const alertDeleteShoppingList = () =>
     Alert.alert(
       "Alert Message",
-      "Are you sure you want to remove all the ingredients from your shopping list?.",
+      "Are you sure you want to remove all the ingredients from your shopping list?",
       [
         {
           text: "Cancel",
-          style: "cancel"
+          style: "cancel",
         },
-        { text: "OK", onPress: () => deleteAllShoppingList() }
+        { text: "OK", onPress: () => deleteAllShoppingList() },
       ]
     );
 
@@ -322,11 +325,6 @@ export default function ShoopingList({navigation}) {
         />
       </View>
       <View style={{ flex: 1, paddingBottom: 35 }}>
-        {/* <Image
-          source={require("../../assets/fondoshooping.jpg")}
-          style={StyleSheet.absoluteFillObject}
-          blurRadius={10}
-        /> */}
         <ScrollView>
           <FlatList
             data={myShoppingList}
@@ -411,7 +409,6 @@ export default function ShoopingList({navigation}) {
                     color={COLORS.white}
                   />
                 </View>
-                {/* </View> */}
               </View>
             )}
           />
@@ -435,10 +432,30 @@ export default function ShoopingList({navigation}) {
 }
 
 const styles = StyleSheet.create({
-    fab: {
-        position: "absolute",
-        margin: 16,
-        right: 0,
-        bottom: 0,
-      }  
+  fab: {
+    position: "absolute",
+    margin: 16,
+    right: 0,
+    top: 700,
+  },
+  fab2: {
+    position: "absolute",
+    margin: 16,
+    right: 0,
+    top: 640,
+  },
+  input: {
+    width: "75%",
+    alignSelf: "center",
+  },
+  actionBtn: {
+    width: 70,
+    height: 25,
+    backgroundColor: "#5B74CC",
+    borderRadius: 30,
+    paddingHorizontal: 5,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignContent: "center",
+  },
 });

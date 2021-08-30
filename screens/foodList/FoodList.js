@@ -84,6 +84,7 @@ export default function FoodList({ navigation }) {
 
   const db = firebase.firestore(firebaseApp);
 
+  //obtener la lista de alimentos del usuario activo
   const getMyIngredients = async () => {
     const result = {
       statusResponse: true,
@@ -116,6 +117,7 @@ export default function FoodList({ navigation }) {
   const [ingredientsTrue, setIngredientsTrue] = useState([]);
   const [predictions, setPredictions] = useState([]);
 
+  //obtener la base de datos completa de todos los ingredientes de la aplicación
   const getTrueIngredients = async () => {
     const db = firebase.firestore(firebaseApp);
     const myIngredientsTrue = [];
@@ -189,6 +191,7 @@ export default function FoodList({ navigation }) {
       });
   };
 
+  //seleccionar o deseleccionar un alimento en concreto de la lista
   const onchecked = async (id) => {
     const docDataIngredient = await findDataIngredient(id);
     const valueChecked = docDataIngredient.checked;
@@ -331,7 +334,7 @@ export default function FoodList({ navigation }) {
   const alertDeleteFoodList = () =>
     Alert.alert(
       "Alert Message",
-      "Are you sure you want to remove all the ingredients from your food list?.",
+      "Are you sure you want to remove all the ingredients from your food list?",
       [
         {
           text: "Cancel",
@@ -355,13 +358,12 @@ export default function FoodList({ navigation }) {
 
   return (
     <KeyboardAvoidingView
-      /* behavior={Platform.OS == "ios" ? "padding" : "height"}
+      behavior={Platform.OS == "ios" ? "padding" : "height"}
       keyboardVerticalOffset={Platform.OS == "ios" ? 0 : 20}
-      enabled={Platform.OS === "ios" ? true : false} */
+      enabled={Platform.OS === "ios" ? true : false}
       style={{ flex: 1 }}
     >
       <View style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
-        {/* TÍTULO */}
         <View style={{ padding: SIZES.padding * 3 }}>
           <View
             style={{
@@ -384,7 +386,6 @@ export default function FoodList({ navigation }) {
             </Text>
           </View>
         </View>
-        {/* INPUT */}
         <View>
           <Input
             containerStyle={styles.input}
@@ -411,7 +412,6 @@ export default function FoodList({ navigation }) {
             value={isEnabled}
           />
         </View>
-        {/* LISTADO DE INGREDIENTES */}
         <View style={{ paddingBottom: 280, paddingTop: 45 }}>
           <ScrollView>
             <FlatList
@@ -468,7 +468,6 @@ export default function FoodList({ navigation }) {
           </ScrollView>
         </View>
 
-        {/* SEARCHBAR */}
         {searching && (
           <TouchableOpacity
             onPress={() => setSearching(false)}
@@ -521,27 +520,6 @@ export default function FoodList({ navigation }) {
         icon="delete"
         onPress={() => alertDeleteFoodList()}
       ></FAB>
-      {/* {predictions != null && (
-        <Overlay
-          isVisible = {visible}
-          windowBackgoundColor="rgba(0,0,0,0.5)"
-          overlayBackgroundColor="transparent"
-          overlayStyle={styles.overlay}
-        >
-          <View style={styles.view}>
-            <FlatList
-              data={predictions}
-              keyExtractor={(item) => item.id}
-              contentContainerStyle={{
-                padding: 20,
-                height: "100%",
-              }}
-              renderItem={({ item }) => <Text>{item.class}</Text>}
-            ></FlatList>
-            <Button title="OK" onPress={offVisible} />
-          </View>
-        </Overlay>
-      )} */}
     </KeyboardAvoidingView>
   );
 }

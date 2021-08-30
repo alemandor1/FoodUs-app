@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Button, Image } from "react-native";
+import { StyleSheet, Text, View, Image, Alert } from "react-native";
 import { Camera } from "expo-camera";
 import * as ImagePicker from "expo-image-picker";
-import { Feather as Icon } from "@expo/vector-icons";
-import firebase from "firebase";
 import "firebase/firebase-firestore";
-import * as FileSystem from 'expo-file-system';
-import { fileToBlob } from "../../utils/helpers";
+import { FAB } from "react-native-paper";
+import { uploadImage } from "../../utils/actions";
 import { getCurrentUser } from "../../utils/actions";
+import Constants from "expo-constants";
+import { IconButton } from "react-native-paper";
+import { Feather as Icon } from "@expo/vector-icons";
+import Loading from "../../components/Loading";
 
 export default function CameraView({ navigation }) {
   const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
@@ -16,7 +18,9 @@ export default function CameraView({ navigation }) {
   const [image, setImage] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
 
+  //pedimos los permisos para acceder a la cámara y a la galería
   useEffect(() => {
     (async () => {
       const cameraStatus = await Camera.requestPermissionsAsync();
@@ -30,6 +34,7 @@ export default function CameraView({ navigation }) {
     })();
   }, []);
 
+  //toma una fotografía con la cámara
   const takePicture = async () => {
     if (camera) {
       const data = await camera.takePictureAsync(null);
@@ -37,6 +42,7 @@ export default function CameraView({ navigation }) {
     }
   };
 
+  //elige una imagen de la galería
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -51,35 +57,69 @@ export default function CameraView({ navigation }) {
   };
 
   if (hasCameraPermission === null || hasGalleryPermission === false) {
-    return <View />;
+    return (
+      <View>
+        <FAB
+          style={styles.fab}
+          large
+          icon="undo"
+          onPress={() => navigation.goBack()}
+        ></FAB>
+      </View>
+    );
   }
   if (hasCameraPermission === false || hasGalleryPermission === false) {
-    return <Text>No access to camera</Text>;
+    return (
+      <View>
+        <Text
+          style={{
+            textAlign: "center",
+          }}
+        >
+          No access to camera
+        </Text>
+        <FAB large icon="undo" onPress={() => navigation.goBack()}></FAB>
+      </View>
+    );
   }
 
-  const uploadImage = async (image, path, name) => {
-    const result = { statusResponse: false, error: null, url: null };
-    const ref = firebase.storage().ref(path).child(name);
-    const blob = await fileToBlob(image);
+  //obtener la IPv4 del usuario
+  const showIp = async () => {
+    const { manifest } = Constants;
+    const api =
+      typeof manifest.packagerOpts === `object` && manifest.packagerOpts.dev
+        ? manifest.debuggerHost.split(`:`).shift()
+        : `api.example.com`;
 
-    try {
-      await ref.put(blob);
-      const url = await firebase
-        .storage()
-        .ref(`${path}/${name}`)
-        .getDownloadURL();
-      result.statusResponse = true;
-      result.url = url;
-    } catch (error) {
-      result.error = error;
-    }
-    return result;
+    return api;
   };
 
-  const uploadFlask = async (uri) => {
-    const response = await uploadImage(uri, "foodImages", user.uid);
-    if (response.statusResponse) { 
-      navigation.navigate("FoodList");  
+  //enviar la imagen al servidor de flask para procesarla y devolver el resultado a la vista 'Detections'
+  const uploadFlask = async (img) => {
+    setLoading(true)
+    await uploadImage(img, "foodImages", user.uid);
+
+    const ip = await showIp();
+
+    var data = JSON.stringify({
+      filename: user.uid,
+    });
+
+    const response = await fetch("http://" + ip + ":5000/detections", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: data,
+    });
+
+    const dataResponse = await response.json().then((data) => {
+      return data;
+    });
+
+    const foodData = dataResponse.response[0].detections;
+
+    setLoading(false)
+    if (response.status == 200) {
+      navigation.navigate("Detections", { food: foodData });
     } else {
       Alert.alert("An error occurred while uploading the picture.");
     }
@@ -87,47 +127,61 @@ export default function CameraView({ navigation }) {
 
   return (
     <View style={{ flex: 1 }}>
-      <View style={styles.cameraContainer}>
+      <Loading isVisible={loading} text="Loading..." />
+      <View style={{ flex: 1 }}>
         <Camera
           ref={(ref) => setCamera(ref)}
-          style={styles.fixedRatio}
+          style={{ flex: 1 }}
           type={type}
           ratio={"1:1"}
         />
-      </View>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "flex-end",
-          marginHorizontal: 20,
-        }}
-      >
-        <Icon
-          name="refresh-ccw"
-          size={50}
-          onPress={() => {
-            setType(
-              type === Camera.Constants.Type.back
-                ? Camera.Constants.Type.front
-                : Camera.Constants.Type.back
-            );
+
+        <View
+          style={{
+            flexDirection: "row",
+            height: 0,
+            alignItems: "flex-end",
+            marginHorizontal: 20,
           }}
-        ></Icon>
-        <Icon name="aperture" size={50} onPress={() => takePicture()} />
-        <Icon name="image" size={50} onPress={() => pickImage()} />
-        <Icon
-          name="check"
-          color="green"
-          size={50}
-          onPress={() => uploadFlask(image)}
-        />
-        <Icon
-          name="x"
-          color="red"
-          size={50}
-          onPress={() => navigation.navigate("FoodList")}
-        />
+        >
+          <IconButton
+            icon="autorenew"
+            color="white"
+            size={40}
+            onPress={() => {
+              setType(
+                type === Camera.Constants.Type.back
+                  ? Camera.Constants.Type.front
+                  : Camera.Constants.Type.back
+              );
+            }}
+          />
+          <IconButton
+            icon="image"
+            color="white"
+            size={40}
+            onPress={() => pickImage()}
+          />
+          <Icon
+            name="aperture"
+            color="black"
+            size={65}
+            onPress={() => takePicture()}
+            style={styles.shadow}
+          />
+          <IconButton
+            icon="check"
+            color="green"
+            size={40}
+            onPress={() => uploadFlask(image)}
+          />
+          <IconButton
+            icon="window-close"
+            color="red"
+            size={40}
+            onPress={() => navigation.goBack()}
+          />
+        </View>
       </View>
       {image && <Image source={{ uri: image }} style={{ flex: 1 }} />}
     </View>
@@ -135,12 +189,11 @@ export default function CameraView({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  cameraContainer: {
-    flex: 1,
-    flexDirection: "row",
-  },
-  fixedRatio: {
-    flex: 1,
-    aspectRatio: 1,
+  shadow: {
+    marginBottom: 25,
+    textShadowColor: "lightgray",
+    shadowOpacity: 2,
+    textShadowRadius: 4,
+    textShadowOffset: { width: 0.5, height: 0.5 },
   },
 });
