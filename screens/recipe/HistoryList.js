@@ -72,6 +72,7 @@ export default class HistoryList extends React.Component {
                   borderBottomRightRadius: SIZES.radius,
                   borderBottomLeftRadius: SIZES.radius,
                   marginBottom: 15,
+                  marginTop: 10
                 }}
               >
                 <Text
@@ -88,123 +89,155 @@ export default class HistoryList extends React.Component {
               </View>
             </View>
             <View style={{ flex: 1 }}>
-              <FlatList
-                data={this.state.recipes}
-                keyExtractor={(item) => item.idRecipe}
-                renderItem={({ item }) => (
-                  <TouchableOpacity
-                    style={{
-                      marginBottom: SIZES.padding * 2,
-                    }}
-                    onPress={() =>
-                      navigation.navigate("Recipe", {
-                        id: item.idRecipe,
-                      })
-                    }
-                  >
-                    <View
-                      style={{
-                        marginBottom: SIZES.padding,
-                      }}
-                    >
-                      <Image
-                        source={
-                          item?.image == null
-                            ? require("../../assets/backgroundlogo.png")
-                            : { uri: item.image }
+              {this.state.recipes.length != 0 ? (
+                <View>
+                  <FlatList
+                    data={this.state.recipes}
+                    keyExtractor={(item) => item.idRecipe}
+                    renderItem={({ item }) => (
+                      <TouchableOpacity
+                        style={{
+                          marginBottom: SIZES.padding * 2,
+                        }}
+                        onPress={() =>
+                          navigation.navigate("Recipe", {
+                            id: item.idRecipe,
+                          })
                         }
-                        resizeMode="cover"
-                        style={{
-                          width: "100%",
-                          height: 200,
-                          borderRadius: SIZES.radius,
-                        }}
-                      />
-                      <View
-                        style={{
-                          position: "absolute",
-                          bottom: 0,
-                          height: 50,
-                          width: SIZES.width * 0.3,
-                          backgroundColor: COLORS.primary,
-                          borderTopRightRadius: SIZES.radius,
-                          borderBottomLeftRadius: SIZES.radius,
-                          alignItems: "center",
-                          justifyContent: "center",
-                          ...styles.shadow,
-                        }}
                       >
-                        <Text style={{ ...FONTS.h4, color: "white" }}>
-                          {item.readyInMinutes} minutes
-                        </Text>
-                      </View>
-                    </View>
-
-                    <Text style={{ ...FONTS.body2 }}>{item.title}</Text>
-
-                    <View
-                      style={{
-                        marginTop: SIZES.padding,
-                        flexDirection: "row",
-                      }}
-                    >
-                      <Text style={{ ...FONTS.body4, fontWeight: "bold" }}>
-                        Date:
-                      </Text>
-                      <Text
-                        style={{
-                          ...FONTS.body4,
-                          color: "gray",
-                          paddingLeft: 5,
-                        }}
-                      >
-                        {item.date}
-                      </Text>
-                    </View>
-                    <View
-                      style={{
-                        flexDirection: "row",
-                      }}
-                    >
-                      <Text style={{ ...FONTS.body4, fontWeight: "bold" }}>
-                        Your time:
-                      </Text>
-                      {item.timeSpent.secs == 0 &&
-                      item.timeSpent.mins == 0 &&
-                      item.timeSpent.hours == 0 ? (
-                        <Text
+                        <View
                           style={{
-                            ...FONTS.body4,
-                            color: "gray",
-                            paddingLeft: 5,
+                            marginBottom: SIZES.padding,
                           }}
                         >
-                          No record
-                        </Text>
-                      ) : (
-                        <Text
+                          <Image
+                            source={
+                              item?.image == null
+                                ? require("../../assets/backgroundlogo.png")
+                                : { uri: item.image }
+                            }
+                            resizeMode="cover"
+                            style={{
+                              width: "100%",
+                              height: 200,
+                              borderRadius: SIZES.radius,
+                            }}
+                          />
+                          <View
+                            style={{
+                              position: "absolute",
+                              bottom: 0,
+                              height: 50,
+                              width: SIZES.width * 0.3,
+                              backgroundColor: COLORS.primary,
+                              borderTopRightRadius: SIZES.radius,
+                              borderBottomLeftRadius: SIZES.radius,
+                              alignItems: "center",
+                              justifyContent: "center",
+                              ...styles.shadow,
+                            }}
+                          >
+                            <Text style={{ ...FONTS.h4, color: "white" }}>
+                              {item.readyInMinutes} minutes
+                            </Text>
+                          </View>
+                        </View>
+
+                        <Text style={{ ...FONTS.body2 }}>{item.title}</Text>
+
+                        <View
                           style={{
-                            ...FONTS.body4,
-                            color: "gray",
-                            paddingLeft: 5,
+                            marginTop: SIZES.padding,
+                            flexDirection: "row",
                           }}
                         >
-                          {item.timeSpent.hours > 0
-                            ? item.timeSpent.hours +
-                              ":" +
-                              item.timeSpent.mins +
-                              ":" +
-                              item.timeSpent.secs
-                            : item.timeSpent.mins + ":" + item.timeSpent.secs}
-                        </Text>
-                      )}
-                    </View>
-                  </TouchableOpacity>
-                )}
-                contentContainerStyle={{
-                  paddingHorizontal: SIZES.padding * 2,
-                }}
-              />
+                          <Text style={{ ...FONTS.body4, fontWeight: "bold" }}>
+                            Date:
+                          </Text>
+                          <Text
+                            style={{
+                              ...FONTS.body4,
+                              color: "gray",
+                              paddingLeft: 5,
+                            }}
+                          >
+                            {item.date}
+                          </Text>
+                        </View>
+                        <View
+                          style={{
+                            flexDirection: "row",
+                          }}
+                        >
+                          <Text style={{ ...FONTS.body4, fontWeight: "bold" }}>
+                            Your time:
+                          </Text>
+                          {item.timeSpent.secs == 0 &&
+                          item.timeSpent.mins == 0 &&
+                          item.timeSpent.hours == 0 ? (
+                            <Text
+                              style={{
+                                ...FONTS.body4,
+                                color: "gray",
+                                paddingLeft: 5,
+                              }}
+                            >
+                              No record
+                            </Text>
+                          ) : (
+                            <Text
+                              style={{
+                                ...FONTS.body4,
+                                color: "gray",
+                                paddingLeft: 5,
+                              }}
+                            >
+                              {item.timeSpent.hours > 0
+                                ? item.timeSpent.hours +
+                                  ":" +
+                                  item.timeSpent.mins +
+                                  ":" +
+                                  item.timeSpent.secs
+                                : item.timeSpent.mins +
+                                  ":" +
+                                  item.timeSpent.secs}
+                            </Text>
+                          )}
+                        </View>
+                      </TouchableOpacity>
+                    )}
+                    contentContainerStyle={{
+                      paddingHorizontal: SIZES.padding * 2,
+                    }}
+                  />
+                </View>
+              ) : (
+                  <View
+                    style={{
+                      padding: 20,
+                      marginBottom: 20,
+                      marginTop: 50,
+                      backgroundColor: "#FDEDEC",
+                      borderRadius: 12,
+                      shadowColor: "#000",
+                      shadowOffset: { width: 0, height: 10 },
+                      shadowOpacity: 0.3,
+                      shadowRadius: 20,
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <Text
+                      style={{
+                        ...FONTS.h2,
+                        color: "black",
+                        paddingLeft: 25,
+                        paddingRight: 5,
+                      }}
+                    >
+                      You haven't done any recipe yet.
+                    </Text>
+                </View>
+              )}
             </View>
             <FAB
               style={styles.fab}
