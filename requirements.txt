@@ -1,0 +1,10 @@
+tensorflow
+numpy
+opencv-python
+lxml
+tqdm
+flask
+seaborn
+pillow
+pyrebase4
+flask_cors
