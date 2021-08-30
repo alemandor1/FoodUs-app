@@ -13,7 +13,7 @@ En este apartado de detalla mediante una serie de pasos el proceso de instalaci�
 Antes que nada, habrá que tener instalado la herramienta **Visual Studio Code** (https://code.visualstudio.com/download), **Node.js** (https://nodejs.org/es/download/) y una versión de **Python** (https://tutorial.djangogirls.org/es/python_installation/) en el ordenador para proceder a la instalación del proyecto,
 y en el dispositivo móvil la aplicación **Expo** del Play Store (https://play.google.com/store/apps/details?id=host.exp.exponent&hl=es&gl=US).
 
-**IMPORTANTE** Hay que tener bien configuradas las variables de entorno de python y node. También, es obligatorio que el móvil y el ordenador se encuentren conectados a la misma red.
+**IMPORTANTE:** Hay que tener bien configuradas las variables de entorno de python y node. También, es obligatorio que el móvil y el ordenador se encuentren conectados a la misma red.
 
 
 Para proceder a la inslatación y ejecución de la app hay que seguir los siguientes pasos:
