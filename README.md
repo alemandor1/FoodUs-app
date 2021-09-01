@@ -24,7 +24,7 @@ Para proceder a la inslatación y ejecución de la app hay que seguir los siguie
   
   <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/descarga.jpg" width="600">
    
-  **3-** Descomprimir el ZIP "weights" y copiar dicha carpeta en la carpeta del proyecto del **PASO 1** (FoodUs-app):
+  **3-** Descomprimir el ZIP "weights" y añadir dicha carpeta a la carpeta del proyecto del **PASO 1** (FoodUs-app):
   
   <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/carpetaWeights.png" width="600">
   
