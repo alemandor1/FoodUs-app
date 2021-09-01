@@ -34,11 +34,11 @@ Para proceder a la inslatación y ejecución de la app hay que seguir los siguie
 
   **6-** Abrir una segunda terminal (T2) y ejecutar el comando: "**pip install -r requirements-gpu.txt**".
    
-   Si salta un error con respecto a alguna dependencia, habrá que desinstalarla primero con el comando "**pip uninstall nombreDependencia**" y luego volver a ejecutar **el paso 3**. 
+   Si salta un error con respecto a alguna dependencia, habrá que desinstalarla primero con el comando "**pip uninstall nombreDependencia**" y luego volver a ejecutar **el paso 6**. 
   
-  **7-** Al terminar los pasos 2 y 3, ejecutar el comando: "**python app.py**" en la segunda terminal (T2).
+  **7-** Al terminar los pasos 5 y 6, ejecutar el comando: "**python app.py**" en la segunda terminal (T2).
 
-  **8-** Al terminar los pasos 2 y 3, ejecutar el comando: "**npm start**" en la primera terminal (T1).
+  **8-** Al terminar los pasos 5 y 6, ejecutar el comando: "**npm start**" en la primera terminal (T1).
 
   **9-** Tras ejecutar el comando anterior, se abrirá el navegador web que mostrará un código QR.
 
