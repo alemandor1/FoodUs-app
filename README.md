@@ -28,7 +28,7 @@ Para proceder a la inslatación y ejecución de la app hay que seguir los siguie
   
   <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/carpetaWeights.png" width="600">
   
-  **4-** Arrancar la herramiente Visual Studio Code y abrir la carpeta del proyecto. (File -> Open Folder...)  
+  **4-** Arrancar la herramienta Visual Studio Code y abrir la carpeta del proyecto. (File -> Open Folder...)  
 
   **5-** En Visual Studio Code abrir una terminal (T1) y ejecutar el comando: "**npm install**".
 
