@@ -21,8 +21,10 @@ Para proceder a la inslatación y ejecución de la app hay que seguir los siguie
   **1-** Descargarse el proyecto .zip (FoodUs-app) y descomprimir la carpeta.
   
   **2-** Abrir el enlace: (https://drive.google.com/drive/folders/1Ju_JTsBZeS9Z6q2fgY3j1xBy63hvPR1l), descargar el ZIP "weights":
+  <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/descarga.jpeg" width="200">
    
   **3-** Descomprimir el ZIP "weights" y copiar dicha carpeta en la carpeta del proyecto del **PASO 1** (FoodUs-app):
+  <img src="https://github.com/alemandor1/FoodUs-app/blob/master/imagesReadme/carpetaWeights.jpeg" width="200">
   
   **4-** Arrancar la herramiente Visual Studio Code y abrir la carpeta del proyecto. (File -> Open Folder...)  
 
