@@ -18,22 +18,28 @@ y en el dispositivo móvil la aplicación **Expo** del Play Store (https://play.
 
 Para proceder a la inslatación y ejecución de la app hay que seguir los siguientes pasos:
 
-  **1-** Descargarse el proyecto .zip, descomprimirlo e importarlo a la herramienta Visual Studio Code.
+  **1-** Descargarse el proyecto .zip (FoodUs-app) y descomprimir la carpeta.
+  
+  **2-** Abrir el enlace: (https://drive.google.com/drive/folders/1Ju_JTsBZeS9Z6q2fgY3j1xBy63hvPR1l), descargar el ZIP "weights":
+   
+  **3-** Descomprimir el ZIP "weights" y copiar dicha carpeta en la carpeta del proyecto del **PASO 1** (FoodUs-app):
+  
+  **4-** Arrancar la herramiente Visual Studio Code y abrir la carpeta del proyecto. (File -> Open Folder...)  
 
-  **2-** Abrir una terminal (T1) y ejecutar el comando: "**npm install**".
+  **5-** En Visual Studio Code abrir una terminal (T1) y ejecutar el comando: "**npm install**".
 
-  **3-** Abrir una segunda terminal (T2) y ejecutar el comando: "**pip install -r requirements-gpu.txt**".
+  **6-** Abrir una segunda terminal (T2) y ejecutar el comando: "**pip install -r requirements-gpu.txt**".
    
    Si salta un error con respecto a alguna dependencia, habrá que desinstalarla primero con el comando "**pip uninstall nombreDependencia**" y luego volver a ejecutar **el paso 3**. 
   
-  **4-** Al terminar los pasos 2 y 3, ejecutar el comando: "**python app.py**" en la segunda terminal (T2).
+  **7-** Al terminar los pasos 2 y 3, ejecutar el comando: "**python app.py**" en la segunda terminal (T2).
 
-  **5-** Al terminar los pasos 2 y 3, ejecutar el comando: "**npm start**" en la primera terminal (T1).
+  **8-** Al terminar los pasos 2 y 3, ejecutar el comando: "**npm start**" en la primera terminal (T1).
 
-  **6-** Tras ejecutar el comando anterior, se abrirá el navegador web que mostrará un código QR.
+  **9-** Tras ejecutar el comando anterior, se abrirá el navegador web que mostrará un código QR.
 
-  **7-** Desde la aplicación Expo Go del dispositivo móvil escaneamos el código QR.
+  **10-** Desde la aplicación Expo Go del dispositivo móvil escaneamos el código QR.
 
-  **8-** Por último, habrá que esperar unos segundos a que se construya el proyecto.
+  **11-** Por último, habrá que esperar unos segundos a que se construya el proyecto.
 
-  **9-** Ya tendremos la aplicación lanzada correctamente y estará lista para usarla con total libertad.
+  **12-** Ya tendremos la aplicación lanzada correctamente y estará lista para usarla con total libertad.
